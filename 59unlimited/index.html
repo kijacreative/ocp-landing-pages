@@ -2,6 +2,38 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KZWDNT3');</script>
+<!-- End Google Tag Manager -->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YD9XD8TM7M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  // GTM-KZWDNT3 already sends the GA4 page_view for this ID; this tag only carries events like begin_checkout.
+  gtag('config', 'G-YD9XD8TM7M', { send_page_view: false });
+</script>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '788246499083696');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" alt=""
+src="https://www.facebook.com/tr?id=788246499083696&ev=PageView&noscript=1"></noscript>
+<!-- End Meta Pixel Code -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>$59 One Week Unlimited Pilates | Oak Cliff Pilates</title>
 <meta name="description" content="One week of unlimited Pilates for $59 at three Dallas studios: Bishop Arts, Uptown and Lower Greenville. Your seven days don't start until your first class.">
@@ -43,6 +75,10 @@ a:hover{color:#E9C977}
 </style>
 </head>
 <body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KZWDNT3"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 <div style="container-type:inline-size;background:#0B0B0B;color:#F4EFE6;font-family:var(--font-body)">
 
   <header style="position:sticky;top:0;z-index:100;background:rgba(11,11,11,.82);backdrop-filter:blur(14px) saturate(140%);-webkit-backdrop-filter:blur(14px) saturate(140%);border-bottom:1px solid rgba(201,162,74,.28)">
@@ -152,6 +188,20 @@ a:hover{color:#E9C977}
   document.addEventListener('touchstart', play, { once: true, passive: true });
   play();
 })();
+
+// Checkout intent. The purchase itself happens inside the Arketa iframe, which these tags can't see.
+document.querySelectorAll('a[href="#checkout"], a[href*="app.arketa.co"]').forEach(function (a) {
+  a.addEventListener('click', function (e) {
+    // Scroll without touching the URL: a hash change counts as a second Meta PageView.
+    if (a.getAttribute('href') === '#checkout') {
+      e.preventDefault();
+      document.getElementById('checkout').scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+    }
+    var data = { value: 59, currency: 'USD', content_name: '1-Week Unlimited' };
+    if (window.fbq) fbq('track', 'InitiateCheckout', data);
+    if (window.gtag) gtag('event', 'begin_checkout', { value: 59, currency: 'USD', items: [{ item_name: '1-Week Unlimited', price: 59 }] });
+  });
+});
 </script>
 </body>
 </html>
