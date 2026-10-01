@@ -25,10 +25,11 @@ PACKS = [("12 classes", "$189"), ("8 classes", "$159"), ("4 classes", "$99")]  #
 
 # ── Links ────────────────────────────────────────────────────────────────
 SITE = "https://oakcliffpilates.com"
-SCHEDULE = f"{SITE}/schedule"
-CLASSES = f"{SITE}/schedule/classes"
-PRICING = f"{SITE}/pricing"
-UNLIMITED_URL = f"{SITE}/pricing/unlimited"
+# Live WordPress URLs. The rebuilt site's /schedule and /pricing paths aren't live yet.
+SCHEDULE = f"{SITE}/class-schedule/"
+CLASSES = SCHEDULE          # no class-descriptions page on the live site yet
+PRICING = f"{SITE}/reformer-class-pricing/"
+UNLIMITED_URL = "https://app.arketa.co/oakcliffpilates/pricing/checkout/NYH9dctoUSiY9llrTpDz"  # where UPGRADE25 gets entered
 UNSUBSCRIBE = "[UNSUBSCRIBE_URL]"   # swap for the sending platform's merge tag
 
 # ── Tokens (rgba hairlines pre-blended over black: Outlook drops rgba) ───
@@ -295,7 +296,7 @@ def e1():
               + display(f"Your week doesn't start until your {gold('first class.')}", 44, 11.5, 74, mb=20)
               + p("Buy today, come Thursday, and your seven days begin Thursday. Nothing is ticking.", 17, TEXT_LIGHT, 20)
               + p("The catch is the obvious one. Book it now, or this quietly becomes a thing you meant to do.", 16, mb=24)
-              + button("Book your first class", "https://oakcliffpilates.com/class-schedule/"), t1, 0, t1m)
+              + button("Book your first class", SCHEDULE), t1, 0, t1m)
         + spacer(gap, gapm)
         + f'<tr><td style="padding:0"><img src="{IMG}/trial-first-class-setup.jpg" width="600" height="375" class="fluid" '
           f'alt="Trainer setting up a member on the reformer" style="display:block;width:600px;height:auto;max-width:100%"></td></tr>\n'
