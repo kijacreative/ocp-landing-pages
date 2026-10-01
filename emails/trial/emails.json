@@ -1,0 +1,109 @@
+[
+  {
+    "id": "e1",
+    "file": "01-on-purchase",
+    "phase": 1,
+    "trigger": "On purchase",
+    "subjects": [
+      "Your week hasn't started yet",
+      "You're in. Here's how it works.",
+      "Book your first class"
+    ],
+    "preheader": "The clock doesn't start until you walk in. Here's what to know first."
+  },
+  {
+    "id": "e2",
+    "file": "02-purchase-plus-3",
+    "phase": 1,
+    "trigger": "Purchase +3 days, no visit",
+    "subjects": [
+      "Still not booked",
+      "Your week is waiting on you",
+      "Pick a day"
+    ],
+    "preheader": "Nothing has started. Nothing is wasted. Just pick one."
+  },
+  {
+    "id": "e3",
+    "file": "03-purchase-plus-10",
+    "phase": 1,
+    "trigger": "Purchase +10 days, no visit",
+    "subjects": [
+      "Still here whenever you are",
+      "Ten days",
+      "No expiry, just a reminder"
+    ],
+    "preheader": ""
+  },
+  {
+    "id": "e4",
+    "file": "04-first-class-evening",
+    "phase": 2,
+    "trigger": "Evening of first class",
+    "subjects": [
+      "One down",
+      "You survived. Book the next one.",
+      "That was the hard part"
+    ],
+    "preheader": "Your week is running now. Aim for four."
+  },
+  {
+    "id": "e5",
+    "file": "05-trial-day-3",
+    "phase": 2,
+    "trigger": "Trial day 3",
+    "subjects": [
+      "It started in a park",
+      "Why there aren't any mirrors",
+      "The part that isn't the Pilates"
+    ],
+    "preheader": "Ten years, three studios, and a reason for all of it."
+  },
+  {
+    "id": "e6",
+    "file": "06-trial-day-5",
+    "phase": 2,
+    "trigger": "Trial day 5 \u00b7 UPGRADE25",
+    "subjects": [
+      "Two days left, and 25 dollars off",
+      "UPGRADE25",
+      "Don't let this end on [DAY]"
+    ],
+    "preheader": "Your week ends [DAY]. Here's what happens next if you want it to."
+  },
+  {
+    "id": "e7",
+    "file": "07-trial-day-7",
+    "phase": 2,
+    "trigger": "Trial day 7, final day \u00b7 UPGRADE25",
+    "subjects": [
+      "Last day",
+      "Your week ends tonight",
+      "One more class, then decide"
+    ],
+    "preheader": "25 dollars off with UPGRADE25, good for five more days."
+  },
+  {
+    "id": "e8a",
+    "file": "08a-trial-day-9-engaged",
+    "phase": 2,
+    "trigger": "Trial day 9 \u00b7 3+ classes \u00b7 UPGRADE25",
+    "subjects": [
+      "Two days without it",
+      "UPGRADE25 expires [DATE]",
+      "You had a good week"
+    ],
+    "preheader": ""
+  },
+  {
+    "id": "e8b",
+    "file": "08b-trial-day-9-light",
+    "phase": 2,
+    "trigger": "Trial day 9 \u00b7 2 or fewer \u00b7 UPGRADE25",
+    "subjects": [
+      "That didn't really work, did it",
+      "Honest question"
+    ],
+    "preheader": ""
+  }
+]

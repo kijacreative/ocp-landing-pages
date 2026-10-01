@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Trial Conversion Emails · Oak Cliff Pilates</title>
+<link rel="icon" href="/favicon.png">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Khand:wght@600;700&family=Montserrat:wght@400;500;600&display=swap">
+<style>
+:root{--bg:#1A1918;--text:#F4EFE6;--dim:#A39C90;--muted:#8A837A;--gold:#C9A24A;--rule:rgba(201,162,74,.28);--soft:rgba(244,239,230,.12)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:400 15px/1.55 Montserrat,system-ui,sans-serif}
+a{color:var(--gold)}
+.wrap{max-width:1500px;margin:0 auto;padding:56px 16px 96px}
+.eyebrow{font:600 12px/1.4 Montserrat,sans-serif;letter-spacing:.3em;text-transform:uppercase;color:var(--gold)}
+h1{margin:14px 0 16px;font:700 clamp(48px,8vw,96px)/.86 Khand,sans-serif;letter-spacing:-.015em;text-transform:uppercase}
+.lede{max-width:760px;color:#C9C2B6;font-size:16px;margin:0}
+.open{margin-top:28px;padding:20px 22px;border:1px solid var(--rule);border-radius:4px;max-width:900px}
+.open h2{margin:0 0 10px;font:700 24px/1 Khand,sans-serif;text-transform:uppercase}
+.open ul{margin:0;padding-left:18px;color:#C9C2B6}
+.open li{margin:4px 0}
+.open code{color:#E9C977}
+.phase{margin:72px 0 32px;padding-bottom:14px;border-bottom:1px solid var(--rule);display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 20px}
+.phase h2{margin:0;font:700 40px/1 Khand,sans-serif;text-transform:uppercase}
+.phase span{color:var(--dim);font-weight:500;font-size:14px}
+.email{display:grid;grid-template-columns:300px 600px 375px;gap:40px;align-items:start;margin-bottom:72px}
+@media (max-width:1400px){.email{grid-template-columns:minmax(0,1fr)}.frames{overflow-x:auto}}
+.meta{display:flex;flex-direction:column;gap:18px;position:sticky;top:24px}
+@media (max-width:1400px){.meta{position:static}}
+.num{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+.num b{font:700 64px/.8 Khand,sans-serif;color:var(--gold)}
+.num span{font:600 11px/1.4 Montserrat,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#C9C2B6}
+.label{font:600 10px/1 Montserrat,sans-serif;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.subj{padding:8px 0;border-top:1px solid var(--soft);font-weight:600}
+.pre{color:#C9C2B6;font-size:14px}
+.links{display:flex;gap:16px;flex-wrap:wrap;font-weight:600;font-size:13px}
+.frame{display:flex;flex-direction:column;gap:10px}
+iframe{display:block;border:1px solid var(--soft);background:#0B0B0B}
+.f600{width:600px}
+.f375{width:375px;border-radius:20px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="eyebrow">Email · Trial conversion sequence</div>
+  <h1>1-Week Unlimited</h1>
+  <p class="lede">Triggered on purchase of the $59 1-week unlimited intro. Nine emails across two phases, ending with the UPGRADE25 offer. Each is shown at 600px desktop and 375px mobile. Open an email on its own to copy its HTML into the sending platform.</p>
+  <div class="open">
+    <h2>Before these send</h2>
+    <ul>
+      <li><code>[DATE]</code> is when UPGRADE25 expires (trial end + 5 days) and <code>[DAY]</code> is the trial's last day, in emails 6–8B. Swap them for the sending platform's merge fields.</li>
+      <li><code>[UNSUBSCRIBE_URL]</code> goes in every footer. Swap it for the platform's unsubscribe tag.</li>
+      <li><code>[CONFIRM CANCEL POLICY]</code> in email 6 follows "No contract. Cancel whenever." Confirm that's true for monthly memberships, then delete the bracket.</li>
+      <li>Daylight Unlimited ($119) and Single Studio Unlimited ($159) aren't in the Arketa catalog yet. Emails 6, 7, 8A and 8B sell them.</li>
+      <li>The UPGRADE25 promo code has to exist in Arketa before email 6 sends.</li>
+    </ul>
+  </div>
+  <div id="list"></div>
+</div>
+<script>
+fetch('emails.json').then(function (r) { return r.json(); }).then(function (emails) {
+  var phases = {
+    1: ['Phase 1 · Pre-visit', 'Clock not started. All three suppress the moment a first class is attended.'],
+    2: ['Phase 2 · Trial running', '7 days from first visit. UPGRADE25 runs five days past the trial end.']
+  };
+  var list = document.getElementById('list');
+  var esc = function (s) { var d = document.createElement('div'); d.textContent = s; return d.innerHTML; };
+  var current = 0;
+  emails.forEach(function (e) {
+    if (e.phase !== current) {
+      current = e.phase;
+      list.insertAdjacentHTML('beforeend', '<div class="phase"><h2>' + phases[e.phase][0] + '</h2><span>' + phases[e.phase][1] + '</span></div>');
+    }
+    var num = e.id.slice(1).toUpperCase().padStart(e.id.length > 2 && /[a-z]$/.test(e.id) ? 3 : 2, '0');
+    var src = e.file + '.html';
+    list.insertAdjacentHTML('beforeend',
+      '<section class="email" id="' + e.id + '">' +
+        '<div class="meta">' +
+          '<div class="num"><b>' + num + '</b><span>' + esc(e.trigger) + '</span></div>' +
+          '<div><div class="label">Subject lines</div>' + e.subjects.map(function (s) { return '<div class="subj">' + esc(s) + '</div>'; }).join('') + '</div>' +
+          (e.preheader ? '<div><div class="label">Preheader</div><div class="pre">' + esc(e.preheader) + '</div></div>' : '') +
+          '<div class="links"><a href="' + src + '" target="_blank" rel="noopener">Open email</a><a href="' + src + '" download>Download HTML</a></div>' +
+        '</div>' +
+        '<div class="frame frames"><div class="label">Desktop · 600</div><iframe class="f600" src="' + src + '" title="Email ' + num + ' desktop" loading="lazy"></iframe></div>' +
+        '<div class="frame frames"><div class="label">Mobile · 375</div><iframe class="f375" src="' + src + '" title="Email ' + num + ' mobile" loading="lazy"></iframe></div>' +
+      '</section>');
+  });
+  // Size each frame to its email's height.
+  document.querySelectorAll('iframe').forEach(function (f) {
+    f.addEventListener('load', function () {
+      try { f.style.height = f.contentDocument.documentElement.scrollHeight + 'px'; } catch (err) { f.style.height = '1400px'; }
+    });
+  });
+});
+</script>
+</body>
+</html>
