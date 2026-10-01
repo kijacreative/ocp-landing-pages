@@ -295,7 +295,7 @@ def e1():
               + display(f"Your week doesn't start until your {gold('first class.')}", 44, 11.5, 74, mb=20)
               + p("Buy today, come Thursday, and your seven days begin Thursday. Nothing is ticking.", 17, TEXT_LIGHT, 20)
               + p("The catch is the obvious one. Book it now, or this quietly becomes a thing you meant to do.", 16, mb=24)
-              + button("Book your first class", SCHEDULE), t1, 0, t1m)
+              + button("Book your first class", "https://oakcliffpilates.com/class-schedule/"), t1, 0, t1m)
         + spacer(gap, gapm)
         + f'<tr><td style="padding:0"><img src="{IMG}/trial-first-class-setup.jpg" width="600" height="375" class="fluid" '
           f'alt="Trainer setting up a member on the reformer" style="display:block;width:600px;height:auto;max-width:100%"></td></tr>\n'
