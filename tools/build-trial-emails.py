@@ -305,8 +305,8 @@ def e1():
               + p(f'<strong style="font-family:{FD};font-size:24px;line-height:1;font-weight:700;text-transform:uppercase;'
                   f'color:{CREAM}">OG Reformer Pilates.</strong> Every trainer teaches it, it\'s the foundation, and it\'s where '
                   "everyone starts. Take this one first even if something else looks more interesting.", mb=14)
-              + p("One last thing. There are no mirrors in any of our studios. Nobody is watching you, nobody is checking "
-                  "their own form, and the lights are low. Whatever you're nervous about, that room is the easiest "
+              + p("One last thing. The lights are low, the music is loud, and everyone in that room is busy with their own "
+                  "reformer. Nobody is watching you. Whatever you're nervous about, that room is the easiest "
                   "possible place to be new.", mb=0), gap, 0, gapm)
         + spacer(gap, gapm) + locations() + footer()
     )
@@ -351,7 +351,7 @@ def e3():
          "between 10am and 4pm if your free hours are the middle of the day.",
          "<strong>Distance?</strong> Three studios. Bishop Arts, Uptown, Lower Greenville. One is likely closer than "
          "the one you had in mind.",
-         "<strong>Nerves?</strong> Genuinely the most common one. No mirrors, low lights, and the front desk will set "
+         "<strong>Nerves?</strong> Genuinely the most common one. Low lights, loud music, and the front desk will set "
          "your machine up for you. Nobody in that room is looking at you."],
         "Book one class", SCHEDULE, ["Or reply and tell us what's in the way."])
 
@@ -431,9 +431,8 @@ def e5():
               + p("A speaker in the grass and whoever showed up.", 17, TEXT_LIGHT)
               + p("Bishop Arts came in 2021. Uptown in 2024. Lower Greenville last year, built from scratch with 14 "
                   "reformers, a private training room and a podcast studio in the back.")
-              + p("What didn't change is the room. Lights down, music up, and no mirrors anywhere in any of the three "
-                  "buildings. That last one is deliberate. Mirrors turn a class into a performance, and we'd rather you "
-                  "paid attention to how something feels than how it looks.", mb=0), t, 0, tm)
+              + p("What didn't change is the room. Lights down, music up, and the same reason people showed up to the park: "
+                  "it's fun. We'd rather you paid attention to how something feels than how it looks.", mb=0), t, 0, tm)
         + row(f'<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" '
               f'style="border-top:1px solid {RULE_GOLD};border-bottom:1px solid {RULE_GOLD}"><tr>{stats}</tr></table>'
               + p("Same energy as the park.", 22, CREAM, 0, "1", 700, FD).replace("margin:0 0 0px", "margin:16px 0 0;text-transform:uppercase"),
@@ -559,7 +558,7 @@ EMAILS = [
          subjects=["One down", "You survived. Book the next one.", "That was the hard part"],
          preheader="Your week is running now. Aim for four."),
     dict(id="e5", file="05-trial-day-3", phase=2, trigger="Trial day 3", build=e5, bg=BLACK,
-         subjects=["It started in a park", "Why there aren't any mirrors", "The part that isn't the Pilates"],
+         subjects=["It started in a park", "Lights down, music up", "The part that isn't the Pilates"],
          preheader="Ten years, three studios, and a reason for all of it."),
     dict(id="e6", file="06-trial-day-5", phase=2, trigger="Trial day 5 · UPGRADE25", build=e6, bg=BLACK,
          subjects=["Two days left, and 25 dollars off", "UPGRADE25", "Don't let this end on [DAY]"],
