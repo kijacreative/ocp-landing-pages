@@ -6,6 +6,7 @@ Static landing pages served at `lp.oakcliffpilates.com`. Each page lives in its 
 | --- | --- |
 | `/59unlimited` | $59 one week unlimited, Arketa checkout embedded |
 | `/daylightunlimited` | Daylight Unlimited, $139/mo weekday 10 to 4, Arketa checkout embedded |
+| `/ratelock` | Members-only 2027 rate lock: choose a plan before Dec 31, 2026, links to Arketa checkout |
 
 The root `/` redirects to oakcliffpilates.com. No build step: Vercel serves the folder as-is.
 
