@@ -15,6 +15,7 @@ The root `/` redirects to oakcliffpilates.com. No build step: Vercel serves the 
 | --- | --- |
 | `/emails/trial/` | Preview of the 1-week unlimited trial conversion sequence (9 emails) |
 | `/emails/trial/<name>.html` | Each email's HTML, ready to paste into the sending platform |
+| `/emails/first-visit.html` | Thank-you email sent after a client's first class, with Amanda's animated wave |
 | `/emails/img/` | Images the emails load, so they can use absolute URLs |
 
 The email HTML is generated. Edit `tools/build-trial-emails.py`, then run `python3 tools/build-trial-emails.py`.
