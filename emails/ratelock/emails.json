@@ -1,0 +1,110 @@
+[
+  {
+    "id": "e1a",
+    "file": "01a-unlimited-members",
+    "phase": 1,
+    "send": "Tue Nov 3 \u00b7 All-Studio Unlimited members",
+    "subjects": [
+      "Keep $209 for all of 2027",
+      "Unlimited goes to $229. You don't have to.",
+      "Your rate, locked"
+    ],
+    "preheader": "All-Studio Unlimited is $229 from January 1. Lock in $209 before December 31."
+  },
+  {
+    "id": "e1b",
+    "file": "01b-class-members",
+    "phase": 1,
+    "send": "Tue Nov 3 \u00b7 4, 8 and 12-class members",
+    "subjects": [
+      "Ready to stop counting classes?",
+      "Thinking about unlimited?",
+      "Unlimited, locked for 2027"
+    ],
+    "preheader": "No pressure. If you've wondered about unlimited, lock a 2027 rate before December 31."
+  },
+  {
+    "id": "e1c",
+    "file": "01c-couples-members",
+    "phase": 1,
+    "send": "Tue Nov 3 \u00b7 Unlimited Couples members",
+    "subjects": [
+      "Keep $359 for the two of you",
+      "Two of you. One locked rate.",
+      "Couples goes to $399 in January"
+    ],
+    "preheader": "Lock in Unlimited Couples at $359 before December 31 and keep it through 2027."
+  },
+  {
+    "id": "e1",
+    "file": "01-announcement",
+    "phase": 1,
+    "send": "Tue Nov 3 \u00b7 Everyone else",
+    "subjects": [
+      "Prices change January 1. Yours doesn't have to.",
+      "Lock your rate for all of 2027",
+      "You get first move"
+    ],
+    "preheader": "Choose a membership before December 31 and keep your rate through 2027."
+  },
+  {
+    "id": "e2",
+    "file": "02-which-plan",
+    "phase": 1,
+    "send": "Tue Nov 17",
+    "subjects": [
+      "Which plan is yours?",
+      "Three ways to stay unlimited",
+      "Pick the plan that fits your week"
+    ],
+    "preheader": "All-Studio, Home Studio or Daylight. Whichever you choose keeps today's price in 2027."
+  },
+  {
+    "id": "e3",
+    "file": "03-prepay",
+    "phase": 1,
+    "send": "Tue Dec 1",
+    "subjects": [
+      "Full unlimited for under $200 a month",
+      "Pay ahead, pay less",
+      "$449 off a year of unlimited"
+    ],
+    "preheader": "Prepay All-Studio Unlimited and skip the $229 rate entirely."
+  },
+  {
+    "id": "e4",
+    "file": "04-if-you-do-nothing",
+    "phase": 1,
+    "send": "Wed Dec 9",
+    "subjects": [
+      "What happens if you do nothing",
+      "The fine print, made short",
+      "Your membership on January 1"
+    ],
+    "preheader": "Memberships that don't choose move to $229 a month on January 1."
+  },
+  {
+    "id": "e5",
+    "file": "05-five-days-left",
+    "phase": 2,
+    "send": "Sun Dec 27",
+    "subjects": [
+      "5 days left to lock your rate",
+      "After December 31, it's gone",
+      "One minute, all of 2027"
+    ],
+    "preheader": "Choose before December 31 and keep today's price through 2027."
+  },
+  {
+    "id": "e6",
+    "file": "06-last-day",
+    "phase": 2,
+    "send": "Thu Dec 31, 9am",
+    "subjects": [
+      "Last day to lock your rate",
+      "Tonight's the night",
+      "Midnight"
+    ],
+    "preheader": "Tomorrow All-Studio Unlimited is $229 a month."
+  }
+]
