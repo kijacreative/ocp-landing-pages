@@ -17,12 +17,12 @@ IMG = "https://lp.oakcliffpilates.com/emails/img"
 # ── Offer facts (match /ratelock) ────────────────────────────────────────
 NEW_RATE = "$229"           # All-Studio Unlimited from January 1, 2027
 ALL_STUDIO = "$209"
-HOME_STUDIO, HOME_LG = "$189", "$159"
+HOME_STUDIO = "$189"
 DAYLIGHT = "$139"
 COUPLES, COUPLES_NEW = "$359", "$399"
 PREPAY = [("3 months", "$599", "About $200 a month", "$649"),     # last item: price from January 1
           ("6 months", "$1,159", "About $193 a month", "$1,249"),
-          ("12 months", "$2,299", "About $192 a month", "$2,459")]
+          ("12 months", "$2,199", "About $183 a month", "$2,459")]
 DEADLINE = "December 31"
 # Monthly class memberships: today's price, then January 1 (+$10).
 CLASS_PLANS = [("4 classes", "OCP Lite", "$99", "$109"), ("8 classes", "Perfect Balance", "$159", "$169"),
@@ -140,7 +140,7 @@ def plan_rows(light=True):
     bg, fg, sub, rule = ("#FFFFFF", INK, MUTED, CARD_RULE) if light else (INK, CREAM, SUB, RULE)
     plans = [
         ("All-Studio Unlimited", ALL_STUDIO, "Unlimited classes at all 3 studios. 20% off retail.", "Lock in " + ALL_STUDIO, ALL_STUDIO_URL),
-        ("Home Studio Unlimited", HOME_STUDIO, f"Unlimited at the studio you call home. {HOME_LG} at Lower Greenville. 10% off retail.",
+        ("Home Studio Unlimited", HOME_STUDIO, "Unlimited at the studio you call home. 10% off retail.",
          "Pick your studio", PLANS),
         ("Daylight Unlimited", DAYLIGHT, "Monday to Friday, 10am to 4pm, at all 3 studios. 50% off drop-ins and packs outside those hours.",
          "Lock in " + DAYLIGHT, DAYLIGHT_URL),
@@ -167,7 +167,6 @@ def plan_rows(light=True):
 
 def perks(color=SUB):
     items = ["Book 14 days ahead", "A free guest pass every month",
-             "Pause twice a year, up to 30 days total",
              "Teacher, nurse and other discounts still take $10 off monthly plans"]
     return "".join(
         f'<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>'
@@ -238,14 +237,14 @@ def e1_unlimited():
                   .replace("margin:0 0 0px", "margin:16px 0 0"), 0, 0)
             + spacer(48)
             + row(eyebrow("Or skip the monthly bill", INK, 12)
-                  + display("A year of unlimited for $2,299", 40, 34, INK, 14, "h2", ".95")
-                  + p(f"About $192 a month, and it goes to {strong('$2,459', INK)} on January 1. That's {strong('$449 less', INK)} than "
+                  + display("A year of unlimited for $2,199", 40, 34, INK, 14, "h2", ".95")
+                  + p(f"About $183 a month, and it goes to {strong('$2,459', INK)} on January 1. That's {strong('$549 less', INK)} than "
                       f"twelve months at {NEW_RATE}. Same studios, same "
                       "perks. Teacher and nurse discounts don't apply to prepay.", 16, MUTED, 0)
                   + button("Prepay 12 months", PREPAY_12_URL, "dark", 22)
                   + p(f"<a href=\"{PREPAY_URL}\" style=\"color:{INK};font-weight:700\">3 and 6 months</a> are on the page too.",
                       14, MUTED, 0).replace("margin:0 0 0px", "margin:16px 0 0"), 44, 44, CREAM)
-            + row(p(f"Mostly at one studio? Home Studio Unlimited is {HOME_STUDIO} a month ({HOME_LG} at Lower Greenville). "
+            + row(p(f"Mostly at one studio? Home Studio Unlimited is {HOME_STUDIO} a month at any studio. "
                     f"<a href=\"{PLANS}\" style=\"color:{CREAM};font-weight:700\">Compare plans</a>.", 15, SUB, 0), 36, 48)
             + footer())
 
@@ -254,7 +253,7 @@ def e1_classes():
     match = [
         ("12 classes", CLASS_PLANS[2], "Home Studio Unlimited", HOME_STUDIO, "$10 less than your January price. Unlimited at your home studio."),
         ("8 classes", CLASS_PLANS[1], "Daylight Unlimited", DAYLIGHT,
-         f"$30 less than your January price. Unlimited weekdays, 10 to 4. Or Home Studio at Lower Greenville for {HOME_LG}."),
+         "$30 less than your January price. Unlimited weekdays, 10 to 4."),
         ("4 classes", CLASS_PLANS[0], "Daylight Unlimited", DAYLIGHT, "$30 more than your January price. Unlimited weekdays, 10 to 4."),
     ]
     rows = "".join(
@@ -300,8 +299,7 @@ def e1_couples():
                   .replace("margin:0 0 0px", "margin:16px 0 0"), 0, 0)
             + spacer(44)
             + row(eyebrow("What you both keep", SUB, 12)
-                  + bullets(["Unlimited Pilates for two at all 3 studios", "Book 14 days ahead",
-                             "Pause twice a year, up to 30 days total"]), 0, 0)
+                  + bullets(["Unlimited Pilates for two at all 3 studios", "Book 14 days ahead"]), 0, 0)
             + spacer(40)
             + row(display("Train with your person", 32, 28, INK, 12, "h2", ".95")
                   + p("Same studios, same trainers, one bill. Keep it that way for 2027.", 16, MUTED, 0)
@@ -320,7 +318,7 @@ def e2():
                        "Bishop Arts on Monday, Uptown after work, Lower Greenville on the weekend. Unlimited at all three, "
                        "plus 20% off retail.", "Lock in " + ALL_STUDIO, ALL_STUDIO_URL, True)
                   + _who("You have a home studio.", "Home Studio Unlimited", HOME_STUDIO,
-                         f"Unlimited at the one you always go to. {HOME_LG} if that's Lower Greenville. 10% off retail.",
+                         "Unlimited at the one you always go to. 10% off retail.",
                          "Pick your studio", PLANS)
                   + _who("Your day is flexible.", "Daylight Unlimited", DAYLIGHT,
                          "Monday to Friday between 10 and 4, at any studio. Half off drop-ins and packs when you want an "
@@ -364,8 +362,8 @@ def e3():
     return (header()
             + row(eyebrow("Pay ahead, pay less")
                   + display("Full unlimited for under $200 a month.", 60, 44)
-                  + p(f"Prepay All-Studio Unlimited and every perk comes with it: all 3 studios, 20% off retail, a guest pass "
-                      f"every month and pauses when life happens. Twelve months is {strong('$449 less')} than a year at {NEW_RATE}. "
+                  + p(f"Prepay All-Studio Unlimited and every perk comes with it: all 3 studios, 20% off retail, and a guest pass "
+                      f"every month. Twelve months is {strong('$549 less')} than a year at {NEW_RATE}. "
                       f"Prepay goes up on January 1 too, so today's prices end {DEADLINE}.", mb=0), 52, 0)
             + spacer(36)
             + row('<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>'
@@ -446,7 +444,7 @@ EMAILS = [
          subjects=["Which plan is yours?", "Three ways to stay unlimited", "Pick the plan that fits your week"],
          preheader="All-Studio, Home Studio or Daylight. Whichever you choose keeps today's price in 2027."),
     dict(id="e3", file="03-prepay", phase=1, send="Tue Dec 1", build=e3,
-         subjects=["Full unlimited for under $200 a month", "Pay ahead, pay less", "$449 off a year of unlimited"],
+         subjects=["Full unlimited for under $200 a month", "Pay ahead, pay less", "$549 off a year of unlimited"],
          preheader=f"Prepay All-Studio Unlimited and skip the {NEW_RATE} rate entirely."),
     dict(id="e4", file="04-if-you-do-nothing", phase=1, send="Wed Dec 9", build=e4,
          subjects=["What happens if you do nothing", "The fine print, made short", "Your membership on January 1"],
