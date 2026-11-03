@@ -152,14 +152,19 @@ def header(tag):
 
 
 def locations():
-    studios = [("Bishop Arts", "196 W Davis St"), ("Uptown", "2222 McKinney Ave"),
-               ("Lower Greenville", "2000 Greenville Ave")]
+    # Each studio is one styled link so mail apps don't auto-link the address in blue.
+    studios = [("Bishop Arts", "196 W Davis St", "196 W Davis St, Suite 140, Dallas, TX 75208"),
+               ("Uptown", "2222 McKinney Ave", "2222 McKinney Ave #160, Dallas, TX 75201"),
+               ("Lower Greenville", "2000 Greenville Ave", "2000 Greenville Ave, Dallas, TX 75206")]
     cells = "".join(
         f'<td class="stack loc" valign="top" style="padding:0 32px 0 0">'
+        f'<a href="https://www.google.com/maps/search/?api=1&amp;query=Oak+Cliff+Pilates+'
+        f'{q.replace(" ", "+").replace(",", "%2C").replace("#", "%23")}" target="_blank" '
+        f'style="display:block;text-decoration:none;color:{CREAM}">'
         f'<div style="font-family:{FD};font-size:18px;line-height:1;font-weight:700;text-transform:uppercase;'
         f'color:{CREAM};white-space:nowrap">{n}</div>'
         f'<div style="font-family:{FB};font-size:13px;line-height:1.4;color:{DIM};padding-top:4px;'
-        f'white-space:nowrap">{a}</div></td>' for n, a in studios)
+        f'white-space:nowrap">{a}</div></a></td>' for n, a, q in studios)
     return (f'<tr><td class="px" style="padding:24px {PX_D}px;border-top:1px solid {RULE_GOLD}">'
             f'<table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr>{cells}</tr></table>'
             f"</td></tr>\n")
