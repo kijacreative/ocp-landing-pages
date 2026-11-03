@@ -7,6 +7,16 @@
       "source": "/",
       "destination": "https://oakcliffpilates.com",
       "permanent": false
+    },
+    {
+      "source": "/cliff-club/:path*",
+      "destination": "/cliffclub/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/cliff-club",
+      "destination": "/cliffclub",
+      "permanent": true
     }
   ],
   "headers": [
