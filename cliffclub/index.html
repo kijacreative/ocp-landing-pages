@@ -39,22 +39,22 @@ src="https://www.facebook.com/tr?id=788246499083696&ev=PageView&noscript=1"></no
 <meta name="description" content="Cliff Club is Oak Cliff Pilates' one-day fitness, wellness and DJ festival in Dallas. Get on the invite list and book the pop-ups leading up to Vol. 01.">
 <meta property="og:title" content="Are you down with Cliff Club?">
 <meta property="og:description" content="One day. All of Dallas wellness in one room. Get on the list for early bird tickets and the lineup first.">
-<meta property="og:url" content="https://lp.oakcliffpilates.com/cliff-club">
+<meta property="og:url" content="https://lp.oakcliffpilates.com/cliffclub">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Oak Cliff Pilates">
-<meta property="og:image" content="https://lp.oakcliffpilates.com/cliff-club/img/og.jpg">
+<meta property="og:image" content="https://lp.oakcliffpilates.com/cliffclub/img/og.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Cliff Club wordmark and the line Are you down with Cliff Club?">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Are you down with Cliff Club?">
 <meta name="twitter:description" content="One day. All of Dallas wellness in one room. Get on the list.">
-<meta name="twitter:image" content="https://lp.oakcliffpilates.com/cliff-club/img/og.jpg">
+<meta name="twitter:image" content="https://lp.oakcliffpilates.com/cliffclub/img/og.jpg">
 <meta name="theme-color" content="#0B0B0B">
-<link rel="canonical" href="https://lp.oakcliffpilates.com/cliff-club">
+<link rel="canonical" href="https://lp.oakcliffpilates.com/cliffclub">
 <link rel="icon" href="/favicon.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<link rel="preload" as="fetch" href="/cliff-club/events.json" crossorigin>
+<link rel="preload" as="fetch" href="/cliffclub/events.json" crossorigin>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Khand:wght@700&family=Montserrat:wght@500;700;800&display=swap" onload="this.onload=null;this.rel='stylesheet'">
@@ -400,7 +400,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p>Early bird and the lineup hit your inbox before anyone else's. Now bring your crew.</p>
         <div class="acts">
           <button type="button" class="btn" data-share>Share to your story</button>
-          <a class="btn" href="https://www.instagram.com/cliffclubevents/" target="_blank" rel="noopener">Follow @cliffclubevents</a>
+          <a class="btn" href="https://www.instagram.com/cliff.club/" target="_blank" rel="noopener">Follow @cliff.club</a>
         </div>
       </div>
     </div>
@@ -436,7 +436,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <li><span class="num" aria-hidden="true">05</span><span class="lab"><strong>Recovery lounge</strong><span>Cool down, stretch out, reset.</span></span></li>
         <li><span class="num" aria-hidden="true">06</span><span class="lab"><strong>Happy hour + merch</strong><span>Drinks up, drops out. Stay late.</span></span></li>
       </ol>
-      <div class="photo"><img src="/cliff-club/img/lineup-960x1200.jpg" alt="A DJ spinning under a yellow umbrella at an Oak Cliff Pilates pop-up" width="960" height="1200" loading="lazy" decoding="async"></div>
+      <div class="photo"><img src="/cliffclub/img/lineup-960x1200.jpg" alt="A DJ spinning under a yellow umbrella at an Oak Cliff Pilates pop-up" width="960" height="1200" loading="lazy" decoding="async"></div>
     </div>
   </div>
 </section>
@@ -479,7 +479,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="wrap">
     <h2 class="display" id="follow-title">Lineup drops land here first.</h2>
     <div class="acts">
-      <a class="btn btn-black" href="https://www.instagram.com/cliffclubevents/" target="_blank" rel="noopener">@cliffclubevents</a>
+      <a class="btn btn-black" href="https://www.instagram.com/cliff.club/" target="_blank" rel="noopener">@cliff.club</a>
       <a class="btn btn-black" href="https://www.instagram.com/oakcliffpilates/" target="_blank" rel="noopener">@oakcliffpilates</a>
     </div>
   </div>
@@ -500,7 +500,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 // Where invite list sign-ups are POSTed (form-encoded): the Google Apps Script web app
 // in tools/cliff-club-list-apps-script.gs, which adds each one to the "Cliff Club List Sign-ups" Sheet.
 var CLIFF_CLUB_LIST_ENDPOINT = 'https://script.google.com/macros/s/AKfycbziIeMmNhW7IfANKcV_8-nXNi-gU9Rke_MHGLSaB5CPd-j59uNZPf7GDw4JjJ-alq2Z/exec';
-var EVENTS_URL = '/cliff-club/events.json';
+var EVENTS_URL = '/cliffclub/events.json';
 var TZ = 'America/Chicago';
 
 // In-page jumps without touching the URL: a hash change counts as a second Meta PageView.
@@ -594,7 +594,7 @@ document.addEventListener('click', function (e) {
       var out = {
         '@context': 'https://schema.org', '@type': 'Event', name: ev.title, startDate: start,
         eventStatus: 'https://schema.org/EventScheduled', eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
-        location: place, url: location.origin + '/cliff-club#' + ev.id,
+        location: place, url: location.origin + '/cliffclub#' + ev.id,
         organizer: { '@type': 'Organization', name: 'Oak Cliff Pilates', url: 'https://www.oakcliffpilates.com' }
       };
       if (ev.image) out.image = [location.origin + ev.image];
@@ -630,7 +630,7 @@ document.addEventListener('click', function (e) {
 
     jsonLd(list);
 
-    // Cards render after load, so the browser can't jump to /cliff-club#event-id on its own.
+    // Cards render after load, so the browser can't jump to /cliffclub#event-id on its own.
     if (location.hash) { var t = document.getElementById(location.hash.slice(1)); if (t) t.scrollIntoView(); }
   }).catch(function () {
     grid.innerHTML = '<p class="ev-empty">Events did not load. Refresh, or follow @oakcliffpilates for dates.</p>';
@@ -684,7 +684,7 @@ document.addEventListener('click', function (e) {
     data.append('phone', form.elements.phone.value.trim());
     data.append('instagram', form.elements.instagram.value.trim().replace(/^@?/, form.elements.instagram.value.trim() ? '@' : ''));
     data.append('who', who.join(', '));
-    data.append('source', 'lp.oakcliffpilates.com/cliff-club');
+    data.append('source', 'lp.oakcliffpilates.com/cliffclub');
     data.append('submitted_at', new Date().toISOString());
 
     button.disabled = true;
@@ -709,7 +709,7 @@ document.addEventListener('click', function (e) {
 
   // Instagram stories can't be opened from the web, so share the link (or copy it) for people to post.
   document.querySelector('[data-share]').addEventListener('click', function (e) {
-    var btn = e.currentTarget, url = 'https://lp.oakcliffpilates.com/cliff-club';
+    var btn = e.currentTarget, url = 'https://lp.oakcliffpilates.com/cliffclub';
     var payload = { title: 'Cliff Club', text: 'Are you down with Cliff Club? Get on the list.', url: url };
     if (navigator.share) { navigator.share(payload).catch(function () {}); return; }
     (navigator.clipboard ? navigator.clipboard.writeText(url) : Promise.reject()).then(function () {

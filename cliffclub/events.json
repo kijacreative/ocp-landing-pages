@@ -16,7 +16,7 @@
     "capacity": 40,
     "cta": "Grab a spot",
     "url": "https://app.arketa.co/oakcliffpilates/checkout/NZ2PfRmxZmBHHjj6lOni",
-    "image": "/cliff-club/img/ev-launch-1200x540.jpg",
+    "image": "/cliffclub/img/ev-launch-1200x540.jpg",
     "accent": "pink"
   },
   {
@@ -34,7 +34,7 @@
     "capacity": 200,
     "cta": "RSVP free",
     "url": "https://app.arketa.co/oakcliffpilates/checkout/qoPAS2Bb32TeHzS3kJDQ",
-    "image": "/cliff-club/img/ev-park-1200x540.jpg",
+    "image": "/cliffclub/img/ev-park-1200x540.jpg",
     "accent": "gold"
   },
   {
@@ -54,7 +54,7 @@
     "capacity": 40,
     "cta": "Grab a spot",
     "url": "[Arketa link TBD]",
-    "image": "/cliff-club/img/ev-gift-1200x540.jpg",
+    "image": "/cliffclub/img/ev-gift-1200x540.jpg",
     "accent": "gold"
   },
   {
@@ -74,7 +74,7 @@
     "capacity": 40,
     "cta": "Grab a spot",
     "url": "[Arketa link TBD]",
-    "image": "/cliff-club/img/ev-reset-1200x540.jpg",
+    "image": "/cliffclub/img/ev-reset-1200x540.jpg",
     "accent": "pink"
   },
   {
@@ -92,7 +92,7 @@
     "note": "Get on the list. Early bird tickets and the lineup hit the list before anyone else.",
     "cta": "Get on the list",
     "url": "#list",
-    "image": "/cliff-club/img/ev-vol01-1200x540.jpg",
+    "image": "/cliffclub/img/ev-vol01-1200x540.jpg",
     "accent": "pink"
   }
 ]

@@ -1,4 +1,4 @@
-// Receives Cliff Club invite list sign-ups from lp.oakcliffpilates.com/cliff-club
+// Receives Cliff Club invite list sign-ups from lp.oakcliffpilates.com/cliffclub
 // and adds each one as a row in the "Cliff Club List Sign-ups" Google Sheet.
 // Setup steps are in README.md under "Cliff Club invite list".
 
