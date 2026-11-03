@@ -7,6 +7,22 @@ Static landing pages served at `lp.oakcliffpilates.com`. Each page lives in its 
 | `/59unlimited` | $59 one week unlimited, Arketa checkout embedded |
 | `/daylightunlimited` | Daylight Unlimited, $139/mo weekday 10 to 4, Arketa checkout embedded |
 | `/ratelock` | Members-only 2027 rate lock: choose a plan before Dec 31, 2026, links to Arketa checkout |
+| `/cliff-club` | Cliff Club invite list sign-up plus every upcoming Cliff Club event, rendered from `cliff-club/events.json` |
+
+### Cliff Club events
+
+Add, edit or remove events in `cliff-club/events.json`; the page never needs touching. Past dates hide themselves (Dallas time) and the list sorts by date. Any value in `[brackets]` shows as written, and a bracketed `url` shows a disabled "Link coming soon" button. Optional `booked` (a number) fills the spots-left meter; without it the meter shows every spot open. Drop event photos (1200x540) into `cliff-club/img/` at the path in `image`; until a file exists, the card shows a labeled photo slot. The share image `cliff-club/img/og.jpg` comes from `tools/cliff-club-og.html`; re-render it with `./tools/render-cliff-club-og.sh`.
+
+### Cliff Club invite list
+
+Sign-ups land in the Google Sheet [Cliff Club List Sign-ups](https://docs.google.com/spreadsheets/d/1hp-_Xs9iiST08QYspq-KrlQyHbxIS_jg0vPQSO6n464/edit), tab `Sign-ups`, one row per person. A Google Apps Script web app receives the form and writes the row. To connect it (once):
+
+1. Open the Sheet, then Extensions > Apps Script.
+2. Replace the editor contents with `tools/cliff-club-list-apps-script.gs` and save.
+3. Deploy > New deployment > Web app. Execute as: Me. Who has access: Anyone. Deploy and approve the access prompt.
+4. Copy the web app URL (ends in `/exec`) into `CLIFF_CLUB_LIST_ENDPOINT` at the top of the script in `cliff-club/index.html`, then deploy the site.
+
+After editing the script, use Deploy > Manage deployments > Edit > New version so the same URL keeps working.
 
 The root `/` redirects to oakcliffpilates.com. No build step: Vercel serves the folder as-is.
 
