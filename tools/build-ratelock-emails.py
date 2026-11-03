@@ -18,7 +18,6 @@ IMG = "https://lp.oakcliffpilates.com/emails/img"
 NEW_RATE = "$229"           # All-Studio Unlimited from January 1, 2027
 ALL_STUDIO = "$209"
 HOME_STUDIO = "$189"
-DAYLIGHT = "$139"
 COUPLES, COUPLES_NEW = "$359", "$399"
 PREPAY = [("3 months", "$599", "About $200 a month", "$649"),     # last item: price from January 1
           ("6 months", "$1,159", "About $193 a month", "$1,249"),
@@ -33,7 +32,6 @@ PAGE = "https://lp.oakcliffpilates.com/ratelock"
 PLANS, PREPAY_URL = f"{PAGE}#plans", f"{PAGE}#prepay"
 CHECKOUT = "https://app.arketa.co/oakcliffpilates/pricing/checkout/"
 ALL_STUDIO_URL = CHECKOUT + "NYH9dctoUSiY9llrTpDz"
-DAYLIGHT_URL = CHECKOUT + "NDc1gl0D5j4NFWIYRFt4"
 PREPAY_12_URL = CHECKOUT + "BrarwgDVt2JrdSuJ5MJG"
 COUPLES_URL = CHECKOUT + "mRf1xuUpq5Y8Cc46uWHA"
 CONTACT = "kiel@oakcliffpilates.com"
@@ -136,14 +134,12 @@ def price_shift(now=ALL_STUDIO, then=NEW_RATE, label="All-Studio Unlimited"):
 
 
 def plan_rows(light=True):
-    """The three monthly plans as stacked rows (cards don't survive Outlook)."""
+    """The two monthly plans as stacked rows (cards don't survive Outlook)."""
     bg, fg, sub, rule = ("#FFFFFF", INK, MUTED, CARD_RULE) if light else (INK, CREAM, SUB, RULE)
     plans = [
         ("All-Studio Unlimited", ALL_STUDIO, "Unlimited classes at all 3 studios. 20% off retail.", "Lock in " + ALL_STUDIO, ALL_STUDIO_URL),
         ("Home Studio Unlimited", HOME_STUDIO, "Unlimited at the studio you call home. 10% off retail.",
          "Pick your studio", PLANS),
-        ("Daylight Unlimited", DAYLIGHT, "Monday to Friday, 10am to 4pm, at all 3 studios. 50% off drop-ins and packs outside those hours.",
-         "Lock in " + DAYLIGHT, DAYLIGHT_URL),
     ]
     out = ""
     for i, (name, price, desc, cta, href) in enumerate(plans):
@@ -205,7 +201,7 @@ def e1():
                   + p(f"That's {strong('$240 back in your pocket')} over 2027 if you lock in All-Studio today.", 15, SUB, 0)
                   .replace("margin:0 0 0px", "margin:16px 0 0"), 0, 0)
             + spacer(48)
-            + row(display("Three ways to stay unlimited", 40, 34, INK, 10, "h2", ".95")
+            + row(display("Two ways to stay unlimited", 40, 34, INK, 10, "h2", ".95")
                   + p("Every plan comes with:", 16, MUTED, 10)
                   + perks(MUTED).replace(f"color:{ACCENT}\">&mdash;", f"color:{INK}\">&mdash;")
                   + '<div style="height:18px;line-height:18px;font-size:0">&nbsp;</div>'
@@ -252,9 +248,8 @@ def e1_unlimited():
 def e1_classes():
     match = [
         ("12 classes", CLASS_PLANS[2], "Home Studio Unlimited", HOME_STUDIO, "$10 less than your January price. Unlimited at your home studio."),
-        ("8 classes", CLASS_PLANS[1], "Daylight Unlimited", DAYLIGHT,
-         "$30 less than your January price. Unlimited weekdays, 10 to 4."),
-        ("4 classes", CLASS_PLANS[0], "Daylight Unlimited", DAYLIGHT, "$30 more than your January price. Unlimited weekdays, 10 to 4."),
+        ("8 classes", CLASS_PLANS[1], "Home Studio Unlimited", HOME_STUDIO, "$20 more than your January price. Unlimited at your home studio."),
+        ("4 classes", CLASS_PLANS[0], "Home Studio Unlimited", HOME_STUDIO, "$80 more than your January price. Unlimited at your home studio."),
     ]
     rows = "".join(
         f'<tr><td class="stack" valign="top" width="38%" style="padding:18px 16px 18px 0;border-top:1px solid {CARD_RULE}">'
@@ -278,9 +273,9 @@ def e1_classes():
                   + button("See unlimited plans", PLANS, mt=24), 52, 0)
             + spacer(48)
             + row(display("What unlimited costs you", 40, 34, INK, 8, "h2", ".95")
-                  + p("Your class plan next to the unlimited plan closest in price. Class memberships go up $10 a month on January 1.", 16, MUTED, 16)
+                  + p("Your class plan next to Home Studio Unlimited. Class memberships go up $10 a month on January 1.", 16, MUTED, 16)
                   + '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">' + rows + "</table>"
-                  + button("See all three plans", PLANS, "dark", 20), 44, 44, CREAM)
+                  + button("See both plans", PLANS, "dark", 20), 44, 44, CREAM)
             + row(eyebrow("On every plan", SUB, 12) + perks(), 40, 0)
             + spacer(48)
             + footer())
@@ -311,7 +306,7 @@ def e2():
     return (header()
             + row(eyebrow("Which one is yours?")
                   + display(f"Pick the plan<br>that fits your week, {NAME}.", 56, 42)
-                  + p(f"Same studios, same trainers. The only difference is where and when you train. Choose before "
+                  + p(f"Same studios, same trainers. The only difference is where you train. Choose before "
                       f"{DEADLINE} and whichever you pick keeps today's price all of 2027.", mb=0), 52, 0)
             + spacer(36)
             + row(_who("You move around.", "All-Studio Unlimited", ALL_STUDIO,
@@ -319,10 +314,7 @@ def e2():
                        "plus 20% off retail.", "Lock in " + ALL_STUDIO, ALL_STUDIO_URL, True)
                   + _who("You have a home studio.", "Home Studio Unlimited", HOME_STUDIO,
                          "Unlimited at the one you always go to. 10% off retail.",
-                         "Pick your studio", PLANS)
-                  + _who("Your day is flexible.", "Daylight Unlimited", DAYLIGHT,
-                         "Monday to Friday between 10 and 4, at any studio. Half off drop-ins and packs when you want an "
-                         "evening class.", "Lock in " + DAYLIGHT, DAYLIGHT_URL), 0, 0)
+                         "Pick your studio", PLANS), 0, 0)
             + spacer(24)
             + row(eyebrow("On every plan", SUB, 12) + perks(), 0, 0)
             + spacer(24)
@@ -441,8 +433,8 @@ EMAILS = [
          subjects=["Prices change January 1. Yours doesn't have to.", "Lock your rate for all of 2027", "You get first move"],
          preheader=f"Choose a membership before {DEADLINE} and keep your rate through 2027."),
     dict(id="e2", file="02-which-plan", phase=1, send="Tue Nov 17", build=e2,
-         subjects=["Which plan is yours?", "Three ways to stay unlimited", "Pick the plan that fits your week"],
-         preheader="All-Studio, Home Studio or Daylight. Whichever you choose keeps today's price in 2027."),
+         subjects=["Which plan is yours?", "Two ways to stay unlimited", "Pick the plan that fits your week"],
+         preheader="All-Studio or Home Studio. Whichever you choose keeps today's price in 2027."),
     dict(id="e3", file="03-prepay", phase=1, send="Tue Dec 1", build=e3,
          subjects=["Full unlimited for under $200 a month", "Pay ahead, pay less", "$549 off a year of unlimited"],
          preheader=f"Prepay All-Studio Unlimited and skip the {NEW_RATE} rate entirely."),
