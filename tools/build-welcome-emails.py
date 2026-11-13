@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
-"""Build the new client welcome series: 3 emails plus the texts that go with them.
+"""Build the new client welcome series: 4 emails plus the texts that go with them.
 
-Triggered by the purchase of any New Client Special in Arketa (3 classes for $25,
+Email 00 goes to every new client added in Arketa and sells the intro offers.
+Emails 01 to 03 are triggered by the purchase of any New Client Special in Arketa (3 classes for $25,
 1-Week Unlimited for $59, 10 classes for $145). Every email points first timers to
 the /welcome landing page.
 
@@ -64,6 +65,16 @@ CLASS_GUIDE = [
     ("Restorative", 1, "Slower and stretchier. Mobility, breath and recovery."),
 ]
 PACE = {1: "Easy", 2: "Steady", 3: "High"}
+OFFERS = f"{WELCOME}#offers"
+# tag, name, price, detail, link label, checkout. Mirrors the /welcome offer cards.
+INTRO_OFFERS = [
+    ("Most popular", "3 classes", "$25", "Use within 30 days. About $8 a class.", "Get 3 classes for $25",
+     CHECKOUT + "CX8QBVvU6bdj31zrkZbR"),
+    ("Go all in", "1 week unlimited", "$59", "Unlimited classes for 7 days, starting at your first class.", "Get the week for $59",
+     CHECKOUT + "08dxQyFUSU4GA782eKIz"),
+    ("Best per class", "10 classes", "$145", "Use within 90 days. $14.50 a class.", "Get 10 classes for $145",
+     CHECKOUT + "1oNxHZVRsxdC7ZWnwTBl"),
+]
 
 
 # ── Blocks for this series ───────────────────────────────────────────────
@@ -171,6 +182,63 @@ def text_link(label, href, color=GOLD, mt=16):
 
 
 # ── Emails ───────────────────────────────────────────────────────────────
+
+def offer_rows():
+    """The three New Client Specials, 3 for $25 on top with weight. Each row opens its checkout."""
+    out = []
+    for i, (tag, name, price, detail, cta, href) in enumerate(INTRO_OFFERS):
+        top = i == 0
+        bg = f' bgcolor="{GOLD_TINT}"' if top else ""
+        bgc = f"background:{GOLD_TINT};" if top else ""
+        border = GOLD if top else RULE_GOLD
+        out.append(
+            f'<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:0 0 12px"><tr>'
+            f'<td{bg} style="{bgc}border:1px solid {border};border-radius:2px;padding:20px 20px 18px">'
+            f'<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>'
+            f'<td valign="bottom">' + eyebrow(tag, GOLD if top else DIM, 8)
+            + f'<div style="font-family:{FD};font-size:{28 if top else 24}px;line-height:.95;font-weight:700;text-transform:uppercase;color:{CREAM}">{name}</div>'
+            f'<div style="font-family:{FB};font-size:13px;line-height:1.45;color:{TEXT};padding-top:6px">{detail}</div></td>'
+            f'<td valign="bottom" align="right" style="white-space:nowrap;padding-left:12px">'
+            f'<span style="font-family:{FD};font-size:{56 if top else 44}px;line-height:.85;font-weight:700;color:{GOLD}">{price}</span></td>'
+            f'</tr></table>'
+            f'<div style="padding-top:14px"><a href="{href}" style="font-family:{FB};font-size:14px;line-height:20px;font-weight:700;'
+            f'color:{GOLD if top else CREAM};text-decoration:underline">{cta} &rarr;</a></div>'
+            "</td></tr></table>")
+    return "".join(out)
+
+
+def e0():
+    t, tm = vpad(32, 9, 56)
+    g, gm = vpad(32, 9, 48)
+    expect = numbered([
+        p(f"{strong('45 minutes on the reformer.')} 12 people max, lights down, music up.", 15, mb=0, lh="1.6"),
+        p(f"{strong('Never done Pilates? Perfect.')} A trainer sets up your reformer and cues every move, with an easier "
+          "option for all of them.", 15, mb=0, lh="1.6"),
+        p(f"{strong('Three studios, 250+ classes a week.')} Bishop Arts, Uptown and Lower Greenville. Your intro works at all "
+          "three.", 15, mb=0, lh="1.6"),
+    ])
+    return (
+        header("New here")
+        + row(eyebrow(f"Hi {NAME}, welcome to OCP.", mb=20)
+              + display(f"Your first class is {gold('$25 away.')}", 44, 11.5, 74, mb=20)
+              + p("Thanks for joining us. The best way to find out if Oak Cliff Pilates is for you is to come try it, so we "
+                  "made it easy: pick an intro offer below and book your first class.", 17, TEXT_LIGHT, 24)
+              + button("Choose my intro offer", OFFERS), t, 0, tm)
+        + spacer(g, gm)
+        + f'<tr><td style="padding:0"><a href="{OFFERS}"><img src="{IMG}/trial-first-class-setup.jpg" width="600" height="375" class="fluid" '
+          f'alt="A trainer setting up a client on the reformer" style="display:block;width:600px;height:auto;max-width:100%;border:0"></a></td></tr>\n'
+        + row(eyebrow("New client specials", mb=14)
+              + display(f"Three ways {gold('to start')}", 34, 9, 44, ".9", "h2", mb=14, ls="-.01em")
+              + p("One-time offers for your first visit. Every one works at all three studios, on every class.", 15, mb=20, lh="1.6")
+              + offer_rows()
+              + p("New clients only, one intro offer per person.", 12, DIM, 0, "1.5").replace("margin:0 0 0px", "margin:4px 0 0"),
+              g, 0, gm)
+        + row(display("What to expect", 34, 0, 34, ".9", "h2", mb=18, ls="-.01em") + expect
+              + button("Get 3 classes for $25", INTRO_OFFERS[0][5], mt=24)
+              + text_link("Read the first-timer guide", FIRST_CLASS), g, 0, gm)
+        + spacer(g, gm) + locations() + footer()
+    )
+
 
 def e1():
     t, tm = vpad(32, 9, 56)
@@ -280,6 +348,13 @@ def e3():
 # (one SMS segment, with room for a first name) and skip emoji: one emoji drops
 # the segment limit to 70 characters.
 EMAILS = [
+    dict(id="e0", file="00-new-client", phase=0, trigger="On new client added, no purchase yet", build=e0,
+         subjects=["Welcome to OCP. Your first class is $25 away.", "3 classes for $25, just for new clients",
+                   "Ready for your first class?"],
+         preheader="Pick an intro offer and book your first reformer class. 3 classes for $25 to start.",
+         sms=[dict(when="On new client added, with email 0",
+                   text=f"Hi {NAME}, welcome to Oak Cliff Pilates! New clients get 3 classes for $25. Grab yours + book: "
+                        "lp.oakcliffpilates.com/welcome Reply STOP to opt out")]),
     dict(id="e1", file="01-welcome", phase=1, trigger="On purchase of a New Client Special", build=e1,
          subjects=["You're in. Welcome to OCP.", "We're so glad you're here", "Your first class starts here"],
          preheader="Tips for your first class, which class to take first, and the link to book it.",

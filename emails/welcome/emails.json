@@ -1,5 +1,23 @@
 [
   {
+    "id": "e0",
+    "file": "00-new-client",
+    "phase": 0,
+    "trigger": "On new client added, no purchase yet",
+    "subjects": [
+      "Welcome to OCP. Your first class is $25 away.",
+      "3 classes for $25, just for new clients",
+      "Ready for your first class?"
+    ],
+    "preheader": "Pick an intro offer and book your first reformer class. 3 classes for $25 to start.",
+    "sms": [
+      {
+        "when": "On new client added, with email 0",
+        "text": "Hi {{clientFirstName}}, welcome to Oak Cliff Pilates! New clients get 3 classes for $25. Grab yours + book: lp.oakcliffpilates.com/welcome Reply STOP to opt out"
+      }
+    ]
+  },
+  {
     "id": "e1",
     "file": "01-welcome",
     "phase": 1,

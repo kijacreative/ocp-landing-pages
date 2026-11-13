@@ -47,7 +47,7 @@ iframe{display:block;border:1px solid var(--soft);background:#0B0B0B}
 <div class="wrap">
   <div class="eyebrow">Email + SMS · New client welcome series</div>
   <h1>Welcome series</h1>
-  <p class="lede">Triggered when someone buys a New Client Special (3 classes for $25, 1-Week Unlimited for $59, or 10 classes for $145). Three emails, each with a text, all pointing first timers to <a href="/welcome" target="_blank">lp.oakcliffpilates.com/welcome</a>. Each email is shown at 600px desktop and 375px mobile. Open one on its own to copy its HTML into Arketa.</p>
+  <p class="lede">Email 00 goes to every new client added in Arketa and sells the intro offers. Emails 01 to 03 start when someone buys a New Client Special (3 classes for $25, 1-Week Unlimited for $59, or 10 classes for $145). Four emails, each with a text, all pointing first timers to <a href="/welcome" target="_blank">lp.oakcliffpilates.com/welcome</a>. Each email is shown at 600px desktop and 375px mobile. Open one on its own to copy its HTML into Arketa.</p>
   <div class="open">
     <h2>Before these send</h2>
     <ul>
@@ -64,11 +64,12 @@ iframe{display:block;border:1px solid var(--soft);background:#0B0B0B}
 <script>
 fetch('emails.json').then(function (r) { return r.json(); }).then(function (emails) {
   var phases = {
+    0: ['Before a purchase', 'Sent when a new client is added in Arketa and hasn\'t bought anything. Suppress it if they buy an intro offer the same day.'],
     1: ['First 10 days', 'Day 0 welcome, day 4 keep it up, day 10 UPGRADE25. Stop the series once a membership is bought.']
   };
   var list = document.getElementById('list');
   var esc = function (s) { var d = document.createElement('div'); d.textContent = s; return d.innerHTML; };
-  var current = 0;
+  var current = -1;
   emails.forEach(function (e) {
     if (e.phase !== current) {
       current = e.phase;
