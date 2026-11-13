@@ -1,0 +1,60 @@
+[
+  {
+    "id": "e1",
+    "file": "01-welcome",
+    "phase": 1,
+    "trigger": "On purchase of a New Client Special",
+    "subjects": [
+      "You're in. Welcome to OCP.",
+      "We're so glad you're here",
+      "Your first class starts here"
+    ],
+    "preheader": "Tips for your first class, which class to take first, and the link to book it.",
+    "sms": [
+      {
+        "when": "On purchase, with email 1",
+        "text": "Hi {{clientFirstName}}, welcome to Oak Cliff Pilates! Your intro is ready. First-timer tips + booking: lp.oakcliffpilates.com/welcome Reply STOP to opt out"
+      },
+      {
+        "when": "Day before first booked class (optional)",
+        "text": "See you tomorrow, {{clientFirstName}}! Arrive 10 min early, wear fitted clothes + bring grip socks. Tell the desk it's your first class and we'll set you up."
+      }
+    ]
+  },
+  {
+    "id": "e2",
+    "file": "02-keep-it-up",
+    "phase": 1,
+    "trigger": "Purchase + 4 days",
+    "subjects": [
+      "One class is a visit. Three is a habit.",
+      "Keep it up",
+      "Two classes to try next"
+    ],
+    "preheader": "Why 2 to 3 classes a week works, two classes to try next, and $25 off with UPGRADE25.",
+    "sms": [
+      {
+        "when": "Purchase + 4 days, with email 2",
+        "text": "{{clientFirstName}}, the 2nd class is where it clicks. Book your next one: oakcliffpilates.com/class-schedule Ready to commit? UPGRADE25 = $25 off a membership."
+      }
+    ]
+  },
+  {
+    "id": "e3",
+    "file": "03-upgrade25",
+    "phase": 1,
+    "trigger": "Purchase + 10 days, no membership",
+    "subjects": [
+      "$25 off your first month",
+      "Make OCP part of your week",
+      "UPGRADE25 is waiting for you"
+    ],
+    "preheader": "Use UPGRADE25 for $25 off any membership. Or grab a class pack, no commitment.",
+    "sms": [
+      {
+        "when": "Purchase + 10 days, with email 3",
+        "text": "{{clientFirstName}}, make OCP part of your week. Code UPGRADE25 = $25 off your first month of membership. Packs too: lp.oakcliffpilates.com/welcome#after"
+      }
+    ]
+  }
+]
