@@ -7,6 +7,8 @@ Static landing pages served at `lp.oakcliffpilates.com`. Each page lives in its 
 | `/59unlimited` | $59 one week unlimited, Arketa checkout embedded |
 | `/daylightunlimited` | Daylight Unlimited, $139/mo weekday 10 to 4, Arketa checkout embedded |
 | `/ratelock` | Members-only 2027 rate lock: choose a plan before Dec 31, 2026, links to Arketa checkout |
+| `/upgrade25` | Intro offer clients: $25 off the first month with code UPGRADE25, plus the 2027 rate lock if they join before Dec 31, 2026 |
+| `/welcome` | First-timer landing page for New Client Special buyers: the three intro offers, first-class tips, a class guide, the studios, and UPGRADE25 memberships plus class packs for after the intro |
 | `/cliffclub` | Cliff Club invite list sign-up plus every upcoming Cliff Club event, rendered from `cliffclub/events.json` |
 
 ### Cliff Club events
@@ -32,7 +34,8 @@ The root `/` redirects to oakcliffpilates.com. No build step: Vercel serves the 
 | --- | --- |
 | `/emails/trial/` | Preview of the 1-week unlimited trial conversion sequence (9 emails) |
 | `/emails/trial/<name>.html` | Each email's HTML, ready to paste into the sending platform |
-| `/emails/ratelock/` | Preview of the 2027 rate lock series to members (6 sends Nov 3 to Dec 31, the first in 4 versions by membership) |
+| `/emails/welcome/` | Preview of the new client welcome series, each email with its text: email 00 sells the intro offers to new clients added in Arketa (00B to those who came in on a guest pass), emails 01 to 03 follow a New Client Special purchase. All point to `/welcome` |
+| `/emails/ratelock/` | Preview of the 2027 rate lock series to members (6 sends Nov 3 to Dec 31, the first in 4 versions by membership), plus one-off sends to intro offer clients (UPGRADE25, links to `/upgrade25`), prepay members and class pack buyers |
 | `/emails/first-visit.html` | Thank-you email sent after a client's first class, with Amanda's animated wave |
 | `/emails/sad-to-see-you-go.html` | Goodbye email for cancelled members, with the COMEBACK $10-off offer |
 | `/emails/happy-birthday.html` | Birthday email with a free 7-day guest pass for a friend |
@@ -43,5 +46,6 @@ The root `/` redirects to oakcliffpilates.com. No build step: Vercel serves the 
 | `/emails/img/` | Images the emails load, so they can use absolute URLs |
 
 The email HTML is generated. Edit `tools/build-trial-emails.py`, then run `python3 tools/build-trial-emails.py`.
+The welcome series works the same way: edit `tools/build-welcome-emails.py` (it reuses the trial builder's blocks), then run `python3 tools/build-welcome-emails.py`. The texts live in that file too.
 The rate lock emails work the same way: edit `tools/build-ratelock-emails.py`, then run `python3 tools/build-ratelock-emails.py`.
 Never rename or delete anything in `/emails/img/` once an email has been sent: inboxes keep loading it.

@@ -63,7 +63,10 @@ iframe{display:block;border:1px solid var(--soft);background:#0B0B0B}
 fetch('emails.json').then(function (r) { return r.json(); }).then(function (emails) {
   var phases = {
     1: ['Phase 1 · Announce and explain', 'November to mid-December. One email every two weeks or so.'],
-    2: ['Phase 2 · Deadline', 'The last week. Rate lock closes at midnight on December 31.']
+    2: ['Phase 2 · Deadline', 'The last week. Rate lock closes at midnight on December 31.'],
+    3: ['Intro offers', 'For intro offer clients who never bought a membership. Send any time before December 31.'],
+    4: ['Prepay members', 'For current 3, 6 and 12-month prepay members. Their next prepay starts when the current one renews.'],
+    5: ['Class pack buyers', 'For clients who buy class packs and have no membership. Send any time before December 31.']
   };
   var list = document.getElementById('list');
   var esc = function (s) { var d = document.createElement('div'); d.textContent = s; return d.innerHTML; };
