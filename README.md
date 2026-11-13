@@ -7,6 +7,7 @@ Static landing pages served at `lp.oakcliffpilates.com`. Each page lives in its 
 | `/59unlimited` | $59 one week unlimited, Arketa checkout embedded |
 | `/daylightunlimited` | Daylight Unlimited, $139/mo weekday 10 to 4, Arketa checkout embedded |
 | `/ratelock` | Members-only 2027 rate lock: choose a plan before Dec 31, 2026, links to Arketa checkout |
+| `/upgrade25` | Intro offer clients: $25 off the first month with code UPGRADE25, plus the 2027 rate lock if they join before Dec 31, 2026 |
 | `/cliffclub` | Cliff Club invite list sign-up plus every upcoming Cliff Club event, rendered from `cliffclub/events.json` |
 
 ### Cliff Club events
@@ -32,7 +33,7 @@ The root `/` redirects to oakcliffpilates.com. No build step: Vercel serves the 
 | --- | --- |
 | `/emails/trial/` | Preview of the 1-week unlimited trial conversion sequence (9 emails) |
 | `/emails/trial/<name>.html` | Each email's HTML, ready to paste into the sending platform |
-| `/emails/ratelock/` | Preview of the 2027 rate lock series to members (6 sends Nov 3 to Dec 31, the first in 4 versions by membership) |
+| `/emails/ratelock/` | Preview of the 2027 rate lock series to members (6 sends Nov 3 to Dec 31, the first in 4 versions by membership), plus one-off sends to intro offer clients (UPGRADE25, links to `/upgrade25`), prepay members and class pack buyers |
 | `/emails/first-visit.html` | Thank-you email sent after a client's first class, with Amanda's animated wave |
 | `/emails/sad-to-see-you-go.html` | Goodbye email for cancelled members, with the COMEBACK $10-off offer |
 | `/emails/happy-birthday.html` | Birthday email with a free 7-day guest pass for a friend |

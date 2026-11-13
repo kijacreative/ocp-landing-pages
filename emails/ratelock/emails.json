@@ -106,5 +106,41 @@
       "Midnight"
     ],
     "preheader": "Tomorrow All-Studio Unlimited is $229 a month."
+  },
+  {
+    "id": "e7",
+    "file": "07-intro-offers",
+    "phase": 3,
+    "send": "Intro offer clients who haven't bought a membership",
+    "subjects": [
+      "$25 off, and your rate locked for 2027",
+      "UPGRADE25: $25 off your first month",
+      "Liked it? Lock it in before January."
+    ],
+    "preheader": "Use UPGRADE25 for $25 off, and join before December 31 to keep today's price all of 2027."
+  },
+  {
+    "id": "e8",
+    "file": "08-prepay-members",
+    "phase": 4,
+    "send": "Current 3, 6 and 12-month prepay members",
+    "subjects": [
+      "Your next prepay, at this year's price",
+      "Prepay goes up January 1. Yours doesn't have to.",
+      "Lock your renewal before December 31"
+    ],
+    "preheader": "Buy your next prepay before December 31. It starts when yours renews, at today's price."
+  },
+  {
+    "id": "e9",
+    "file": "09-class-packs",
+    "phase": 5,
+    "send": "Clients who buy class packs (no membership)",
+    "subjects": [
+      "Done buying class packs?",
+      "Twice a week? Unlimited costs less.",
+      "Unlimited for $189, locked through 2027"
+    ],
+    "preheader": "At two classes a week, unlimited costs less than your pack. Lock today's price before December 31."
   }
 ]
