@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
-"""Build the new client welcome series: 4 emails plus the texts that go with them.
+"""Build the new client welcome series: 5 emails plus the texts that go with them.
 
-Email 00 goes to every new client added in Arketa and sells the intro offers.
+Email 00 goes to every new client added in Arketa and sells the intro offers;
+00B replaces it for clients who came in on a member's guest pass.
 Emails 01 to 03 are triggered by the purchase of any New Client Special in Arketa (3 classes for $25,
 1-Week Unlimited for $59, 10 classes for $145). Every email points first timers to
 the /welcome landing page.
@@ -240,6 +241,40 @@ def e0():
     )
 
 
+def e0b():
+    """Alternative to e0 for clients who came in on a member's guest pass."""
+    t, tm = vpad(32, 9, 56)
+    g, gm = vpad(32, 9, 48)
+    next_steps = numbered([
+        p(f"{strong('Try a different class.')} If you took OG Reformer, try Classical AF for control or Jumpboard for cardio. "
+          "Same reformer, a totally different 45 minutes.", 15, mb=0, lh="1.6"),
+        p(f"{strong('Book with your friend.')} You already have a Pilates buddy. Pick a class you can both make and book "
+          "side by side.", 15, mb=0, lh="1.6"),
+        p(f"{strong('Try another studio.')} Your intro works at Bishop Arts, Uptown and Lower Greenville.", 15, mb=0, lh="1.6"),
+    ])
+    return (
+        header("Guest pass")
+        + row(eyebrow(f"Hi {NAME}, thanks for coming in.", mb=20)
+              + display(f"Your first class was on a friend. {gold('The next three are $25.')}", 44, 11.5, 70, mb=20)
+              + p("A member brought you in on their guest pass, which means someone already thinks you'll love it here. "
+                  "Keep it going: as a new client you can still grab an intro offer, starting with 3 classes for $25.", 17, TEXT_LIGHT, 24)
+              + button("Get 3 classes for $25", INTRO_OFFERS[0][5]), t, 0, tm)
+        + spacer(g, gm)
+        + f'<tr><td style="padding:0"><a href="{OFFERS}"><img src="{IMG}/trial-lower-greenville.jpg" width="600" height="750" class="fluid" '
+          f'alt="Clients on the reformers at Lower Greenville" style="display:block;width:600px;height:auto;max-width:100%;border:0"></a></td></tr>\n'
+        + row(eyebrow("New client specials", mb=14)
+              + display(f"Pick up {gold('where you left off')}", 34, 9, 44, ".9", "h2", mb=14, ls="-.01em")
+              + p("Your guest pass doesn't use up your intro offer. Pick the one that fits, at any studio, on any class.", 15, mb=20, lh="1.6")
+              + offer_rows()
+              + p("New clients only, one intro offer per person.", 12, DIM, 0, "1.5").replace("margin:0 0 0px", "margin:4px 0 0"),
+              g, 0, gm)
+        + row(display("Make the next one count", 34, 0, 34, ".9", "h2", mb=18, ls="-.01em") + next_steps
+              + button("Choose my intro offer", OFFERS, mt=24)
+              + text_link("See every class", CLASSES), g, 0, gm)
+        + spacer(g, gm) + locations() + footer()
+    )
+
+
 def e1():
     t, tm = vpad(32, 9, 56)
     g, gm = vpad(32, 9, 48)
@@ -354,6 +389,14 @@ EMAILS = [
          preheader="Pick an intro offer and book your first reformer class. 3 classes for $25 to start.",
          sms=[dict(when="On new client added, with email 0",
                    text=f"Hi {NAME}, welcome to Oak Cliff Pilates! New clients get 3 classes for $25. Grab yours + book: "
+                        "lp.oakcliffpilates.com/welcome Reply STOP to opt out")]),
+    dict(id="e0b", file="00b-guest-pass", phase=0, trigger="Alternative to 00 · new client who came in on a guest pass",
+         build=e0b,
+         subjects=["Thanks for coming in. The next 3 classes are $25.", "Your friend was right about OCP",
+                   "Come back for 3 classes for $25"],
+         preheader="Your guest pass didn't use up your intro offer. 3 classes for $25 to keep it going.",
+         sms=[dict(when="After the guest pass class, with email 00B",
+                   text=f"Hi {NAME}, thanks for coming to OCP as a guest! Your intro offer is still yours: 3 classes for $25. "
                         "lp.oakcliffpilates.com/welcome Reply STOP to opt out")]),
     dict(id="e1", file="01-welcome", phase=1, trigger="On purchase of a New Client Special", build=e1,
          subjects=["You're in. Welcome to OCP.", "We're so glad you're here", "Your first class starts here"],

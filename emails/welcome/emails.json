@@ -18,6 +18,24 @@
     ]
   },
   {
+    "id": "e0b",
+    "file": "00b-guest-pass",
+    "phase": 0,
+    "trigger": "Alternative to 00 \u00b7 new client who came in on a guest pass",
+    "subjects": [
+      "Thanks for coming in. The next 3 classes are $25.",
+      "Your friend was right about OCP",
+      "Come back for 3 classes for $25"
+    ],
+    "preheader": "Your guest pass didn't use up your intro offer. 3 classes for $25 to keep it going.",
+    "sms": [
+      {
+        "when": "After the guest pass class, with email 00B",
+        "text": "Hi {{clientFirstName}}, thanks for coming to OCP as a guest! Your intro offer is still yours: 3 classes for $25. lp.oakcliffpilates.com/welcome Reply STOP to opt out"
+      }
+    ]
+  },
+  {
     "id": "e1",
     "file": "01-welcome",
     "phase": 1,
