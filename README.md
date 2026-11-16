@@ -43,6 +43,7 @@ The root `/` redirects to oakcliffpilates.com. No build step: Vercel serves the 
 | `/emails/gift-card-delivery.html` | Follow-up to "We miss you": delivers the $10 gift card (code BOOKED) once a lapsed client books |
 | `/emails/pilates-in-the-park.html` | Free mat Pilates with Daisy at Halperin Park, Sun Oct 25, 9 AM, with the Arketa RSVP link |
 | `/emails/pilates-and-pours.html` | Pilates + Pours evening edition with Amanda at Sixty Vines Uptown, Sun Nov 15, 5/6/7 PM, with the Triple Seat ticket links |
+| `/emails/cliff-club-dj-mat-class.html` | Blast for the first Cliff Club pop-up: DJ mat class with Amber and DJ IAMYU, Fri Nov 20, 6 PM, OCP Lower Greenville, with the Arketa booking link |
 | `/emails/img/` | Images the emails load, so they can use absolute URLs |
 
 The email HTML is generated. Edit `tools/build-trial-emails.py`, then run `python3 tools/build-trial-emails.py`.
