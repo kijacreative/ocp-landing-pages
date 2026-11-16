@@ -7,6 +7,7 @@ Static landing pages served at `lp.oakcliffpilates.com`. Each page lives in its 
 | `/59unlimited` | $59 one week unlimited, Arketa checkout embedded |
 | `/daylightunlimited` | Daylight Unlimited, $139/mo weekday 10 to 4, Arketa checkout embedded |
 | `/ratelock` | Members-only 2027 rate lock: choose a plan before Dec 31, 2026, links to Arketa checkout |
+| `/review` | Review request: pick your studio (Bishop Arts, Uptown, Lower Greenville) and go to its RevuBlast review link. `?studio=bishop`, `uptown` or `lower-greenville` outlines that studio |
 | `/cliffclub` | Cliff Club invite list sign-up plus every upcoming Cliff Club event, rendered from `cliffclub/events.json` |
 
 ### Cliff Club events
@@ -33,6 +34,7 @@ The root `/` redirects to oakcliffpilates.com. No build step: Vercel serves the 
 | `/emails/trial/` | Preview of the 1-week unlimited trial conversion sequence (9 emails) |
 | `/emails/trial/<name>.html` | Each email's HTML, ready to paste into the sending platform |
 | `/emails/ratelock/` | Preview of the 2027 rate lock series to members (6 sends Nov 3 to Dec 31, the first in 4 versions by membership) |
+| `/emails/review.html` | Review request sent after a client's third class: a button to `/review`, plus each studio's direct review link. Built by `python3 tools/build-review-email.py` |
 | `/emails/first-visit.html` | Thank-you email sent after a client's first class, with Amanda's animated wave |
 | `/emails/sad-to-see-you-go.html` | Goodbye email for cancelled members, with the COMEBACK $10-off offer |
 | `/emails/happy-birthday.html` | Birthday email with a free 7-day guest pass for a friend |
