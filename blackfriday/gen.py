@@ -178,14 +178,14 @@ PERK = 'One late-cancel fee waived every month you are locked in. [confirm]'
 
 OFFERS = {
     'gift': dict(n='01', name='GIFT CARD BONUS', head=['GIVE THE GIFT', 'OF THE CLASS.'],
-                 line='Buy a $100 gift card, get a $100 bonus gift card for you.',
-                 short='Buy $100, get a $100 bonus for you',
+                 line='Buy a $100 gift card, get a $100 bonus gift card to give a friend.',
+                 short='Buy $100, get a $100 bonus for a friend',
                  url='https://app.arketa.co/oakcliffpilates/pricing/checkout/wcQCbnFwzO4lzu0V9jMX',
-                 fine='Bonus gift card valid through [date]. Through Dec 1 only.',
+                 fine='We email you the bonus code right after checkout. Code valid through [date]. Through Dec 1 only.',
                  cta='SHOP GIFT CARDS', photo='[PHOTO: gift card handoff at the front desk, warm light]',
-                 ad=['GIVE $100.', 'GET $100.'], adline='Buy a $100 gift card, get a $100 bonus for you.',
-                 b728='BUY A $100 GIFT CARD, GET A $100 BONUS. THRU 12/1.',
-                 b320='GIVE $100, GET $100. THRU 12/1.'),
+                 ad=['GIVE $100.', 'GIVE $100 MORE.'], adline='Buy a $100 gift card, get a $100 bonus to gift a friend.',
+                 b728='BUY A $100 GIFT CARD, GIFT A FRIEND $100 MORE.',
+                 b320='GIVE $100, GIFT $100 MORE.'),
     'day': dict(n='02', name='10-CLASS PACK', head=['10 CLASSES.', '$150.'],
                 line='10 classes for $150. Regularly $290. Any studio.',
                 short='10 classes for $150, regularly $290',
@@ -350,7 +350,7 @@ def m_endstrip(text):
 
 
 def m_offer(o, with_photo=False, bg=C, extended=False):
-    line = o['line'] if not extended else 'Buy a $100 gift card, get a $[XX] gift card for you. Through Dec 24 [confirm].'
+    line = o['line'] if not extended else 'Buy a $100 gift card, get a $[XX] bonus gift card for a friend. Through Dec 24 [confirm].'
     fine = o['fine'] if not extended else 'Bonus card valid through [date].'
     parts = []
     h = 64
@@ -605,14 +605,14 @@ mods = [m_meta('Tue Nov 17 · Full list: non-members, lapsed clients, intro buye
 src, h = email('Early access to Black Friday', mods, C)
 add('bf', R, 'BF-email-EA.dc.html', 'EA · Nov 17 · Early access', EW, h, src)
 
-mods = [m_meta('Fri Nov 20 · Full list, gift buyers', 'Give $100. Get $100.', 'Buy a gift card, get a $100 bonus for you. Through Dec 1.'),
+mods = [m_meta('Fri Nov 20 · Full list, gift buyers', 'Give $100. Then give $100 more.', 'Buy a gift card, get a $100 bonus to gift a friend. Through Dec 1.'),
         m_header('bf'),
-        m_hero('BLACK FRIDAY AT OCP · GIFTS', ['GIVE $100.', 'GET $100.'], sub='Give the gift of the class they keep talking about. Buy a $100 gift card and we give you a $100 bonus gift card. Got someone who’s all in? Wrap up 20 classes and the merch.', ph='[PHOTO: gift card handoff at the front desk, warm light]', size=110),
+        m_hero('BLACK FRIDAY AT OCP · GIFTS', ['GIVE $100.', 'GIVE $100 MORE.'], sub='Give the gift of the class they keep talking about. Buy a $100 gift card and we email you a code for a bonus gift card, up to $100, to give a friend. Got someone who’s all in? Wrap up 20 classes and the merch.', ph='[PHOTO: gift card handoff at the front desk, warm light]', size=72),
         m_endstrip('THROUGH TUE, DEC 1 AT MIDNIGHT'),
         m_offer(OFFERS['gift']), m_offer(dict(OFFERS['bundle'], photo='[PHOTO: merch tote]'), with_photo=True),
         m_footer(BF_FINE)]
 src, h = email('Gift focus', mods, C)
-add('bf', R, 'BF-email-gifts.dc.html', 'Nov 20 · Give $100. Get $100.', EW, h, src)
+add('bf', R, 'BF-email-gifts.dc.html', 'Nov 20 · Give $100. Give $100 more.', EW, h, src)
 
 mods = [m_meta('Mon Nov 23 · Non-members, lapsed clients, intro buyers who didn’t convert', '$199 unlimited. And it stays $199.', 'New members: commit to 3 months, keep $199 after. Plus a $50 gift card.'),
         m_header('bf'),
@@ -636,7 +636,7 @@ mods = [m_meta('Wed Nov 25 · ' + AUD, 'Black Friday is Friday.', 'Every offer i
 src, h = email('B1 Black Friday starts Friday', mods, C)
 add('bf', R, 'BF-email-B1.dc.html', 'B1 · Nov 25 · Black Friday is Friday', EW, h, src)
 
-mods = [m_meta('Fri Nov 27 · ' + AUD, 'It’s Black Friday.', '$100 for you, 10 classes for $150, unlimited for $199. Through Dec 1.'),
+mods = [m_meta('Fri Nov 27 · ' + AUD, 'It’s Black Friday.', 'A $100 bonus to gift, 10 classes for $150, unlimited for $199. Through Dec 1.'),
         m_header('bf'),
         m_hero('BLACK FRIDAY AT OCP · NOV 17 TO DEC 1', ["IT'S", 'BLACK FRIDAY.'], sub='Five ways in, live through Tuesday, Dec 1. Gift it, start it, or stock up.', size=80),
         m_endstrip('ENDS TUESDAY, DEC 1 AT MIDNIGHT'),
@@ -815,7 +815,7 @@ inner = (photo('[PHOTO: gift card handoff at the front desk, warm light, full bl
          + f'<div style="position: relative; flex: 1 1 auto; display: flex; flex-direction: column; justify-content: flex-end; gap: 28px; padding: 285px 84px 300px">'
          + eyebrow('BLACK FRIDAY AT OCP · 01 GIFT CARD BONUS', G, 26)
          + head(['GIVE THE GIFT', 'OF THE CLASS.'], 150, [C, G])
-         + para('Buy $100, get $100 for you.', 46, C, 700, 1.25)
+         + para('Buy $100, gift a friend $100 more.', 46, C, 700, 1.25)
          + row([chip('ENDS TUE 12/1', 32), puck(120)], 24, 'center')
          + '</div>')
 add('bf', R, 'BF-reel-cover-gift.dc.html', 'Gift card reel cover · 1080×1920', 1080, 1920, page('Black Friday gift card reel cover', 1080, 1920, inner, B))
@@ -913,7 +913,7 @@ add('bf', R, 'BF-print-poster.dc.html', '11×17 poster (1056×1632)', 1056, 1632
 inner = (frame(18) + f'<div style="position: relative; flex: 1 1 auto; display: flex; flex-direction: column; gap: 16px; padding: 44px 40px 40px">'
          + row([eyebrow('GIFT CARDS', G, 13), chip('THRU TUE 12/1', 15, PK, B, '7px 12px')], 12, 'center')
          + head(['GIVE THE GIFT', 'OF THE CLASS', 'THEY KEEP', 'TALKING ABOUT.'], 60, [C, C, G, G], 0.86)
-         + f'<p style="margin: 0; {MO}; font-size: 19px; font-weight: 700; line-height: 1.4; color: {C}">Buy a $100 gift card, get a $100 gift card <span style="{CV}; font-size: 26px; color: {GW}">for you.</span></p>'
+         + f'<p style="margin: 0; {MO}; font-size: 19px; font-weight: 700; line-height: 1.4; color: {C}">Buy a $100 gift card, get a $100 bonus gift card <span style="{CV}; font-size: 26px; color: {GW}">for a friend.</span></p>'
          + para('Bonus gift card valid through [date].', 13, S3, 500, 1.45)
          + spacer()
          + row([col([para('Scan or ask us at the desk.', 15, G, 700, 1.3), puck(64)], 12), qr(150, '[QR: gift card link]')], 16, 'flex-end')
@@ -954,9 +954,9 @@ def ark_number(num, eb, word, price, small):
 
 
 ARK = [
-    ('gift', ark_photo('neon', 'BLACK FRIDAY · GIFT CARD', ['BUY $100.', 'GET $100.'], 'BONUS · THRU DEC 1', '$100', 'Member on the reformer under the neon OCP sign'),
-     'Black Friday Gift Card: Buy $100, Get $100',
-     'Give the gift of the class they keep talking about. Buy a $100 OCP gift card for someone you love and we give you a $100 bonus gift card for yourself. Good at Bishop Arts, Uptown and Lower Greenville. Through Dec 1 only. Ends Tue, Dec 1 at midnight. Bonus gift card valid through [date]. Delivered [confirm: by email / printed in studio].'),
+    ('gift', ark_photo('neon', 'BLACK FRIDAY · GIFT CARD', ['BUY ONE.', 'GIFT ONE.'], '$100 BONUS FOR A FRIEND', '$100', 'Member on the reformer under the neon OCP sign'),
+     'Black Friday Gift Card: Buy $100, Gift a Friend $100',
+     'Give the gift of the class they keep talking about. Buy a $100 OCP gift card and we email you code GIFTCARD100 for a bonus gift card, up to $100, to send a friend. Good at Bishop Arts, Uptown and Lower Greenville. Through Dec 1 only. Ends Tue, Dec 1 at midnight. Bonus gift card valid through [date]. Delivered [confirm: by email / printed in studio].'),
     ('day', ark_number('10', 'BLACK FRIDAY · CLASS PACK', 'SESSIONS', '$150 <span style="font-size: 30px; color: #84827B; text-decoration: line-through">$290</span>', '$15 a class. Any studio. 90 days to use them.'),
      'Black Friday 10-Class Pack',
      '10 classes for $150. That is $15 a class, regularly $290. Use them at any of our 3 studios. Expires 90 days from purchase. One per person [confirm]. Through Dec 1 only. Ends Tue, Dec 1 at midnight.'),
@@ -973,7 +973,7 @@ ARK = [
 for k, inner, name, desc in ARK:
     fn = f'BF-arketa-{k}.dc.html'
     add('bf', R, fn, f'Arketa · {name}', AW, AH, page(f'Arketa image {name}', AW, AH, inner, B))
-    price = {'gift': '$100 (buyer also gets a $100 bonus gift card)', 'day': '$150 (compare at $290)', 'start': '$59, $39 with code BLACKFRIDAY',
+    price = {'gift': '$100 (buyer gets code GIFTCARD100 by email for a bonus gift card up to $100 to send a friend)', 'day': '$150 (compare at $290)', 'start': '$59, $39 with code BLACKFRIDAY',
              'bundle': '$400 (20-class pack compare at $560)', 'unl': '$199/mo, 3-month minimum, stays $199 after'}[k]
     link = OFFERS[k].get('url', '[Arketa checkout link: send it over]')
     ARK_NOTES[fn] = f'ARKETA NAME\n{name}\n\nPRICE\n{price}\n\nCHECKOUT LINK\n{link}\n\nDESCRIPTION\n{desc}'
