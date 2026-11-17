@@ -39,6 +39,7 @@ The root `/` redirects to oakcliffpilates.com. No build step: Vercel serves the 
 | `/emails/sad-to-see-you-go.html` | Goodbye email for cancelled members, with the COMEBACK $10-off offer |
 | `/emails/happy-birthday.html` | Birthday email with a free 7-day guest pass for a friend |
 | `/emails/we-miss-you.html` | Win-back email for lapsed clients, with the $10 gift card offer |
+| `/emails/black-friday-gift-card-bonus.html` | Black Friday: sends automatically after a $100 gift card purchase. Thanks the buyer and gives code GIFTCARD100 for a bonus gift card up to $100 for a friend, via the Arketa gifting page |
 | `/emails/gift-card-delivery.html` | Follow-up to "We miss you": delivers the $10 gift card (code BOOKED) once a lapsed client books |
 | `/emails/pilates-in-the-park.html` | Free mat Pilates with Daisy at Halperin Park, Sun Oct 25, 9 AM, with the Arketa RSVP link |
 | `/emails/pilates-and-pours.html` | Pilates + Pours evening edition with Amanda at Sixty Vines Uptown, Sun Nov 15, 5/6/7 PM, with the Triple Seat ticket links |
