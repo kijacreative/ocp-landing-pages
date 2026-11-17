@@ -1,6 +1,6 @@
 # Holiday 2026 campaigns: Lock-In and Black Friday
 
-Source files for the [OCP Holiday Campaigns 2026 canvas](https://claude.ai/artifact/QYZCaFvUkVgqK8H85BK3RZ), plus the Black Friday and Lock-In landing page drafts. This folder sits under `tools/`, which `.vercelignore` keeps off the live site.
+Source files for the [OCP Holiday Campaigns 2026 canvas](https://claude.ai/artifact/QYZCaFvUkVgqK8H85BK3RZ), plus the Black Friday and Lock-In landing page drafts. `.vercelignore` keeps this folder off the live site, so nothing here is served at lp.oakcliffpilates.com/blackfriday. To publish a real /blackfriday landing page later, take `blackfriday/` out of `.vercelignore` and move these source files somewhere else first.
 
 | Path | What |
 | --- | --- |
@@ -13,7 +13,7 @@ Source files for the [OCP Holiday Campaigns 2026 canvas](https://claude.ai/artif
 ## Editing
 
 1. Change the copy in `gen.py` (the `OFFERS` dictionary holds the five Black Friday offers and their Arketa links).
-2. Run `python3 tools/holiday-2026/gen.py`. It rewrites the files in `canvas/project/` and keeps the published canvas's creation stamp.
+2. Run `python3 blackfriday/gen.py`. It rewrites the files in `canvas/project/` and keeps the published canvas's creation stamp.
 3. Republish the changed `.dc.html` files (and `canvas.json` if artboards were added or removed) to the canvas.
 
 Edits made directly on the canvas are not in these files. Pull them down before regenerating, or they get overwritten on the next publish.
