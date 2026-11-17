@@ -86,6 +86,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <a href="https://oakcliffpilates.com" style="display:flex;align-items:center;gap:12px;text-decoration:none"><img src="/img/OCP-Logo-128.png" alt="Oak Cliff Pilates" width="40" height="40" style="width:40px;height:40px;display:block"><span style="font:600 11px/1 var(--font-body);letter-spacing:.3em;text-transform:uppercase;color:#F4EFE6">Oak Cliff Pilates</span></a>
       <a class="btn btn--primary" href="#checkout">Grab your week</a>
     </div>
+    <!-- Black Friday: shows Nov 17 to Dec 1, 2026 (Dallas time) only. Preview any time with ?bf=1. -->
+    <div data-bf hidden style="background:#E63995;color:#0B0B0B">
+      <div style="max-width:1280px;margin:0 auto;padding:10px clamp(16px,4cqi,48px);display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:8px 16px;text-align:center">
+        <span style="font:700 clamp(15px,1.6cqi,20px)/1.1 var(--font-display);letter-spacing:.06em;text-transform:uppercase">Black Friday: new clients get the week for $39</span>
+        <button type="button" data-bf-copy aria-label="Copy code BLACKFRIDAY" style="display:inline-flex;align-items:center;gap:8px;min-height:36px;padding:0 14px;background:#0B0B0B;color:#F4EFE6;border:0;border-radius:999px;font:700 14px/1 var(--font-display);letter-spacing:.12em;text-transform:uppercase;cursor:pointer">Code BLACKFRIDAY <span data-bf-copy-label style="font:600 11px/1 var(--font-body);letter-spacing:.08em;color:#E9C977">Copy</span></button>
+        <span style="font:600 12px/1.3 var(--font-body);letter-spacing:.04em">Enter it at checkout. Ends Tue, Dec 1 at midnight.</span>
+      </div>
+    </div>
   </header>
 
   <main>
@@ -104,6 +112,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div style="background:#FFFFFF;border:1px solid rgba(201,162,74,.6);border-radius:8px;overflow:hidden;box-shadow:0 40px 80px -20px rgba(0,0,0,.9)">
           <iframe src="https://app.arketa.co/oakcliffpilates/pricing/checkout/08dxQyFUSU4GA782eKIz" title="Oak Cliff Pilates checkout" style="display:block;width:100%;height:min(calc(100vh - 110px),760px);min-height:520px;border:0" allow="payment"></iframe>
         </div>
+        <span data-bf hidden style="font:600 14px/1.5 var(--font-body);color:#F4EFE6">Black Friday: enter code <strong style="color:#E9C977;letter-spacing:.06em">BLACKFRIDAY</strong> at checkout and your week is $39. New clients only.</span>
         <span style="font:400 13px/1.5 var(--font-body);color:#C9C2B6">Checkout not loading? <a href="https://app.arketa.co/oakcliffpilates/pricing/checkout/08dxQyFUSU4GA782eKIz" target="_blank" rel="noopener" style="color:#C9A24A;font-weight:600">Open it in a new tab</a></span>
       </div>
     </div>
@@ -189,6 +198,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   play();
 })();
 
+// Black Friday banner: Nov 17, 2026 12:00am to Dec 1, 2026 11:59:59pm Dallas time, or ?bf=1 to preview.
+var BF_ON = (function () {
+  var now = Date.now();
+  var live = now >= Date.parse('2026-11-17T00:00:00-06:00') && now <= Date.parse('2026-12-01T23:59:59-06:00');
+  return live || /[?&]bf=1\b/.test(location.search);
+})();
+if (BF_ON) {
+  document.querySelectorAll('[data-bf]').forEach(function (el) { el.hidden = false; });
+  var copyBtn = document.querySelector('[data-bf-copy]');
+  if (copyBtn) copyBtn.addEventListener('click', function () {
+    var label = copyBtn.querySelector('[data-bf-copy-label]');
+    var done = function () { label.textContent = 'Copied'; setTimeout(function () { label.textContent = 'Copy'; }, 2000); };
+    if (navigator.clipboard) navigator.clipboard.writeText('BLACKFRIDAY').then(done, function () {});
+  });
+}
+
 // Checkout intent. The purchase itself happens inside the Arketa iframe, which these tags can't see.
 document.querySelectorAll('a[href="#checkout"], a[href*="app.arketa.co"]').forEach(function (a) {
   a.addEventListener('click', function (e) {
@@ -197,9 +222,10 @@ document.querySelectorAll('a[href="#checkout"], a[href*="app.arketa.co"]').forEa
       e.preventDefault();
       document.getElementById('checkout').scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
     }
-    var data = { value: 59, currency: 'USD', content_name: '1-Week Unlimited' };
+    var price = BF_ON ? 39 : 59;
+    var data = { value: price, currency: 'USD', content_name: '1-Week Unlimited' };
     if (window.fbq) fbq('track', 'InitiateCheckout', data);
-    if (window.gtag) gtag('event', 'begin_checkout', { value: 59, currency: 'USD', items: [{ item_name: '1-Week Unlimited', price: 59 }] });
+    if (window.gtag) gtag('event', 'begin_checkout', { value: price, currency: 'USD', items: [{ item_name: '1-Week Unlimited', price: price }] });
   });
 });
 </script>
