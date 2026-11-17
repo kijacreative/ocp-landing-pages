@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KZWDNT3');</script>
+<!-- End Google Tag Manager -->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YD9XD8TM7M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  // GTM-KZWDNT3 already sends the GA4 page_view for this ID; this tag only carries the review_click event.
+  gtag('config', 'G-YD9XD8TM7M', { send_page_view: false });
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Leave a Review | Oak Cliff Pilates</title>
+<meta name="description" content="Pick the Oak Cliff Pilates studio you go to and leave a quick review. Bishop Arts, Uptown or Lower Greenville.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0B0B0B">
+<link rel="canonical" href="https://lp.oakcliffpilates.com/review">
+<link rel="icon" href="/favicon.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Khand:wght@600;700&family=Montserrat:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="/review/css/tokens.css">
+<style>
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;min-height:100vh;background:#0B0B0B;color:#F4EFE6;font-family:var(--font-body)}
+a{color:#C9A24A}
+a:hover{color:#E9C977}
+:focus-visible{outline:2px solid var(--focus-ring);outline-offset:3px}
+.wrap{max-width:720px;margin:0 auto;padding:0 20px}
+h1,h2{margin:0;font-family:var(--font-display);font-weight:700;text-transform:uppercase;text-wrap:balance}
+.eyebrow{font:600 11px/1.5 var(--font-body);letter-spacing:.3em;text-transform:uppercase;color:#C9A24A}
+.foil{background:var(--ocp-gold-foil);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+.top{border-bottom:1px solid rgba(201,162,74,.28)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:14px;padding-bottom:14px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+.brand img{width:36px;height:36px;display:block}
+.brand span{font:600 11px/1 var(--font-body);letter-spacing:.3em;text-transform:uppercase;color:#F4EFE6}
+.top .tag{font:600 10px/1 var(--font-body);letter-spacing:.18em;text-transform:uppercase;color:#C9A24A}
+
+.intro{padding:clamp(40px,9vw,80px) 0 clamp(28px,6vw,44px);display:flex;flex-direction:column;gap:16px}
+.intro h1{font-size:clamp(52px,14vw,96px);line-height:.84;letter-spacing:-.02em}
+.intro p{margin:0;max-width:44ch;font:400 16px/1.62 var(--font-body);color:#C9C2B6;text-wrap:pretty}
+.stars{display:flex;gap:6px;color:#C9A24A}
+.stars svg{width:22px;height:22px;display:block}
+
+.step{display:flex;align-items:baseline;gap:14px;padding:0 0 16px}
+.step b{font:700 34px/.9 var(--font-display);color:#C9A24A}
+.step h2{font-size:28px;line-height:1}
+
+.studios{display:flex;flex-direction:column;gap:12px;margin:0;padding:0;list-style:none}
+.studio{display:grid;grid-template-columns:112px minmax(0,1fr);align-items:stretch;min-height:112px;background:#111110;border:1px solid rgba(201,162,74,.28);border-radius:8px;overflow:hidden;text-decoration:none;color:#F4EFE6;transition:border-color var(--dur) var(--ease-out),transform var(--dur-fast) var(--ease-out)}
+.studio:hover,.studio.is-picked{border-color:#C9A24A;color:#F4EFE6}
+.studio:active{transform:scale(var(--press-scale))}
+.studio .img{position:relative;background:#2A2724}
+.studio .img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.studio .body{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 18px}
+.studio .name{display:block;font:700 26px/.95 var(--font-display);text-transform:uppercase}
+.studio .addr{display:block;margin-top:6px;font:400 13px/1.4 var(--font-body);color:#A39C90}
+.studio .go{flex:none;display:inline-flex;align-items:center;justify-content:center;height:44px;padding:0 16px;background:#C9A24A;color:#0B0B0B;border-radius:2px;font:600 15px/1 var(--font-display);letter-spacing:var(--ls-button);text-transform:uppercase;white-space:nowrap;transition:background var(--dur) var(--ease-out)}
+.studio:hover .go{background:#E9C977}
+@media (max-width:480px){
+  .studio{grid-template-columns:88px minmax(0,1fr);min-height:104px}
+  .studio .body{flex-direction:column;align-items:flex-start;gap:12px;padding:14px 16px}
+  .studio .name{font-size:24px}
+  .studio .go{height:40px;padding:0 14px;font-size:14px}
+}
+@media (min-width:640px){.studio{grid-template-columns:168px minmax(0,1fr);min-height:128px}}
+.note{margin:14px 0 0;font:400 13px/1.55 var(--font-body);color:#A39C90}
+
+.tips{margin:clamp(40px,8vw,64px) 0 0;padding:24px 0 0;border-top:1px solid rgba(201,162,74,.28)}
+.tips h2{font-size:24px;line-height:1;margin-bottom:14px}
+.tips ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px}
+.tips li{display:grid;grid-template-columns:22px minmax(0,1fr);gap:6px;font:400 15px/1.55 var(--font-body);color:#C9C2B6}
+.tips li::before{content:"\2014";color:#C9A24A;font-weight:700}
+
+.private{margin:clamp(40px,8vw,64px) 0 0;padding:22px;border:1px solid rgba(244,239,230,.12);border-radius:8px;background:#161514}
+.private h2{font-size:24px;line-height:1;margin-bottom:8px}
+.private p{margin:0;font:400 15px/1.6 var(--font-body);color:#C9C2B6}
+.private a{font-weight:600}
+
+footer{margin-top:clamp(48px,10vw,80px);border-top:1px solid rgba(201,162,74,.28)}
+footer .wrap{padding-top:24px;padding-bottom:32px;font:600 10px/1.6 var(--font-body);letter-spacing:.18em;text-transform:uppercase;color:#A39C90}
+@media (prefers-reduced-motion:reduce){.studio,.studio .go{transition:none}}
+</style>
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KZWDNT3"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="https://oakcliffpilates.com"><img src="/img/OCP-Logo-128.png" alt="Oak Cliff Pilates" width="36" height="36"><span>Oak Cliff Pilates</span></a>
+    <span class="tag">Reviews</span>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="intro">
+    <div class="stars" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg>
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg>
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg>
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg>
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg>
+    </div>
+    <div class="eyebrow">Three classes in</div>
+    <h1>How's it <span class="foil">going?</span></h1>
+    <p>A quick review helps your neighbors find their way to the reformer, and it means a lot to our trainers. It takes about a minute.</p>
+  </section>
+
+  <section aria-labelledby="pick">
+    <div class="step"><b>1</b><h2 id="pick">Pick your studio</h2></div>
+    <ul class="studios">
+      <li><a class="studio" data-studio="bishop" href="https://go.revublast.com/ocp-bishop">
+        <span class="img"><img src="/review/img/studio-bishop-arts.webp" alt="" width="168" height="128"></span>
+        <span class="body"><span><span class="name">Bishop Arts</span><span class="addr">196 W Davis St</span></span><span class="go">Review &rarr;</span></span>
+      </a></li>
+      <li><a class="studio" data-studio="uptown" href="https://go.revublast.com/ocp-uptown">
+        <span class="img"><img src="/review/img/studio-uptown.webp" alt="" width="168" height="128"></span>
+        <span class="body"><span><span class="name">Uptown</span><span class="addr">2222 McKinney Ave</span></span><span class="go">Review &rarr;</span></span>
+      </a></li>
+      <li><a class="studio" data-studio="lower-greenville" href="https://go.revublast.com/ocp-lower-greenville">
+        <span class="img"><img src="/review/img/studio-lower-greenville.webp" alt="" width="168" height="128"></span>
+        <span class="body"><span><span class="name">Lower Greenville</span><span class="addr">2000 Greenville Ave</span></span><span class="go">Review &rarr;</span></span>
+      </a></li>
+    </ul>
+    <p class="note">Been to more than one? Pick the studio you go to most.</p>
+  </section>
+
+  <section class="tips" aria-labelledby="say">
+    <h2 id="say"><span style="color:#C9A24A">2</span>&nbsp; Not sure what to say?</h2>
+    <ul>
+      <li><span>Your favorite class or trainer, by name</span></li>
+      <li><span>How you felt walking in for the first time, and how you feel now</span></li>
+      <li><span>What you'd tell a friend who's thinking about trying it</span></li>
+    </ul>
+  </section>
+
+  <section class="private" aria-labelledby="private">
+    <h2 id="private">Something not right?</h2>
+    <p>Tell us directly and a real person will make it right: <a href="mailto:kiel@oakcliffpilates.com?subject=Feedback%20about%20my%20classes">kiel@oakcliffpilates.com</a></p>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">Bishop Arts · Uptown · Lower Greenville</div>
+</footer>
+
+<script>
+// ?studio=bishop|uptown|lower-greenville outlines that studio, so a link can pre-pick it.
+(function () {
+  var picked = new URLSearchParams(location.search).get('studio');
+  if (!picked) return;
+  var card = document.querySelector('.studio[data-studio="' + picked.replace(/[^a-z-]/g, '') + '"]');
+  if (card) card.classList.add('is-picked');
+})();
+// Which studio people review. The review itself happens on RevuBlast, which these tags can't see.
+document.querySelectorAll('.studio').forEach(function (a) {
+  a.addEventListener('click', function () {
+    if (window.gtag) gtag('event', 'review_click', { studio: a.dataset.studio });
+  });
+});
+</script>
+</body>
+</html>
