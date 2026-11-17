@@ -26,6 +26,8 @@ After editing the script, use Deploy > Manage deployments > Edit > New version s
 
 The root `/` redirects to oakcliffpilates.com. No build step: Vercel serves the folder as-is.
 
+`blackfriday/` is not a page: it holds the source for the holiday 2026 Lock-In and Black Friday campaign assets and is kept off the site by `.vercelignore`. See `blackfriday/README.md`.
+
 ## Emails
 
 | Path | What |
