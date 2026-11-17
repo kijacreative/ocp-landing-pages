@@ -1,9 +1,10 @@
 # Holiday 2026 campaigns: Lock-In and Black Friday
 
-Source files for the [OCP Holiday Campaigns 2026 canvas](https://claude.ai/artifact/QYZCaFvUkVgqK8H85BK3RZ), plus the Black Friday and Lock-In landing page drafts. `.vercelignore` keeps this folder off the live site, so nothing here is served at lp.oakcliffpilates.com/blackfriday. To publish a real /blackfriday landing page later, take `blackfriday/` out of `.vercelignore` and move these source files somewhere else first.
+Source files for the [OCP Holiday Campaigns 2026 canvas](https://claude.ai/artifact/QYZCaFvUkVgqK8H85BK3RZ), plus the Black Friday and Lock-In landing page drafts. `index.html` is the live page at lp.oakcliffpilates.com/blackfriday and `media/` holds its photos. `.vercelignore` keeps everything else here (generator, canvas, drafts, this README) off the site.
 
 | Path | What |
 | --- | --- |
+| `index.html` | The live /blackfriday landing page: five offers, Arketa links, countdown, FAQ. |
 | `gen.py` | Writes every artboard and `canvas/project/canvas.json`. Offers, prices, dates, links and copy all live in this one file. |
 | `canvas/project/` | The 75 artboards as `.dc.html` files plus `canvas.json` (layout, pages, row titles, the Arketa description notes). |
 | `media/` | The resized photos and video loops uploaded to the canvas. The canvas loads them by upload id, so these are the originals to keep. |

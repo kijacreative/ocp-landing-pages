@@ -1,4 +1,7 @@
 tools/
 README.md
 .claude/
-blackfriday/
+blackfriday/README.md
+blackfriday/gen.py
+blackfriday/canvas/
+blackfriday/landing-pages/
