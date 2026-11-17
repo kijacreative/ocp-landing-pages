@@ -33,6 +33,12 @@ PLANS, PREPAY_URL = f"{PAGE}#plans", f"{PAGE}#prepay"
 CHECKOUT = "https://app.arketa.co/oakcliffpilates/pricing/checkout/"
 ALL_STUDIO_URL = CHECKOUT + "NYH9dctoUSiY9llrTpDz"
 PREPAY_12_URL = CHECKOUT + "BrarwgDVt2JrdSuJ5MJG"
+PREPAY_URLS = [CHECKOUT + "S1dYzKADWZfO5g3WCSja", CHECKOUT + "P1oBISrBIaTZXf0eO0Jb", PREPAY_12_URL]  # 3, 6, 12 months
+PACK_10_EACH = 29                # 10-class pack: $290, so $29 a class (drop-in is $30)
+INTRO_CODE = "UPGRADE25"        # intro offer clients: $25 off their first month
+UPGRADE_PAGE = "https://lp.oakcliffpilates.com/upgrade25"   # landing page for intro offer clients
+HOME_STUDIO_URLS = [("Bishop Arts", CHECKOUT + "FPy3uCkkxQ2H1sRaTITB"), ("Uptown", CHECKOUT + "MrXrNPz1NlRuBympPyyG"),
+                    ("Lower Greenville", CHECKOUT + "KuXjLTvAX8g7G1weK6Hb")]
 COUPLES_URL = CHECKOUT + "mRf1xuUpq5Y8Cc46uWHA"
 CONTACT = "kiel@oakcliffpilates.com"
 NAME = "{{clientFirstName}}"      # Arketa handlebar
@@ -92,21 +98,37 @@ def button(label, href, kind="solid", mt=8):
             f'text-align:center">{label}</a></td></tr></table>')
 
 
-def header():
+def photo(src, w, h, alt, href):
+    """Full-bleed photo row. Width and height attributes keep Outlook from stretching it."""
+    return (f'<tr><td style="padding:0;font-size:0;line-height:0"><a href="{href}">'
+            f'<img src="{IMG}/{src}" width="{w}" height="{h}" alt="{alt}" '
+            f'style="display:block;width:100%;max-width:{w}px;height:auto;border:0"></a></td></tr>\n')
+
+
+def photo_pair(a, b, href):
+    """Two portrait photos side by side, edge to edge, with a thin gap."""
+    cell = lambda src, alt, pad: (f'<td width="50%" valign="top" style="padding:{pad};font-size:0;line-height:0">'
+                                  f'<a href="{href}"><img src="{IMG}/{src}" width="298" height="372" alt="{alt}" '
+                                  'style="display:block;width:100%;max-width:298px;height:auto;border:0"></a></td>')
+    return ('<tr><td style="padding:0"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>'
+            + cell(*a, "0 2px 0 0") + cell(*b, "0 0 0 2px") + "</tr></table></td></tr>\n")
+
+
+def header(pill="Members only", href=PAGE):
     return row(
         '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>'
-        f'<td style="vertical-align:middle"><a href="{PAGE}" style="text-decoration:none">'
-        f'<img src="{IMG}/logo-puck-80.png" width="40" height="40" alt="Oak Cliff Pilates logo" '
+        f'<td style="vertical-align:middle"><a href="{href}" style="text-decoration:none">'
+        f'<img src="{IMG}/ocp-logo-emails.png" width="40" height="40" alt="Oak Cliff Pilates logo" '
         'style="display:inline-block;vertical-align:middle;border:0;width:40px;height:40px">'
         f'<span style="display:inline-block;vertical-align:middle;padding-left:12px;font-family:{FD};font-size:22px;'
         f'line-height:1;letter-spacing:.04em;text-transform:uppercase;color:{CREAM}">Oak Cliff Pilates</span></a></td>'
         f'<td align="right" style="vertical-align:middle"><span class="pill" style="display:inline-block;border:1px solid {CREAM};'
         f'border-radius:999px;padding:7px 14px;font-family:{FB};font-size:11px;line-height:1;font-weight:600;'
-        f'letter-spacing:.12em;text-transform:uppercase;color:{CREAM};white-space:nowrap">Members only</span></td>'
+        f'letter-spacing:.12em;text-transform:uppercase;color:{CREAM};white-space:nowrap">{pill}</span></td>'
         '</tr></table>', 22, 22, extra=f"border-bottom:1px solid {RULE};")
 
 
-def footer():
+def footer(reason="you're an Oak Cliff Pilates member"):
     locs = "Bishop Arts &middot; Uptown &middot; Lower Greenville"
     return (row(display("Questions? Ask a real person.", 36, 30, INK, 10, "div", "1")
                 + f'<a href="mailto:{CONTACT}" style="font-family:{FB};font-size:18px;line-height:1.4;font-weight:700;'
@@ -114,7 +136,7 @@ def footer():
                 + f'<div style="padding-top:22px;font-family:{FB};font-size:12px;line-height:18px;font-weight:700;'
                   f'letter-spacing:.12em;text-transform:uppercase;color:{INK}">{locs}</div>', 44, 0, ACCENT)
             + row(f'<div style="font-family:{FB};font-size:12px;line-height:20px;color:{INK}">You\'re getting this because '
-                  f'you\'re an Oak Cliff Pilates member. <a href="{UNSUBSCRIBE}" style="color:{INK};text-decoration:underline">'
+                  f'{reason}. <a href="{UNSUBSCRIBE}" style="color:{INK};text-decoration:underline">'
                   'Unsubscribe</a></div>', 18, 40, ACCENT))
 
 
@@ -419,6 +441,207 @@ def e6():
             + footer())
 
 
+def e7_intro():
+    """Intro offer clients who never bought a membership: UPGRADE25 plus the 2027 rate lock. Links go to
+    /upgrade25 (the /ratelock page is labeled members only) or straight to an Arketa checkout."""
+    studio = lambda name, url: (f'<a href="{url}" style="font-family:{FB};font-size:15px;line-height:24px;font-weight:700;'
+                                f'color:{INK};text-decoration:underline;white-space:nowrap">{name} &rarr;</a>')
+    home_links = " &nbsp;&middot;&nbsp; ".join(studio(n, u) for n, u in HOME_STUDIO_URLS)
+    card = lambda inner, bg, border: (
+        f'<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="{bg}" '
+        f'style="background:{bg};border:1px solid {border};border-collapse:separate;border-radius:16px;margin:0 0 14px">'
+        f'<tr><td class="card" style="padding:26px 28px">{inner}</td></tr></table>')
+    head = lambda name, price, fg, pc: (
+        '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>'
+        f'<td style="vertical-align:baseline;font-family:{FB};font-size:13px;line-height:18px;font-weight:700;'
+        f'letter-spacing:.12em;text-transform:uppercase;color:{fg}">{name}</td>'
+        f'<td align="right" style="vertical-align:baseline;white-space:nowrap"><span style="font-family:{FD};'
+        f'font-size:44px;line-height:1;color:{pc}">{price}</span>'
+        f'<span style="font-family:{FB};font-size:14px;color:{fg}">/mo</span></td></tr></table>')
+    plans = (card(head("All-Studio Unlimited", ALL_STUDIO, CREAM, ACCENT)
+                  + p("Unlimited classes at all 3 studios. 20% off retail. Goes to " + NEW_RATE + " on January 1.", 15, SUB, 14)
+                  .replace("margin:0 0 14px", "margin:10px 0 14px")
+                  + f'<a href="{ALL_STUDIO_URL}" style="font-family:{FB};font-size:15px;line-height:20px;font-weight:700;'
+                    f'color:{ACCENT};text-decoration:underline">Join at {ALL_STUDIO} &rarr;</a>', INK, INK)
+             + card(head("Home Studio Unlimited", HOME_STUDIO, INK, INK)
+                    + p("Unlimited at the studio you call home. 10% off retail. Pick yours:", 15, MUTED, 10)
+                    .replace("margin:0 0 10px", "margin:10px 0 10px")
+                    + f'<div style="line-height:28px">{home_links}</div>', "#FFFFFF", CARD_RULE))
+    th = lambda v, align="left": (f'<td align="{align}" style="padding:0 0 10px;font-family:{FB};font-size:11px;line-height:14px;'
+                                  f'font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:{MUTED}">{v}</td>')
+    td = lambda v, style, align="right": (f'<td align="{align}" valign="baseline" style="padding:14px 0;border-top:1px solid {CARD_RULE};'
+                                          f'{style}">{v}</td>')
+    class_rows = "".join(
+        "<tr>"
+        + td(f'{n}<div style="font-family:{FB};font-size:13px;line-height:18px;font-weight:400;text-transform:none;'
+             f'letter-spacing:0;color:{MUTED};padding-top:4px">${int(now[1:]) - 25} first month with {INTRO_CODE}</div>',
+             f"font-family:{FD};font-size:22px;line-height:1;text-transform:uppercase;color:{INK}", "left")
+        + td(now, f"font-family:{FD};font-size:34px;line-height:1;color:{INK};padding-left:12px")
+        + td(then, f"font-family:{FD};font-size:22px;line-height:1;color:{MUTED};text-decoration:line-through;padding-left:16px")
+        + "</tr>" for n, _, now, then in reversed(CLASS_PLANS))
+    class_table = (f'<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#FFFFFF" '
+                   f'style="background:#FFFFFF;border:1px solid {CARD_RULE};border-collapse:separate;border-radius:16px">'
+                   f'<tr><td class="card" style="padding:26px 28px">'
+                   '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>'
+                   + th("A month") + th("Now", "right") + th("Jan 1", "right") + "</tr>" + class_rows + "</table></td></tr></table>")
+    return (header("Intro offer", UPGRADE_PAGE)
+            + photo("trial-first-class-setup.jpg", 600, 375, "A trainer laughing with a client on the reformer", UPGRADE_PAGE)
+            + row(eyebrow(f"Ends {DEADLINE}")
+                  + display("$25 off.<br>Locked for 2027.", 64, 46)
+                  + p(f"Hi {NAME}. You've had a taste of OCP. Here's a good reason to stay: use code {strong(INTRO_CODE)} "
+                      "and your first month of membership is $25 less.")
+                  + p(f"And prices go up on January 1: All-Studio Unlimited to {NEW_RATE} a month, and 4, 8 and 12-class "
+                      f"memberships by {strong('$10 a month')}. Join before {DEADLINE} and you keep today's price through "
+                      "December 31, 2027.", mb=0)
+                  + button("Claim $25 off", UPGRADE_PAGE, mt=24), 52, 0)
+            + spacer(36)
+            + row('<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" '
+                  f'style="border:2px dashed {ACCENT};border-collapse:separate;border-radius:16px"><tr><td class="card" style="padding:24px 26px">'
+                  + eyebrow("Your code", ACCENT, 10)
+                  + f'<div style="font-family:{FD};font-size:48px;line-height:1;letter-spacing:.04em;color:{CREAM}">{INTRO_CODE}</div>'
+                  + p(f"Enter it at checkout for $25 off your first month of Unlimited or a 4, 8 or 12-class membership. "
+                      f"Good through {DEADLINE}.", 15, SUB, 0).replace("margin:0 0 0px", "margin:12px 0 0")
+                  + "</td></tr></table>", 0, 0)
+            + spacer(44)
+            + row(price_shift(label="All-Studio Unlimited")
+                  + p(f"That's {strong('$240')} you keep over 2027 by joining now, on top of the $25 off.", 15, SUB, 0)
+                  .replace("margin:0 0 0px", "margin:16px 0 0"), 0, 0)
+            + spacer(48)
+            + photo_pair(("trial-lower-greenville.jpg", "A client on the reformer with her legs in the straps"),
+                         ("upgrade25-window.jpg", "A client on the reformer in front of the Oak Cliff Pilates window"), UPGRADE_PAGE)
+            + row(display("Two ways to go unlimited", 40, 34, INK, 10, "h2", ".95")
+                  + p("Both come with:", 16, MUTED, 10)
+                  + perks(MUTED).replace(f"color:{ACCENT}\">&mdash;", f"color:{INK}\">&mdash;")
+                  + '<div style="height:18px;line-height:18px;font-size:0">&nbsp;</div>'
+                  + plans, 48, 34, CREAM)
+            + row(eyebrow("Not ready for unlimited?", INK, 10)
+                  + display("4, 8 or 12 classes.<br>Up $10 in January.", 36, 30, INK, 12, "h2", ".95")
+                  + p(f"Every class membership goes up $10 a month on January 1. Join before {DEADLINE} and today's price "
+                      f"holds through 2027. {INTRO_CODE} takes $25 off your first month here too.", 15, MUTED, 18)
+                  + class_table
+                  + p(f"<a href=\"{UPGRADE_PAGE}#plans\" style=\"color:{INK};font-weight:700\">See every plan &rarr;</a>", 15, MUTED, 0)
+                  .replace("margin:0 0 0px", "margin:18px 0 0"), 20, 48, CREAM)
+            + footer("you tried an Oak Cliff Pilates intro offer"))
+
+def e8_prepay_renew():
+    """Current 3, 6 and 12-month prepay members: buy the next prepay at today's price, starting when theirs ends."""
+    money = lambda v: int(v.replace("$", "").replace(",", ""))
+    cells = ""
+    for i, ((term, price, per, then), url) in enumerate(zip(PREPAY, PREPAY_URLS)):
+        best = i == 2
+        bg, fg, sub = (ACCENT, INK, INK) if best else (INK, CREAM, SUB)
+        pad = "0 8px 0 0" if i == 0 else ("0 0 0 8px" if best else "0 4px")
+        save = f"${money(then) - money(price):,}"
+        cells += (f'<td class="stack card-m" valign="top" width="33%" style="padding:{pad}">'
+                  f'<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="{bg}" '
+                  f'style="background:{bg};border:1px solid {ACCENT if best else MUTED};border-collapse:separate;border-radius:16px"><tr>'
+                  f'<td style="padding:22px 18px">'
+                  f'<div style="font-family:{FB};font-size:12px;line-height:16px;font-weight:700;letter-spacing:.12em;'
+                  f'text-transform:uppercase;color:{fg};margin:0 0 8px">{term}{" &middot; Best value" if best else ""}</div>'
+                  f'<div style="font-family:{FD};font-size:40px;line-height:1;color:{fg}">{price}</div>'
+                  f'<div style="font-family:{FB};font-size:13px;line-height:18px;color:{sub};padding-top:6px">{per}</div>'
+                  f'<div style="font-family:{FB};font-size:13px;line-height:18px;font-weight:700;color:{fg};padding-top:8px">'
+                  f'{then} from Jan 1. Save {save}.</div>'
+                  f'<a href="{url}" style="display:inline-block;padding-top:12px;font-family:{FB};font-size:14px;line-height:18px;'
+                  f'font-weight:700;color:{fg};text-decoration:underline">Lock in {term} &rarr;</a>'
+                  "</td></tr></table></td>")
+    steps = [("Pick your term", f"3, 6 or 12 months, at today's price. Buy it before {DEADLINE}."),
+             ("Keep training", "Nothing changes now. Your current prepay runs to its end date as usual."),
+             ("It starts when yours renews", "Your new prepay picks up the day your current one ends. No gap, no overlap, no January price.")]
+    step_rows = "".join(
+        f'<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>'
+        f'<td width="56" valign="top" style="padding:0 0 22px;font-family:{FD};font-size:40px;line-height:1;color:{INK}">{n}</td>'
+        f'<td valign="top" style="padding:2px 0 22px">'
+        f'<div style="font-family:{FB};font-size:17px;line-height:24px;font-weight:700;color:{INK}">{t}</div>'
+        f'<div style="font-family:{FB};font-size:15px;line-height:22px;color:{MUTED};padding-top:4px">{d}</div></td></tr></table>'
+        for n, (t, d) in enumerate(steps, 1))
+    return (header("Prepay members")
+            + row(eyebrow(f"Ends {DEADLINE}")
+                  + display("Your next prepay,<br>at this year's price.", 60, 44)
+                  + p(f"Hi {NAME}. Prepay goes up on January 1. You don't have to wait for yours to run out to beat it: "
+                      f"buy your next prepay before {DEADLINE} and we'll start it when your current one renews.")
+                  + p("Today's price, locked in, whenever your renewal lands.", mb=0), 52, 0)
+            + spacer(36)
+            + row('<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>'
+                  + cells + "</tr></table>"
+                  + button("Prepay 12 months", PREPAY_12_URL, mt=24)
+                  + p("Same All-Studio Unlimited you have now: all 3 studios, 20% off retail and a guest pass every month. "
+                      "Teacher and nurse discounts don't apply to prepay.", 14, SUB, 0)
+                  .replace("margin:0 0 0px", "margin:18px 0 0"), 0, 56)
+            + row(display("How it works", 40, 34, INK, 22, "h2", ".95") + step_rows
+                  + p(f"Want a different term than you have now? Pick whichever fits. Questions about your end date? "
+                      f"<a href=\"mailto:{CONTACT}\" style=\"color:{INK};font-weight:700\">Ask us</a>.", 15, MUTED, 0), 48, 44, CREAM)
+            + footer())
+
+def e9_packs():
+    """Clients who buy class packs: around two classes a week, unlimited costs less than a pack."""
+    home = int(HOME_STUDIO[1:])
+    cell = lambda v, c=INK, w=400, align="left": (
+        f'<td align="{align}" style="padding:14px 0;border-top:1px solid {CARD_RULE};font-family:{FB};font-size:15px;'
+        f'line-height:20px;font-weight:{w};color:{c}">{v}</td>')
+    th = lambda v, align="left": (
+        f'<td align="{align}" style="padding:0 0 10px;font-family:{FB};font-size:11px;line-height:14px;font-weight:700;'
+        f'letter-spacing:.12em;text-transform:uppercase;color:{MUTED}">{v}</td>')
+    rows = "".join(
+        f"<tr>{cell(f'{n} classes ({n // 4} a week)', INK, 700)}{cell(f'${n * PACK_10_EACH}', INK, 400, 'right')}"
+        f"{cell(f'You save ${n * PACK_10_EACH - home}', ACCENT, 700, 'right')}</tr>"
+        for n in (8, 12, 16))
+    table = ('<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>'
+             + th("A month") + th("On 10-packs", "right") + th(f"Unlimited at {HOME_STUDIO}", "right") + "</tr>"
+             + rows + "</table>")
+    studio = lambda name, url: (f'<a href="{url}" style="font-family:{FB};font-size:15px;line-height:24px;font-weight:700;'
+                                f'color:{INK};text-decoration:underline;white-space:nowrap">{name} &rarr;</a>')
+    home_links = " &nbsp;&middot;&nbsp; ".join(studio(n, u) for n, u in HOME_STUDIO_URLS)
+    return (header("Class packs", "https://oakcliffpilates.com")
+            + row(eyebrow(f"Ends {DEADLINE}")
+                  + display("Done buying<br>class packs?", 64, 46)
+                  + p(f"Hi {NAME}. At ${PACK_10_EACH} a class on a 10-pack, twice a week costs you about "
+                      f"${8 * PACK_10_EACH} a month. Unlimited at your home studio is {strong(HOME_STUDIO)}, and you can come every day.")
+                  + p(f"On January 1, All-Studio Unlimited goes to {NEW_RATE}. Join before {DEADLINE} and today's price is "
+                      "yours through December 31, 2027.", mb=0)
+                  + button(f"Join at {ALL_STUDIO}", ALL_STUDIO_URL, mt=24), 52, 0)
+            + spacer(48)
+            + row(display("The math", 40, 34, INK, 8, "h2", ".95")
+                  + p(f"Your pack price next to Home Studio Unlimited. It pays off from {-(-home // PACK_10_EACH)} classes a month.",
+                      16, MUTED, 16)
+                  + table, 44, 40, CREAM)
+            + row(display("Two ways to go unlimited", 32, 28, INK, 14, "h2", ".95")
+                  + f'<div style="font-family:{FB};font-size:13px;line-height:18px;font-weight:700;letter-spacing:.12em;'
+                    f'text-transform:uppercase;color:{INK};margin:0 0 6px">Home Studio Unlimited &middot; {HOME_STUDIO}/mo</div>'
+                  + p("Unlimited at the studio you call home. 10% off retail.", 15, MUTED, 8)
+                  + f'<div style="line-height:28px;margin:0 0 22px">{home_links}</div>'
+                  + f'<div style="font-family:{FB};font-size:13px;line-height:18px;font-weight:700;letter-spacing:.12em;'
+                    f'text-transform:uppercase;color:{INK};margin:0 0 6px">All-Studio Unlimited &middot; {ALL_STUDIO}/mo</div>'
+                  + p(f"Unlimited at all 3 studios. 20% off retail. {NEW_RATE} from January 1.", 15, MUTED, 8)
+                  + f'<a href="{ALL_STUDIO_URL}" style="font-family:{FB};font-size:15px;line-height:24px;font-weight:700;'
+                    f'color:{INK};text-decoration:underline">Join at {ALL_STUDIO} &rarr;</a>'
+                  + '<div style="height:40px;line-height:40px;font-size:0">&nbsp;</div>'
+                  + eyebrow("Both come with", INK, 12) + perks(MUTED).replace(f"color:{ACCENT}\">&mdash;", f"color:{INK}\">&mdash;")
+                  + p(f"Still have classes on a pack? Write to {CONTACT} and we'll help you figure out the best time to switch.",
+                      15, MUTED, 0).replace("margin:0 0 0px", "margin:8px 0 0"), 0, 48, CREAM)
+            + footer("you've bought a class pack at Oak Cliff Pilates"))
+
+
+# ── Main brand restyle (black, gold, Khand + Montserrat) ─────────────────
+# The rate lock series uses the /ratelock page's orange and Anton. Emails flagged brand=True
+# get the main Oak Cliff Pilates palette instead, matching /upgrade25.
+BRAND_SWAP = {ACCENT: "#C9A24A", INK: "#0B0B0B", RULE: "#40351D", MUTED: "#57534A",
+              FD: "Khand,'Arial Narrow',Arial,sans-serif",
+              FB: "Montserrat,'Helvetica Neue',Helvetica,Arial,sans-serif",
+              "family=Anton&family=Archivo:wght@400;600;700": "family=Khand:wght@600;700&family=Montserrat:wght@400;600;700"}
+
+
+def brand(html):
+    import re
+    for old, new in BRAND_SWAP.items():
+        html = html.replace(old, new)
+    # Khand is light at 400, so every display-type style runs at 700.
+    def bold(m):
+        st = re.sub(r"font-weight:\d+;?", "", m.group(1))
+        return f'style="{st.rstrip(";")};font-weight:700"'
+    return re.sub(r'style="([^"]*font-family:Khand[^"]*)"', bold, html)
+
+
 EMAILS = [
     dict(id="e1a", file="01a-unlimited-members", phase=1, send="Tue Nov 3 · All-Studio Unlimited members", build=e1_unlimited,
          subjects=[f"Keep {ALL_STUDIO} for all of 2027", f"Unlimited goes to {NEW_RATE}. You don't have to.", "Your rate, locked"],
@@ -447,6 +670,17 @@ EMAILS = [
     dict(id="e6", file="06-last-day", phase=2, send="Thu Dec 31, 9am", build=e6,
          subjects=["Last day to lock your rate", "Tonight's the night", "Midnight"],
          preheader=f"Tomorrow All-Studio Unlimited is {NEW_RATE} a month."),
+    dict(id="e7", file="07-intro-offers", phase=3, brand=True, send="Intro offer clients who haven't bought a membership", build=e7_intro,
+         subjects=["$25 off, and your rate locked for 2027", f"{INTRO_CODE}: $25 off your first month",
+                   "Liked it? Lock it in before January."],
+         preheader=f"Use {INTRO_CODE} for $25 off, and join before {DEADLINE} to keep today's price all of 2027."),
+    dict(id="e8", file="08-prepay-members", phase=4, send="Current 3, 6 and 12-month prepay members", build=e8_prepay_renew,
+         subjects=["Your next prepay, at this year's price", "Prepay goes up January 1. Yours doesn't have to.",
+                   "Lock your renewal before December 31"],
+         preheader=f"Buy your next prepay before {DEADLINE}. It starts when yours renews, at today's price."),
+    dict(id="e9", file="09-class-packs", phase=5, send="Clients who buy class packs (no membership)", build=e9_packs,
+         subjects=["Done buying class packs?", "Twice a week? Unlimited costs less.", f"Unlimited for {HOME_STUDIO}, locked through 2027"],
+         preheader=f"At two classes a week, unlimited costs less than your pack. Lock today's price before {DEADLINE}."),
 ]
 
 MOBILE = """
@@ -502,7 +736,8 @@ def main():
     OUT.mkdir(parents=True, exist_ok=True)
     manifest = []
     for e in EMAILS:
-        (OUT / f"{e['file']}.html").write_text(page(e, e["build"]()))
+        html = page(e, e["build"]())
+        (OUT / f"{e['file']}.html").write_text(brand(html) if e.get("brand") else html)
         manifest.append({k: e[k] for k in ("id", "file", "phase", "send", "subjects", "preheader")})
     (OUT / "emails.json").write_text(json.dumps(manifest, indent=2) + "\n")
     print(f"Wrote {len(EMAILS)} emails to {OUT.relative_to(ROOT)}")
