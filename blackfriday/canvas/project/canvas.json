@@ -152,7 +152,7 @@
    "x": 0,
    "y": 300,
    "w": 600,
-   "h": 2570,
+   "h": 2589,
    "title": "Black Friday \u00b7 Email template (modules)",
    "page": "bf"
   },
@@ -160,7 +160,7 @@
    "x": 680,
    "y": 300,
    "w": 600,
-   "h": 3957,
+   "h": 3976,
    "title": "EA \u00b7 Nov 17 \u00b7 Early access",
    "page": "bf"
   },
@@ -168,8 +168,8 @@
    "x": 1360,
    "y": 300,
    "w": 600,
-   "h": 2511,
-   "title": "Nov 20 \u00b7 Give $100. Get $100.",
+   "h": 2491,
+   "title": "Nov 20 \u00b7 Give $100. Give $100 more.",
    "page": "bf"
   },
   "BF-email-unl.dc.html": {
@@ -192,7 +192,7 @@
    "x": 3400,
    "y": 300,
    "w": 600,
-   "h": 3612,
+   "h": 3631,
    "title": "B2 \u00b7 Nov 27 \u00b7 It\u2019s Black Friday",
    "page": "bf"
   },
@@ -222,7 +222,7 @@
   },
   "BF-post-teaser.dc.html": {
    "x": 0,
-   "y": 4677,
+   "y": 4696,
    "w": 1080,
    "h": 1350,
    "title": "Teaser post \u00b7 Nov 16 \u00b7 1080\u00d71350",
@@ -230,7 +230,7 @@
   },
   "BF-story-teaser.dc.html": {
    "x": 1160,
-   "y": 4677,
+   "y": 4696,
    "w": 1080,
    "h": 1920,
    "title": "Teaser story \u00b7 Nov 16 \u00b7 1080\u00d71920",
@@ -238,7 +238,7 @@
   },
   "BF-post-launch.dc.html": {
    "x": 2320,
-   "y": 4677,
+   "y": 4696,
    "w": 1080,
    "h": 1350,
    "title": "Launch post \u00b7 Nov 17 \u00b7 01 to 05",
@@ -246,7 +246,7 @@
   },
   "BF-carousel-1.dc.html": {
    "x": 3480,
-   "y": 4677,
+   "y": 4696,
    "w": 1080,
    "h": 1350,
    "title": "Carousel 1 \u00b7 Cover",
@@ -254,7 +254,7 @@
   },
   "BF-carousel-2.dc.html": {
    "x": 4640,
-   "y": 4677,
+   "y": 4696,
    "w": 1080,
    "h": 1350,
    "title": "Carousel 2 \u00b7 01 Gift Card Bonus",
@@ -262,7 +262,7 @@
   },
   "BF-carousel-3.dc.html": {
    "x": 5800,
-   "y": 4677,
+   "y": 4696,
    "w": 1080,
    "h": 1350,
    "title": "Carousel 3 \u00b7 02 10-Class Pack",
@@ -270,7 +270,7 @@
   },
   "BF-carousel-4.dc.html": {
    "x": 6960,
-   "y": 4677,
+   "y": 4696,
    "w": 1080,
    "h": 1350,
    "title": "Carousel 4 \u00b7 03 New-Client Starter",
@@ -278,7 +278,7 @@
   },
   "BF-carousel-5.dc.html": {
    "x": 8120,
-   "y": 4677,
+   "y": 4696,
    "w": 1080,
    "h": 1350,
    "title": "Carousel 5 \u00b7 04 Gift Bundle",
@@ -286,7 +286,7 @@
   },
   "BF-carousel-6.dc.html": {
    "x": 9280,
-   "y": 4677,
+   "y": 4696,
    "w": 1080,
    "h": 1350,
    "title": "Carousel 6 \u00b7 05 All-Studio Unlimited",
@@ -294,7 +294,7 @@
   },
   "BF-post-gift.dc.html": {
    "x": 0,
-   "y": 7017,
+   "y": 7036,
    "w": 1080,
    "h": 1350,
    "title": "Post \u00b7 01 Gift Card Bonus",
@@ -302,7 +302,7 @@
   },
   "BF-post-day.dc.html": {
    "x": 1160,
-   "y": 7017,
+   "y": 7036,
    "w": 1080,
    "h": 1350,
    "title": "Post \u00b7 02 10-Class Pack",
@@ -310,7 +310,7 @@
   },
   "BF-post-start.dc.html": {
    "x": 2320,
-   "y": 7017,
+   "y": 7036,
    "w": 1080,
    "h": 1350,
    "title": "Post \u00b7 03 New-Client Starter",
@@ -318,7 +318,7 @@
   },
   "BF-post-bundle.dc.html": {
    "x": 3480,
-   "y": 7017,
+   "y": 7036,
    "w": 1080,
    "h": 1350,
    "title": "Post \u00b7 04 Gift Bundle",
@@ -326,7 +326,7 @@
   },
   "BF-post-unl.dc.html": {
    "x": 4640,
-   "y": 7017,
+   "y": 7036,
    "w": 1080,
    "h": 1350,
    "title": "Post \u00b7 05 All-Studio Unlimited",
@@ -334,7 +334,7 @@
   },
   "BF-story-gift.dc.html": {
    "x": 5800,
-   "y": 7017,
+   "y": 7036,
    "w": 1080,
    "h": 1920,
    "title": "Story \u00b7 01 Gift Card Bonus",
@@ -342,7 +342,7 @@
   },
   "BF-story-day.dc.html": {
    "x": 6960,
-   "y": 7017,
+   "y": 7036,
    "w": 1080,
    "h": 1920,
    "title": "Story \u00b7 02 10-Class Pack",
@@ -350,7 +350,7 @@
   },
   "BF-story-start.dc.html": {
    "x": 8120,
-   "y": 7017,
+   "y": 7036,
    "w": 1080,
    "h": 1920,
    "title": "Story \u00b7 03 New-Client Starter",
@@ -358,7 +358,7 @@
   },
   "BF-story-bundle.dc.html": {
    "x": 9280,
-   "y": 7017,
+   "y": 7036,
    "w": 1080,
    "h": 1920,
    "title": "Story \u00b7 04 Gift Bundle",
@@ -366,7 +366,7 @@
   },
   "BF-story-unl.dc.html": {
    "x": 10440,
-   "y": 7017,
+   "y": 7036,
    "w": 1080,
    "h": 1920,
    "title": "Story \u00b7 05 All-Studio Unlimited",
@@ -374,7 +374,7 @@
   },
   "BF-post-ends-tonight.dc.html": {
    "x": 0,
-   "y": 9357,
+   "y": 9376,
    "w": 1080,
    "h": 1350,
    "title": "Ends tonight post \u00b7 Dec 1",
@@ -382,7 +382,7 @@
   },
   "BF-story-ends-tonight.dc.html": {
    "x": 1160,
-   "y": 9357,
+   "y": 9376,
    "w": 1080,
    "h": 1920,
    "title": "Ends tonight story \u00b7 Dec 1",
@@ -390,7 +390,7 @@
   },
   "BF-reel-cover-gift.dc.html": {
    "x": 2320,
-   "y": 9357,
+   "y": 9376,
    "w": 1080,
    "h": 1920,
    "title": "Gift card reel cover \u00b7 1080\u00d71920",
@@ -398,7 +398,7 @@
   },
   "BF-ad-gift-1080x1350.dc.html": {
    "x": 0,
-   "y": 11697,
+   "y": 11716,
    "w": 1080,
    "h": 1350,
    "title": "Gift card \u00b7 Meta 1080\u00d71350",
@@ -406,7 +406,7 @@
   },
   "BF-ad-gift-1080x1080.dc.html": {
    "x": 1160,
-   "y": 11697,
+   "y": 11716,
    "w": 1080,
    "h": 1080,
    "title": "Gift card \u00b7 Meta 1080\u00d71080",
@@ -414,7 +414,7 @@
   },
   "BF-ad-gift-1080x1920.dc.html": {
    "x": 2320,
-   "y": 11697,
+   "y": 11716,
    "w": 1080,
    "h": 1920,
    "title": "Gift card \u00b7 Meta 1080\u00d71920",
@@ -422,7 +422,7 @@
   },
   "BF-ad-gift-300x250.dc.html": {
    "x": 3480,
-   "y": 11697,
+   "y": 11716,
    "w": 300,
    "h": 250,
    "title": "Gift card \u00b7 Google 300\u00d7250",
@@ -430,7 +430,7 @@
   },
   "BF-ad-gift-728x90.dc.html": {
    "x": 3860,
-   "y": 11697,
+   "y": 11716,
    "w": 728,
    "h": 90,
    "title": "Gift card \u00b7 Google 728\u00d790",
@@ -438,7 +438,7 @@
   },
   "BF-ad-gift-160x600.dc.html": {
    "x": 4668,
-   "y": 11697,
+   "y": 11716,
    "w": 160,
    "h": 600,
    "title": "Gift card \u00b7 Google 160\u00d7600",
@@ -446,7 +446,7 @@
   },
   "BF-ad-gift-320x50.dc.html": {
    "x": 4908,
-   "y": 11697,
+   "y": 11716,
    "w": 320,
    "h": 50,
    "title": "Gift card \u00b7 Google 320\u00d750",
@@ -454,7 +454,7 @@
   },
   "BF-ad-day-1080x1350.dc.html": {
    "x": 0,
-   "y": 14037,
+   "y": 14056,
    "w": 1080,
    "h": 1350,
    "title": "10-class pack \u00b7 Meta 1080\u00d71350",
@@ -462,7 +462,7 @@
   },
   "BF-ad-day-1080x1080.dc.html": {
    "x": 1160,
-   "y": 14037,
+   "y": 14056,
    "w": 1080,
    "h": 1080,
    "title": "10-class pack \u00b7 Meta 1080\u00d71080",
@@ -470,7 +470,7 @@
   },
   "BF-ad-day-1080x1920.dc.html": {
    "x": 2320,
-   "y": 14037,
+   "y": 14056,
    "w": 1080,
    "h": 1920,
    "title": "10-class pack \u00b7 Meta 1080\u00d71920",
@@ -478,7 +478,7 @@
   },
   "BF-ad-day-300x250.dc.html": {
    "x": 3480,
-   "y": 14037,
+   "y": 14056,
    "w": 300,
    "h": 250,
    "title": "10-class pack \u00b7 Google 300\u00d7250",
@@ -486,7 +486,7 @@
   },
   "BF-ad-day-728x90.dc.html": {
    "x": 3860,
-   "y": 14037,
+   "y": 14056,
    "w": 728,
    "h": 90,
    "title": "10-class pack \u00b7 Google 728\u00d790",
@@ -494,7 +494,7 @@
   },
   "BF-ad-day-160x600.dc.html": {
    "x": 4668,
-   "y": 14037,
+   "y": 14056,
    "w": 160,
    "h": 600,
    "title": "10-class pack \u00b7 Google 160\u00d7600",
@@ -502,7 +502,7 @@
   },
   "BF-ad-day-320x50.dc.html": {
    "x": 4908,
-   "y": 14037,
+   "y": 14056,
    "w": 320,
    "h": 50,
    "title": "10-class pack \u00b7 Google 320\u00d750",
@@ -510,7 +510,7 @@
   },
   "BF-ad-start-1080x1350.dc.html": {
    "x": 0,
-   "y": 16377,
+   "y": 16396,
    "w": 1080,
    "h": 1350,
    "title": "New-client starter \u00b7 Meta 1080\u00d71350",
@@ -518,7 +518,7 @@
   },
   "BF-ad-start-1080x1080.dc.html": {
    "x": 1160,
-   "y": 16377,
+   "y": 16396,
    "w": 1080,
    "h": 1080,
    "title": "New-client starter \u00b7 Meta 1080\u00d71080",
@@ -526,7 +526,7 @@
   },
   "BF-ad-start-1080x1920.dc.html": {
    "x": 2320,
-   "y": 16377,
+   "y": 16396,
    "w": 1080,
    "h": 1920,
    "title": "New-client starter \u00b7 Meta 1080\u00d71920",
@@ -534,7 +534,7 @@
   },
   "BF-ad-start-300x250.dc.html": {
    "x": 3480,
-   "y": 16377,
+   "y": 16396,
    "w": 300,
    "h": 250,
    "title": "New-client starter \u00b7 Google 300\u00d7250",
@@ -542,7 +542,7 @@
   },
   "BF-ad-start-728x90.dc.html": {
    "x": 3860,
-   "y": 16377,
+   "y": 16396,
    "w": 728,
    "h": 90,
    "title": "New-client starter \u00b7 Google 728\u00d790",
@@ -550,7 +550,7 @@
   },
   "BF-ad-start-160x600.dc.html": {
    "x": 4668,
-   "y": 16377,
+   "y": 16396,
    "w": 160,
    "h": 600,
    "title": "New-client starter \u00b7 Google 160\u00d7600",
@@ -558,7 +558,7 @@
   },
   "BF-ad-start-320x50.dc.html": {
    "x": 4908,
-   "y": 16377,
+   "y": 16396,
    "w": 320,
    "h": 50,
    "title": "New-client starter \u00b7 Google 320\u00d750",
@@ -566,7 +566,7 @@
   },
   "BF-print-poster.dc.html": {
    "x": 0,
-   "y": 18717,
+   "y": 18736,
    "w": 1056,
    "h": 1632,
    "title": "11\u00d717 poster (1056\u00d71632)",
@@ -574,7 +574,7 @@
   },
   "BF-print-counter-card.dc.html": {
    "x": 1136,
-   "y": 18717,
+   "y": 18736,
    "w": 480,
    "h": 672,
    "title": "Gift card counter card \u00b7 5\u00d77 (480\u00d7672)",
@@ -582,15 +582,15 @@
   },
   "BF-arketa-gift.dc.html": {
    "x": 0,
-   "y": 20769,
+   "y": 20788,
    "w": 780,
    "h": 438,
-   "title": "Arketa \u00b7 Black Friday Gift Card: Buy $100, Get $100",
+   "title": "Arketa \u00b7 Black Friday Gift Card: Buy $100, Gift a Friend $100",
    "page": "bf"
   },
   "BF-arketa-day.dc.html": {
    "x": 860,
-   "y": 20769,
+   "y": 20788,
    "w": 780,
    "h": 438,
    "title": "Arketa \u00b7 Black Friday 10-Class Pack",
@@ -598,7 +598,7 @@
   },
   "BF-arketa-start.dc.html": {
    "x": 1720,
-   "y": 20769,
+   "y": 20788,
    "w": 780,
    "h": 438,
    "title": "Arketa \u00b7 Black Friday New Client Week: 1 Week Unlimited",
@@ -606,7 +606,7 @@
   },
   "BF-arketa-bundle.dc.html": {
    "x": 2580,
-   "y": 20769,
+   "y": 20788,
    "w": 780,
    "h": 438,
    "title": "Arketa \u00b7 Black Friday Gift Bundle: 20 Classes + Merch",
@@ -614,7 +614,7 @@
   },
   "BF-arketa-unl.dc.html": {
    "x": 3440,
-   "y": 20769,
+   "y": 20788,
    "w": 780,
    "h": 438,
    "title": "Arketa \u00b7 Black Friday All-Studio Unlimited: $199/mo",
@@ -741,7 +741,7 @@
   },
   "bf-row2": {
    "x": 0,
-   "y": 4417,
+   "y": 4436,
    "text": "Black Friday \u00b7 Teaser + launch + carousel",
    "kind": "title1",
    "maxW": 10360,
@@ -749,7 +749,7 @@
   },
   "bf-row3": {
    "x": 0,
-   "y": 6757,
+   "y": 6776,
    "text": "Black Friday \u00b7 One post + one story per offer",
    "kind": "title1",
    "maxW": 11520,
@@ -757,7 +757,7 @@
   },
   "bf-row4": {
    "x": 0,
-   "y": 9097,
+   "y": 9116,
    "text": "Black Friday \u00b7 Ends tonight + reel cover",
    "kind": "title1",
    "maxW": 3400,
@@ -765,7 +765,7 @@
   },
   "bf-row5": {
    "x": 0,
-   "y": 11437,
+   "y": 11456,
    "text": "Black Friday \u00b7 Paid ads \u00b7 Gift card",
    "kind": "title1",
    "maxW": 5228,
@@ -773,7 +773,7 @@
   },
   "bf-row6": {
    "x": 0,
-   "y": 13777,
+   "y": 13796,
    "text": "Black Friday \u00b7 Paid ads \u00b7 10-class pack",
    "kind": "title1",
    "maxW": 5228,
@@ -781,7 +781,7 @@
   },
   "bf-row7": {
    "x": 0,
-   "y": 16117,
+   "y": 16136,
    "text": "Black Friday \u00b7 Paid ads \u00b7 New-client starter",
    "kind": "title1",
    "maxW": 5228,
@@ -789,7 +789,7 @@
   },
   "bf-row8": {
    "x": 0,
-   "y": 18457,
+   "y": 18476,
    "text": "Black Friday \u00b7 In-studio print",
    "kind": "title1",
    "maxW": 1616,
@@ -797,7 +797,7 @@
   },
   "bf-row9": {
    "x": 0,
-   "y": 20509,
+   "y": 20528,
    "text": "Black Friday \u00b7 Arketa product images (780\u00d7438, export at 50% for 390\u00d7219)",
    "kind": "title1",
    "maxW": 4220,
@@ -805,15 +805,15 @@
   },
   "arketa-gift-desc": {
    "x": 0,
-   "y": 21267,
-   "text": "ARKETA NAME\nBlack Friday Gift Card: Buy $100, Get $100\n\nPRICE\n$100 (buyer also gets a $100 bonus gift card)\n\nCHECKOUT LINK\nhttps://app.arketa.co/oakcliffpilates/pricing/checkout/wcQCbnFwzO4lzu0V9jMX\n\nDESCRIPTION\nGive the gift of the class they keep talking about. Buy a $100 OCP gift card for someone you love and we give you a $100 bonus gift card for yourself. Good at Bishop Arts, Uptown and Lower Greenville. Through Dec 1 only. Ends Tue, Dec 1 at midnight. Bonus gift card valid through [date]. Delivered [confirm: by email / printed in studio].",
+   "y": 21286,
+   "text": "ARKETA NAME\nBlack Friday Gift Card: Buy $100, Gift a Friend $100\n\nPRICE\n$100 (buyer gets code GIFTCARD100 by email for a bonus gift card up to $100 to send a friend)\n\nCHECKOUT LINK\nhttps://app.arketa.co/oakcliffpilates/pricing/checkout/wcQCbnFwzO4lzu0V9jMX\n\nDESCRIPTION\nGive the gift of the class they keep talking about. Buy a $100 OCP gift card and we email you code GIFTCARD100 for a bonus gift card, up to $100, to send a friend. Good at Bishop Arts, Uptown and Lower Greenville. Through Dec 1 only. Ends Tue, Dec 1 at midnight. Bonus gift card valid through [date]. Delivered [confirm: by email / printed in studio].",
    "w": 780,
    "size": "s",
    "page": "bf"
   },
   "arketa-day-desc": {
    "x": 860,
-   "y": 21267,
+   "y": 21286,
    "text": "ARKETA NAME\nBlack Friday 10-Class Pack\n\nPRICE\n$150 (compare at $290)\n\nCHECKOUT LINK\nhttps://app.arketa.co/oakcliffpilates/pricing/checkout/Tf43tiF4VA7QEmjK7XTT\n\nDESCRIPTION\n10 classes for $150. That is $15 a class, regularly $290. Use them at any of our 3 studios. Expires 90 days from purchase. One per person [confirm]. Through Dec 1 only. Ends Tue, Dec 1 at midnight.",
    "w": 780,
    "size": "s",
@@ -821,7 +821,7 @@
   },
   "arketa-start-desc": {
    "x": 1720,
-   "y": 21267,
+   "y": 21286,
    "text": "ARKETA NAME\nBlack Friday New Client Week: 1 Week Unlimited\n\nPRICE\n$59, $39 with code BLACKFRIDAY\n\nCHECKOUT LINK\nhttps://lp.oakcliffpilates.com/59unlimited\n\nDESCRIPTION\nNew to OCP? Start here. One week of unlimited classes at all 3 studios for $39 with code BLACKFRIDAY (regularly $59). Real Dallas people, loud music, instructors who actually see your form. New clients only. Your week starts [at purchase / at first class: confirm]. Join a membership by Dec 31 and keep today\u2019s membership rates for all of 2027. Ends Tue, Dec 1 at midnight.",
    "w": 780,
    "size": "s",
@@ -829,7 +829,7 @@
   },
   "arketa-bundle-desc": {
    "x": 2580,
-   "y": 21267,
+   "y": 21286,
    "text": "ARKETA NAME\nBlack Friday Gift Bundle: 20 Classes + Merch\n\nPRICE\n$400 (20-class pack compare at $560)\n\nCHECKOUT LINK\nhttps://app.arketa.co/oakcliffpilates/pricing/checkout/RDpt4HDP8DAIVmBP1koF\n\nDESCRIPTION\n20 classes plus OCP grip socks, the Anti-Pilates Pilates Club hoodie and the Anti-Pilates Pilates Club tote. All for $400. 20 classes alone are regularly $560. Classes expire 12 months from purchase. Merch picked up in studio [confirm], while supplies last. Give it or keep it. Ends Tue, Dec 1 at midnight.",
    "w": 780,
    "size": "s",
@@ -837,7 +837,7 @@
   },
   "arketa-unl-desc": {
    "x": 3440,
-   "y": 21267,
+   "y": 21286,
    "text": "ARKETA NAME\nBlack Friday All-Studio Unlimited: $199/mo\n\nPRICE\n$199/mo, 3-month minimum, stays $199 after\n\nCHECKOUT LINK\nhttps://app.arketa.co/oakcliffpilates/pricing/checkout/DtAhCsd2DtIhVLNGaag6\n\nDESCRIPTION\nUnlimited classes at all 3 studios for $199 a month, plus a $50 OCP gift card. Commit to your first 3 months and your rate stays $199 after that. Includes 14-day booking and a free guest pass every month [confirm]. New members only. Ends Tue, Dec 1 at midnight.",
    "w": 780,
    "size": "s",
