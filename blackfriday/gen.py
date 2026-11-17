@@ -691,22 +691,22 @@ inner = (f'<div style="flex: 1 1 auto; display: flex; flex-direction: column; ga
          + spacer()
          + head(['BLACK FRIDAY', 'AT OCP.'], 150, [C, C])
          + f'<p style="margin: 0; {KH}; font-size: 330px; line-height: 0.78; letter-spacing: -0.03em; color: {G}">EARLY.</p>'
-         + row([para('Early access opens tomorrow.', 40, S2, 600, 1.2), chip('NOV 17', 34)], 24, 'center', 'flex-start')
+         + row([para('Early access opens today.', 40, S2, 600, 1.2), chip('NOV 17', 34)], 24, 'center', 'flex-start')
          + spacer()
          + row([handle(S3, 24), puck(130)], 24, 'flex-end')
          + '</div>')
-add('bf', R, 'BF-post-teaser.dc.html', 'Teaser post · Nov 16 · 1080×1350', 1080, 1350, page('Black Friday teaser post', 1080, 1350, inner, B))
+add('bf', R, 'BF-post-teaser.dc.html', 'Teaser post · Nov 17 · 1080×1350', 1080, 1350, page('Black Friday teaser post', 1080, 1350, inner, B))
 
 inner = (f'<div style="flex: 1 1 auto; display: flex; flex-direction: column; gap: 30px; padding: 250px 84px">'
          + bf_top(size=24)
          + spacer()
          + head(['BLACK FRIDAY', 'AT OCP.'], 160, [C, C])
          + f'<p style="margin: 0; {KH}; font-size: 340px; line-height: 0.78; letter-spacing: -0.03em; color: {G}">EARLY.</p>'
-         + row([para('Early access opens tomorrow.', 44, S2, 600, 1.2), chip('NOV 17', 36)], 24, 'center', 'flex-start')
+         + row([para('Early access opens today.', 44, S2, 600, 1.2), chip('NOV 17', 36)], 24, 'center', 'flex-start')
          + spacer()
          + row([sticker('[REMINDER STICKER: Black Friday at OCP]', 620, 'align-self: auto'), puck(120)], 24, 'center')
          + '</div>')
-add('bf', R, 'BF-story-teaser.dc.html', 'Teaser story · Nov 16 · 1080×1920', 1080, 1920, page('Black Friday teaser story', 1080, 1920, inner, B))
+add('bf', R, 'BF-story-teaser.dc.html', 'Teaser story · Nov 17 · 1080×1920', 1080, 1920, page('Black Friday teaser story', 1080, 1920, inner, B))
 
 rows_html = ''.join(
     f'<div style="display: flex; align-items: center; gap: 28px; padding: 18px 0; border-top: 1px solid {HAIR}">'
