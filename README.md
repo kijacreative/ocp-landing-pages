@@ -7,6 +7,7 @@ Static landing pages served at `lp.oakcliffpilates.com`. Each page lives in its 
 | `/59unlimited` | $59 one week unlimited, Arketa checkout embedded |
 | `/daylightunlimited` | Daylight Unlimited, $139/mo weekday 10 to 4, Arketa checkout embedded |
 | `/ratelock` | Members-only 2027 rate lock: choose a plan before Dec 31, 2026, links to Arketa checkout |
+| `/blackfriday` | Black Friday Nov 17 to Dec 1, 2026: all five offers with Arketa checkout links, a countdown, and a "That's a wrap" state after the sale (preview with `?ended=1`) |
 | `/cliffclub` | Cliff Club invite list sign-up plus every upcoming Cliff Club event, rendered from `cliffclub/events.json` |
 
 ### Cliff Club events
@@ -26,7 +27,7 @@ After editing the script, use Deploy > Manage deployments > Edit > New version s
 
 The root `/` redirects to oakcliffpilates.com. No build step: Vercel serves the folder as-is.
 
-`blackfriday/` is not a page: it holds the source for the holiday 2026 Lock-In and Black Friday campaign assets and is kept off the site by `.vercelignore`. See `blackfriday/README.md`.
+`blackfriday/` also holds the source for the holiday 2026 Lock-In and Black Friday campaign assets. Only `index.html` and `media/` are served; `.vercelignore` keeps the generator, canvas and drafts off the site. See `blackfriday/README.md`.
 
 ## Emails
 
