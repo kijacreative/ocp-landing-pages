@@ -572,8 +572,16 @@
    "title": "11\u00d717 poster (1056\u00d71632)",
    "page": "bf"
   },
-  "BF-print-counter-card.dc.html": {
+  "BF-print-flyer.dc.html": {
    "x": 1136,
+   "y": 18736,
+   "w": 816,
+   "h": 1056,
+   "title": "8.5\u00d711 flyer (816\u00d71056)",
+   "page": "bf"
+  },
+  "BF-print-counter-card.dc.html": {
+   "x": 2032,
    "y": 18736,
    "w": 480,
    "h": 672,
@@ -691,6 +699,7 @@
   "BF-ad-start-160x600.dc.html",
   "BF-ad-start-320x50.dc.html",
   "BF-print-poster.dc.html",
+  "BF-print-flyer.dc.html",
   "BF-print-counter-card.dc.html",
   "BF-arketa-gift.dc.html",
   "BF-arketa-day.dc.html",
@@ -792,7 +801,7 @@
    "y": 18476,
    "text": "Black Friday \u00b7 In-studio print",
    "kind": "title1",
-   "maxW": 1616,
+   "maxW": 2512,
    "page": "bf"
   },
   "bf-row9": {
