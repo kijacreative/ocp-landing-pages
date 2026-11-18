@@ -41,6 +41,7 @@ The root `/` redirects to oakcliffpilates.com. No build step: Vercel serves the 
 | `/emails/happy-birthday.html` | Birthday email with a free 7-day guest pass for a friend |
 | `/emails/we-miss-you.html` | Win-back email for lapsed clients, with the $10 gift card offer |
 | `/emails/black-friday-early-access.html` | Black Friday early access, Tue Nov 17: all five offers with photos and their checkout links, plus a button to `/blackfriday`. Photos are `emails/img/bf-*.jpg` |
+| `/emails/black-friday-gifts.html` | Black Friday gifts send, Fri Nov 20: the $100 gift card bonus (with how it works) and the 20-class gift bundle, plus a link to all five offers. Hero is `emails/img/bf-gifts-hero.jpg` |
 | `/emails/black-friday-gift-card-bonus.html` | Black Friday: sends automatically after a $100 gift card purchase. Thanks the buyer and gives code GIFTCARD100 for a bonus gift card up to $100 for a friend, via the Arketa gifting page |
 | `/emails/black-friday-gift-card-bonus-50.html` | Same as the $100 version for a $50 gift card purchase: code GIFTCARD50 for a bonus gift card up to $50 for a friend |
 | `/emails/black-friday-bundle-pickup.html` | Black Friday: sends after the 20-class gift bundle is bought. Shows the grip socks, hoodie and tote and asks the buyer to email info@oakcliffpilates.com with their pickup studio and hoodie size |
