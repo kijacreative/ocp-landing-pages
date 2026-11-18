@@ -15,7 +15,151 @@ CV = "font-family: 'Caveat Brush', cursive; font-weight: 400"
 HAIR = 'rgba(201,162,74,0.45)'
 
 LOCK_URL = 'lp.oakcliffpilates.com/ratelock'
-BF_URL = 'lp.oakcliffpilates.com/black-friday [confirm]'
+BF_URL = 'lp.oakcliffpilates.com/blackfriday'
+# What the print QR codes open. utm_source tells the poster and the flyer apart in GA4.
+BF_QR = 'https://lp.oakcliffpilates.com/blackfriday?utm_source={src}&utm_medium=print&utm_campaign=bf2026'
+
+
+# ---------- QR code (byte mode, version 6, error correction M: up to 106 characters) ----------
+def _gf_mul(x, y):
+    z = 0
+    for i in reversed(range(8)):
+        z = (z << 1) ^ ((z >> 7) * 0x11D)
+        z ^= ((y >> i) & 1) * x
+    return z
+
+
+def _rs_ecc(data, degree):
+    div = [0] * (degree - 1) + [1]
+    root = 1
+    for _ in range(degree):
+        for j in range(degree):
+            div[j] = _gf_mul(div[j], root)
+            if j + 1 < degree:
+                div[j] ^= div[j + 1]
+        root = _gf_mul(root, 2)
+    rem = [0] * degree
+    for b in data:
+        f = b ^ rem.pop(0)
+        rem.append(0)
+        for i, c in enumerate(div):
+            rem[i] ^= _gf_mul(c, f)
+    return rem
+
+
+def qr_matrix(text):
+    n, blocks, per_block, ec = 41, 4, 27, 16       # version 6-M
+    data = text.encode('utf-8')
+    assert len(data) <= 106, 'QR text too long for version 6-M'
+    bits = '0100' + format(len(data), '08b') + ''.join(format(b, '08b') for b in data)
+    cap = blocks * per_block * 8
+    bits += '0' * min(4, cap - len(bits))
+    bits += '0' * (-len(bits) % 8)
+    cw = [int(bits[i:i + 8], 2) for i in range(0, len(bits), 8)]
+    k = 0
+    while len(cw) < blocks * per_block:
+        cw.append((0xEC, 0x11)[k % 2])
+        k += 1
+    dblocks = [cw[i * per_block:(i + 1) * per_block] for i in range(blocks)]
+    eblocks = [_rs_ecc(b, ec) for b in dblocks]
+    final = [b[i] for i in range(per_block) for b in dblocks] + [b[i] for i in range(ec) for b in eblocks]
+
+    m = [[False] * n for _ in range(n)]
+    fn = [[False] * n for _ in range(n)]
+
+    def setf(x, y, dark):
+        m[y][x] = dark
+        fn[y][x] = True
+
+    for i in range(n):
+        setf(6, i, i % 2 == 0)
+        setf(i, 6, i % 2 == 0)
+    for cx, cy in [(3, 3), (n - 4, 3), (3, n - 4)]:
+        for dy in range(-4, 5):
+            for dx in range(-4, 5):
+                x, y = cx + dx, cy + dy
+                if 0 <= x < n and 0 <= y < n:
+                    setf(x, y, max(abs(dx), abs(dy)) not in (2, 4))
+    for dy in range(-2, 3):
+        for dx in range(-2, 3):
+            setf(34 + dx, 34 + dy, max(abs(dx), abs(dy)) != 1)
+
+    def format_bits(mask):
+        d = mask                      # error correction M = 00
+        r = d
+        for _ in range(10):
+            r = (r << 1) ^ ((r >> 9) * 0x537)
+        v = (d << 10 | r) ^ 0x5412
+        b = lambda i: (v >> i) & 1 == 1
+        for i in range(6):
+            setf(8, i, b(i))
+        setf(8, 7, b(6)); setf(8, 8, b(7)); setf(7, 8, b(8))
+        for i in range(9, 15):
+            setf(14 - i, 8, b(i))
+        for i in range(8):
+            setf(n - 1 - i, 8, b(i))
+        for i in range(8, 15):
+            setf(8, n - 15 + i, b(i))
+        setf(8, n - 8, True)
+
+    format_bits(0)
+    i, right = 0, n - 1
+    while right >= 1:
+        if right == 6:
+            right = 5
+        for vert in range(n):
+            for j in range(2):
+                x = right - j
+                y = n - 1 - vert if ((right + 1) & 2) == 0 else vert
+                if not fn[y][x] and i < len(final) * 8:
+                    m[y][x] = (final[i >> 3] >> (7 - (i & 7))) & 1 == 1
+                    i += 1
+        right -= 2
+
+    masks = [lambda x, y: (x + y) % 2 == 0, lambda x, y: y % 2 == 0, lambda x, y: x % 3 == 0,
+             lambda x, y: (x + y) % 3 == 0, lambda x, y: (x // 3 + y // 2) % 2 == 0,
+             lambda x, y: x * y % 2 + x * y % 3 == 0, lambda x, y: (x * y % 2 + x * y % 3) % 2 == 0,
+             lambda x, y: ((x + y) % 2 + x * y % 3) % 2 == 0]
+
+    def penalty(g):
+        p = 0
+        for line in g + [list(c) for c in zip(*g)]:
+            run = 1
+            for a, b in zip(line, line[1:]):
+                if a == b:
+                    run += 1
+                else:
+                    p += run - 2 if run >= 5 else 0
+                    run = 1
+            p += run - 2 if run >= 5 else 0
+        for y in range(n - 1):
+            for x in range(n - 1):
+                if g[y][x] == g[y][x + 1] == g[y + 1][x] == g[y + 1][x + 1]:
+                    p += 3
+        dark = sum(map(sum, g))
+        p += abs(dark * 20 - n * n * 10) // (n * n) * 10
+        return p
+
+    best = None
+    base = [r[:] for r in m]
+    for k, f in enumerate(masks):
+        for y in range(n):
+            for x in range(n):
+                m[y][x] = base[y][x] ^ (not fn[y][x] and f(x, y))
+        format_bits(k)
+        score = penalty(m)
+        if best is None or score < best[0]:
+            best = (score, [r[:] for r in m])
+    return best[1]
+
+
+def qr_svg(text, size, color=B):
+    g = qr_matrix(text)
+    n, q = len(g), 4                  # 4-module quiet zone
+    path = ''.join(f'M{x + q},{y + q}h1v1h-1z' for y in range(n) for x in range(n) if g[y][x])
+    t = n + 2 * q
+    return (f'<svg viewBox="0 0 {t} {t}" width="{size}" height="{size}" shape-rendering="crispEdges" role="img" aria-label="QR code" '
+            f'style="display: block; flex-shrink: 0; background: #FFFFFF"><path fill="{color}" d="{path}"/></svg>')
 
 
 def esc(s):
@@ -889,26 +1033,38 @@ for k in ['gift', 'day', 'start']:
 # BLACK FRIDAY PRINT
 # =============================================================
 R = 'Black Friday · In-studio print'
-cells = []
-for i, k in enumerate(ORDER):
-    o = OFFERS[k]
-    br = para(o['bridge'], 15, B, 600, 1.4, f'padding-top: 10px; border-top: 1px solid {GD}') if o.get('bridge') else ''
-    cells.append(f'<div style="display: flex; flex-direction: column; gap: 10px; padding: 24px; border: 1px solid {GD}; background: #FFFFFF00">'
-                 f'<div style="display: flex; align-items: baseline; gap: 14px"><p style="margin: 0; {KH}; font-size: 64px; line-height: 0.8; color: {GD}">{o["n"]}</p>'
-                 f'<p style="margin: 0; {KH}; font-size: 30px; letter-spacing: 0.06em; color: {B}">{o["name"]}</p></div>'
-                 f'{para(o["line"], 18, B, 700, 1.4)}{para(o["fine"], 14, S7, 500, 1.45)}{br}</div>')
-cells[-1] = cells[-1].replace('<div style="display: flex; flex-direction: column; gap: 10px;', '<div style="grid-column: 1 / -1; display: flex; flex-direction: column; gap: 10px;', 1)
-inner = (f'<div style="flex: 1 1 auto; display: flex; flex-direction: column; gap: 28px; padding: 64px 60px 60px">'
-         + row([eyebrow('BLACK FRIDAY AT OCP', B, 18), chip('NOV 17 TO DEC 1', 24)], 24, 'center')
-         + head(['BLACK FRIDAY.', 'FIVE WAYS IN.'], 120, [B, GD])
-         + f'<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px">{"".join(cells)}</div>'
-         + spacer()
-         + row([col([f'<p style="margin: 0; {KH}; font-size: 54px; line-height: 0.9; color: {B}">SCAN TO SHOP.</p>',
-                     para('Ends Tuesday, Dec 1 at midnight. Or ask us at the desk.', 20, S7, 600, 1.4),
-                     para(BF_URL, 16, S7, 500, 1.4), row([puck(84), handle(B, 18)], 14, 'center', 'flex-start')], 12, 'flex: 1 1 auto'),
-                qr(300, f'[QR: {BF_URL}]')], 36, 'flex-end')
-         + '</div>')
-add('bf', R, 'BF-print-poster.dc.html', '11×17 poster (1056×1632)', 1056, 1632, page('Black Friday poster', 1056, 1632, inner, C))
+
+
+def bf_poster(z, src, bridges=True):
+    """The all-offers print piece. z holds the sizes, so the 11x17 poster and the 8.5x11 flyer share one layout."""
+    cells = []
+    for k in ORDER:
+        o = OFFERS[k]
+        br = para(o['bridge'], z['fine'] + 1, B, 600, 1.4, f'padding-top: {z["cg"]}px; border-top: 1px solid {GD}') if bridges and o.get('bridge') else ''
+        cells.append(f'<div style="display: flex; flex-direction: column; gap: {z["cg"]}px; padding: {z["cp"]}px; border: 1px solid {GD}; background: #FFFFFF00">'
+                     f'<div style="display: flex; align-items: baseline; gap: {z["cg"] + 4}px"><p style="margin: 0; {KH}; font-size: {z["num"]}px; line-height: 0.8; color: {GD}">{o["n"]}</p>'
+                     f'<p style="margin: 0; {KH}; font-size: {z["name"]}px; letter-spacing: 0.06em; color: {B}">{o["name"]}</p></div>'
+                     f'{para(o["line"], z["line"], B, 700, 1.4)}{para(o["fine"], z["fine"], S7, 500, 1.45)}{br}</div>')
+    cells[-1] = cells[-1].replace('<div style="display: flex; flex-direction: column;', '<div style="grid-column: 1 / -1; display: flex; flex-direction: column;', 1)
+    code = f'<div style="border: 3px solid {G}; flex-shrink: 0">{qr_svg(BF_QR.format(src=src), z["qr"])}</div>'
+    return (f'<div style="flex: 1 1 auto; display: flex; flex-direction: column; gap: {z["gap"]}px; padding: {z["pad"]}">'
+            + row([eyebrow('BLACK FRIDAY AT OCP', B, z['eye']), chip('NOV 17 TO DEC 1', z['chip'], PK, B, z['chippad'])], 24, 'center')
+            + head(['BLACK FRIDAY.', 'FIVE WAYS IN.'], z['head'], [B, GD])
+            + f'<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: {z["gg"]}px">{"".join(cells)}</div>'
+            + spacer()
+            + row([col([f'<p style="margin: 0; {KH}; font-size: {z["scan"]}px; line-height: 0.9; color: {B}">SCAN TO SHOP.</p>',
+                        para('Ends Tuesday, Dec 1 at midnight. Or ask us at the desk.', z['sub'], S7, 600, 1.4),
+                        para(BF_URL, z['url'], S7, 500, 1.4), row([puck(z['puck']), handle(B, z['url'] + 2)], 14, 'center', 'flex-start')], z['cg'] + 2, 'flex: 1 1 auto'),
+                   code], 36, 'flex-end')
+            + '</div>')
+
+
+POSTER = dict(pad='64px 60px 60px', gap=28, eye=18, chip=24, chippad='12px 22px', head=120, gg=18, cp=24, cg=10, num=64, name=30,
+              line=18, fine=14, scan=54, sub=20, url=16, puck=84, qr=300)
+FLYER = dict(pad='44px 44px 40px', gap=20, eye=13, chip=17, chippad='8px 15px', head=84, gg=12, cp=16, cg=7, num=44, name=23,
+             line=14, fine=11.5, scan=40, sub=15, url=13, puck=60, qr=200)
+add('bf', R, 'BF-print-poster.dc.html', '11×17 poster (1056×1632)', 1056, 1632, page('Black Friday poster', 1056, 1632, bf_poster(POSTER, 'poster'), C))
+add('bf', R, 'BF-print-flyer.dc.html', '8.5×11 flyer (816×1056)', 816, 1056, page('Black Friday flyer', 816, 1056, bf_poster(FLYER, 'flyer'), C))
 
 inner = (frame(18) + f'<div style="position: relative; flex: 1 1 auto; display: flex; flex-direction: column; gap: 16px; padding: 44px 40px 40px">'
          + row([eyebrow('GIFT CARDS', G, 13), chip('THRU TUE 12/1', 15, PK, B, '7px 12px')], 12, 'center')
