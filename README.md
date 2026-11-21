@@ -42,6 +42,8 @@ Exporting on Wednesday night: in the Sheet, File > Download > Comma-separated va
 
 The share image `smallbusinesssaturday/img/og.jpg` comes from `tools/shop-small-og.html`; re-render it with `./tools/render-shop-small-og.sh`.
 
+The Instagram feed post `smallbusinesssaturday/social/post.jpg` (1080x1350) and story `smallbusinesssaturday/social/story.jpg` (1080x1920) come from `tools/shop-small-social.html`; re-render both with `./tools/render-shop-small-social.sh`.
+
 The root `/` redirects to oakcliffpilates.com. No build step: Vercel serves the folder as-is.
 
 `blackfriday/` also holds the source for the holiday 2026 Lock-In and Black Friday campaign assets. Only `index.html` and `media/` are served; `.vercelignore` keeps the generator, canvas and drafts off the site. See `blackfriday/README.md`.
