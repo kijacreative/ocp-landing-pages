@@ -1,0 +1,442 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Email Signatures | Oak Cliff Pilates</title>
+<meta name="theme-color" content="#0B0B0B">
+<link rel="icon" href="/favicon.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Khand:wght@700&family=Montserrat:wght@500;600;700&display=swap">
+<style>
+:root{
+  --ocp-black:#0B0B0B;--ocp-ink:#1A1A1A;--ocp-line:#2C2A27;--ocp-gold:#C9A24A;--ocp-gold-deep:#8E6B2A;
+  --ocp-cream:#F4EFE6;--muted:#A9A39A;--ok:#7FBF8A;--err:#E0715F;
+  --display:Khand,'Arial Narrow',sans-serif;--body:Montserrat,Arial,sans-serif;
+  --gutter:clamp(16px,4vw,48px);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--ocp-black);color:var(--ocp-cream);font:500 15px/1.6 var(--body);overflow-x:clip}
+a{color:inherit}
+h1,h2{font-family:var(--display);font-weight:700;text-transform:uppercase;line-height:.9;margin:0}
+p{margin:0}
+[hidden]{display:none!important}
+:focus-visible{outline:3px solid var(--ocp-gold);outline-offset:3px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 var(--gutter)}
+header{padding:40px 0 24px;display:flex;align-items:center;gap:16px}
+header img{width:56px;height:56px}
+h1{font-size:clamp(40px,7vw,64px)}
+.lede{color:var(--muted);max-width:60ch;margin-top:6px}
+
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 28px}
+.tab{appearance:none;border:1px solid var(--ocp-line);background:var(--ocp-ink);color:var(--ocp-cream);
+  font:600 14px/1 var(--body);padding:8px 14px 8px 8px;border-radius:999px;cursor:pointer;display:flex;align-items:center;gap:8px}
+.tab img{width:28px;height:28px;border-radius:50%;object-fit:cover;background:#fff}
+.tab[aria-selected="true"]{border-color:var(--ocp-gold);background:#211C12}
+
+.grid{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:24px;align-items:start}
+@media (max-width:860px){.grid{grid-template-columns:minmax(0,1fr)}}
+.card{background:var(--ocp-ink);border:1px solid var(--ocp-line);border-radius:14px;padding:22px}
+.card h2{font-size:28px;margin-bottom:14px;color:var(--ocp-gold)}
+
+.mail{background:#fff;color:#0B0B0B;border-radius:10px;overflow:hidden}
+.mail-bar{background:#F1EEE8;color:#6B655C;font:500 12px/1 var(--body);padding:10px 16px;border-bottom:1px solid #E4DED3}
+.mail-body{padding:22px 20px 26px;overflow-x:auto}
+.mail-body .greet{font:15px/1.5 Arial,sans-serif;margin:0 0 18px;color:#333}
+
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.btn{appearance:none;border:0;border-radius:8px;font:700 14px/1 var(--body);padding:13px 18px;cursor:pointer;
+  background:var(--ocp-gold);color:var(--ocp-black);text-decoration:none;display:inline-flex;align-items:center;gap:8px}
+.btn.ghost{background:transparent;color:var(--ocp-cream);border:1px solid var(--ocp-line)}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.status{min-height:22px;margin-top:10px;font-size:13px;color:var(--muted)}
+.status.ok{color:var(--ok)}.status.err{color:var(--err)}
+
+label{display:block;font-weight:600;font-size:13px;margin:0 0 6px}
+.hint{color:var(--muted);font-size:12px;margin-top:6px}
+input[type=url],input[type=password]{width:100%;background:var(--ocp-black);border:1px solid var(--ocp-line);color:var(--ocp-cream);
+  border-radius:8px;padding:11px 12px;font:500 14px var(--body)}
+input:focus{border-color:var(--ocp-gold);outline:none}
+.field+.field{margin-top:18px}
+.photo-row{display:flex;align-items:center;gap:14px}
+.photo-row img{width:64px;height:64px;border-radius:50%;object-fit:cover;background:#fff;flex:none}
+
+details{margin-top:24px}
+summary{cursor:pointer;font-weight:700}
+details ol{padding-left:20px;margin:10px 0 0;color:var(--muted)}
+details li+li{margin-top:4px}
+details strong{color:var(--ocp-cream)}
+
+/* crop dialog */
+dialog{border:1px solid var(--ocp-line);border-radius:14px;background:var(--ocp-ink);color:var(--ocp-cream);padding:22px;width:min(380px,calc(100vw - 32px))}
+dialog::backdrop{background:rgba(0,0,0,.7)}
+dialog h2{font-size:28px;color:var(--ocp-gold);margin-bottom:6px}
+.crop{position:relative;width:100%;aspect-ratio:1;border-radius:10px;overflow:hidden;background:#000;touch-action:none;cursor:grab;margin:12px 0}
+.crop canvas{width:100%;height:100%;display:block}
+.crop::after{content:"";position:absolute;inset:0;border-radius:50%;box-shadow:0 0 0 999px rgba(11,11,11,.55);pointer-events:none}
+.crop.square::after{border-radius:0}
+input[type=range]{width:100%;accent-color:var(--ocp-gold)}
+footer{color:var(--muted);font-size:12px;padding:40px 0}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <img src="img/ocp.jpg" alt="" style="border-radius:50%">
+    <div>
+      <h1>Email signatures</h1>
+      <p class="lede">Pick your name, add your booking link if you have one, then copy and paste it into Gmail, Apple Mail or Outlook.</p>
+    </div>
+  </header>
+
+  <div class="tabs" role="tablist" aria-label="Whose signature" id="tabs"></div>
+
+  <div class="grid">
+    <section aria-label="Signature preview">
+      <div class="mail">
+        <div class="mail-bar">New message</div>
+        <div class="mail-body">
+          <p class="greet">Thanks so much,</p>
+          <div id="sig"></div>
+        </div>
+      </div>
+      <div class="actions">
+        <button class="btn" id="copy" type="button">Copy signature</button>
+        <button class="btn ghost" id="copy-html" type="button">Copy HTML</button>
+      </div>
+      <p class="status" id="copy-status" role="status"></p>
+
+      <details open>
+        <summary>How to add it</summary>
+        <ol>
+          <li><strong>Gmail:</strong> gear icon &gt; See all settings &gt; General &gt; Signature &gt; Create new. Click in the box, paste, then Save Changes at the very bottom.</li>
+          <li><strong>Apple Mail:</strong> Mail &gt; Settings &gt; Signatures. Add one, untick "Always match my default message font", then paste.</li>
+          <li><strong>Outlook:</strong> Settings &gt; Mail (or Accounts) &gt; Signatures. New signature, paste, Save.</li>
+          <li>If the photo shows as a broken image, use <strong>Copy HTML</strong> instead and paste it into the HTML or source view.</li>
+        </ol>
+      </details>
+    </section>
+
+    <aside class="card" aria-label="Edit signature">
+      <h2 id="edit-title">Edit</h2>
+      <div class="field">
+        <label for="link">Booking link</label>
+        <input type="url" id="link" inputmode="url" placeholder="https://calendar.app.google/..." autocomplete="off">
+        <p class="hint" id="link-hint">Paste your booking page link to add a "Book time with me" button. Leave it empty for no button.</p>
+      </div>
+      <div class="field">
+        <label>Photo</label>
+        <div class="photo-row" id="photo-row">
+          <img id="photo-thumb" alt="">
+          <div>
+            <button class="btn ghost" type="button" id="change-photo">Change photo</button>
+            <input type="file" id="file" accept="image/*" hidden>
+          </div>
+        </div>
+        <p class="hint">A new photo is saved to lp.oakcliffpilates.com and goes live in about a minute. Then copy the signature again.</p>
+      </div>
+      <p class="status" id="photo-status" role="status"></p>
+    </aside>
+  </div>
+
+  <footer>Share a direct link: lp.oakcliffpilates.com/signatures?p=<span id="slug">kiel</span></footer>
+</div>
+
+<dialog id="crop-dialog" aria-labelledby="crop-title">
+  <form method="dialog" id="crop-form">
+    <h2 id="crop-title">New photo</h2>
+    <p class="hint">Drag to move. Use the slider to zoom.</p>
+    <div class="crop" id="crop"><canvas id="crop-canvas" width="400" height="400"></canvas></div>
+    <label for="zoom">Zoom</label>
+    <input type="range" id="zoom" min="1" max="4" step="0.01" value="1">
+    <div class="field">
+      <label for="passcode">Team passcode</label>
+      <input type="password" id="passcode" autocomplete="current-password" required>
+      <p class="hint">Ask Kiel if you don't have it.</p>
+    </div>
+    <p class="status" id="crop-status" role="status"></p>
+    <div class="actions">
+      <button class="btn" type="submit" id="save-photo" value="save">Save to site</button>
+      <button class="btn ghost" type="button" id="cancel-photo">Cancel</button>
+    </div>
+  </form>
+</dialog>
+
+<script>
+(function () {
+  var SITE = 'https://lp.oakcliffpilates.com';
+  var IG = 'https://www.instagram.com/oakcliffpilates/';
+  var TT = 'https://www.tiktok.com/@oakcliffpilates';
+  var WEB = 'https://oakcliffpilates.com';
+
+  var PEOPLE = [
+    { id: 'kiel', name: 'Kiel Jared', titles: ['Co-Founder'], phone: '4805446204', email: 'kiel@oakcliffpilates.com',
+      link: 'https://calendar.app.google/MG6eGLXKXzXp8rLY7', button: 'Book time with me' },
+    { id: 'isabel', name: 'Isabel German', titles: ['Events Manager'], phone: '9729510292', email: 'isabel@oakcliffpilates.com',
+      link: '', button: 'Book time with me' },
+    { id: 'charley', name: 'Charley Carroll', titles: ['Studio Operations', 'OCP Academy'], phone: '4157606990', email: 'charley@oakcliffpilates.com',
+      link: '', button: 'Book time with me' },
+    { id: 'stephanie', name: 'Stephanie Cole', titles: ['Marketing Manager'], phone: '8322918726', email: 'stephanie.cole@oakcliffpilates.com',
+      link: '', button: 'Book time with me' },
+    { id: 'amanda', name: 'Amanda Mecsey', titles: ['Co-Founder / Lead Instructor'], phone: '6026973976', email: 'amanda@oakcliffpilates.com',
+      link: 'https://calendar.app.google/sAi6mLojKogfHJog9', button: 'Book time with me' },
+    { id: 'ocp', name: 'Oak Cliff Pilates', titles: ['3 Dallas Locations | Best Pilates Studio in Dallas'], phone: '4699495306', email: 'info@oakcliffpilates.com',
+      link: '', button: 'Book a class', logo: true, tiktok: true }
+  ];
+
+  var photos = {};
+  PEOPLE.forEach(function (p) { photos[p.id] = 'img/' + p.id + '.jpg'; });
+  var pending = {}; // id -> local data URL while a new photo deploys
+  var current = PEOPLE[0];
+
+  // ---- storage (per-browser conveniences only) ----
+  function load(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+  function save(k, v) { try { v == null ? localStorage.removeItem(k) : localStorage.setItem(k, v); } catch (e) {} }
+
+  // ---- helpers ----
+  function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+  function fmtPhone(d) { return '(' + d.slice(0, 3) + ') ' + d.slice(3, 6) + '-' + d.slice(6); }
+  function photoUrl(p) { return SITE + '/signatures/' + photos[p.id]; }
+  function linkFor(p) { var v = load('sig-link-' + p.id); return v == null ? p.link : v; }
+  function cleanLink(v) {
+    v = (v || '').trim();
+    if (!v) return '';
+    if (!/^https?:\/\//i.test(v)) v = 'https://' + v;
+    try { var u = new URL(v); return /^https?:$/.test(u.protocol) ? u.href : ''; } catch (e) { return ''; }
+  }
+
+  // ---- the signature itself: email-safe tables and inline styles ----
+  function sigHTML(p) {
+    var F = 'font-family:Arial,Helvetica,sans-serif;';
+    var A = 'color:#0B0B0B;text-decoration:none;';
+    var link = cleanLink(linkFor(p));
+    var img = p.logo
+      ? '<img src="' + photoUrl(p) + '" width="88" height="88" alt="Oak Cliff Pilates" style="display:block;width:88px;height:88px;border:0;">'
+      : '<img src="' + photoUrl(p) + '" width="88" height="88" alt="' + esc(p.name) + '" style="display:block;width:88px;height:88px;border:0;border-radius:44px;">';
+    var titles = p.titles.map(function (t) {
+      return '<div style="' + F + 'font-size:11px;line-height:16px;letter-spacing:1px;text-transform:uppercase;font-weight:bold;color:#8E6B2A;">' + esc(t) + '</div>';
+    }).join('');
+    var social = '<a href="' + IG + '" style="' + A + '">Instagram @oakcliffpilates</a>';
+    if (p.tiktok) social += '<br><a href="' + TT + '" style="' + A + '">TikTok @oakcliffpilates</a>';
+    var button = link
+      ? '<table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;margin-top:10px;"><tr>' +
+        '<td style="background:#0B0B0B;border-radius:4px;">' +
+        '<a href="' + esc(link) + '" style="' + F + 'display:inline-block;padding:8px 14px;font-size:11px;line-height:14px;font-weight:bold;letter-spacing:1px;text-transform:uppercase;color:#F4EFE6;text-decoration:none;">' + esc(p.button) + '</a>' +
+        '</td></tr></table>'
+      : '';
+    return '' +
+      '<table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;' + F + 'color:#0B0B0B;">' +
+      '<tr>' +
+        '<td style="padding:0 16px 0 0;vertical-align:top;">' + img + '</td>' +
+        '<td style="padding:0 0 0 16px;border-left:2px solid #C9A24A;vertical-align:top;">' +
+          '<div style="' + F + 'font-size:17px;line-height:22px;font-weight:bold;color:#0B0B0B;">' + esc(p.name) + '</div>' +
+          titles +
+          (p.logo ? '' : '<div style="' + F + 'font-size:13px;line-height:18px;color:#0B0B0B;padding-top:2px;">Oak Cliff Pilates</div>') +
+          '<div style="' + F + 'font-size:13px;line-height:20px;color:#0B0B0B;padding-top:8px;">' +
+            '<a href="tel:+1' + p.phone + '" style="' + A + '">' + fmtPhone(p.phone) + '</a><br>' +
+            '<a href="mailto:' + p.email + '" style="' + A + '">' + p.email + '</a><br>' +
+            social + '<br>' +
+            '<a href="' + WEB + '" style="color:#8E6B2A;text-decoration:none;font-weight:bold;">oakcliffpilates.com</a>' +
+          '</div>' +
+          button +
+        '</td>' +
+      '</tr></table>';
+  }
+
+  // ---- rendering ----
+  var $ = function (id) { return document.getElementById(id); };
+  var tabs = $('tabs'), sig = $('sig'), linkInput = $('link');
+
+  function renderTabs() {
+    tabs.innerHTML = '';
+    PEOPLE.forEach(function (p) {
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'tab'; b.setAttribute('role', 'tab');
+      b.setAttribute('aria-selected', p === current ? 'true' : 'false');
+      b.innerHTML = '<img alt="" src="' + (pending[p.id] || photos[p.id]) + '">' + esc(p.id === 'ocp' ? 'General OCP' : p.name.split(' ')[0]);
+      b.addEventListener('click', function () { select(p.id); });
+      tabs.appendChild(b);
+    });
+  }
+
+  function render() {
+    sig.innerHTML = sigHTML(current);
+    // The preview loads the photo from this page (or the local copy while a new one deploys);
+    // the copied HTML always uses the absolute lp.oakcliffpilates.com URL.
+    sig.querySelector('img').src = pending[current.id] || photos[current.id];
+    $('photo-thumb').src = pending[current.id] || photos[current.id];
+    $('copy').disabled = $('copy-html').disabled = !!pending[current.id];
+    $('copy-status').textContent = pending[current.id] ? 'The new photo is publishing. Copy unlocks when it is live.' : '';
+    $('copy-status').className = 'status';
+  }
+
+  function select(id) {
+    current = PEOPLE.filter(function (p) { return p.id === id; })[0] || PEOPLE[0];
+    $('edit-title').textContent = current.id === 'ocp' ? 'General OCP' : current.name;
+    linkInput.value = linkFor(current);
+    $('link-hint').textContent = current.logo
+      ? 'Optional: a link for a "Book a class" button. Leave it empty for no button.'
+      : 'Paste your booking page link to add a "Book time with me" button. Leave it empty for no button.';
+    $('slug').textContent = current.id;
+    $('photo-status').textContent = '';
+    try { history.replaceState(null, '', '?p=' + current.id); } catch (e) {}
+    renderTabs(); render();
+  }
+
+  linkInput.addEventListener('input', function () {
+    var v = linkInput.value.trim();
+    save('sig-link-' + current.id, v === current.link ? null : v);
+    render();
+  });
+
+  // ---- copy ----
+  function flash(msg, ok) { var s = $('copy-status'); s.textContent = msg; s.className = 'status ' + (ok ? 'ok' : 'err'); }
+
+  $('copy').addEventListener('click', function () {
+    var html = sigHTML(current);
+    var text = sig.innerText;
+    if (window.ClipboardItem && navigator.clipboard && navigator.clipboard.write) {
+      navigator.clipboard.write([new ClipboardItem({
+        'text/html': new Blob([html], { type: 'text/html' }),
+        'text/plain': new Blob([text], { type: 'text/plain' })
+      })]).then(function () { flash('Copied. Paste it into your signature settings.', true); }, fallback);
+    } else fallback();
+    function fallback() {
+      var r = document.createRange(); r.selectNodeContents(sig);
+      var s = getSelection(); s.removeAllRanges(); s.addRange(r);
+      var ok = false; try { ok = document.execCommand('copy'); } catch (e) {}
+      s.removeAllRanges();
+      ok ? flash('Copied. Paste it into your signature settings.', true) : flash('Could not copy. Select the signature and copy it by hand.', false);
+    }
+  });
+
+  $('copy-html').addEventListener('click', function () {
+    navigator.clipboard.writeText(sigHTML(current)).then(
+      function () { flash('HTML copied.', true); },
+      function () { flash('Could not copy the HTML.', false); });
+  });
+
+  // ---- photo change ----
+  var dialog = $('crop-dialog'), canvas = $('crop-canvas'), ctx = canvas.getContext('2d'), zoom = $('zoom');
+  var srcImg = null, view = { x: 0, y: 0, s: 1 }, base = 1;
+  var OUT = 400;
+
+  $('change-photo').addEventListener('click', function () { $('file').click(); });
+  $('file').addEventListener('change', function () {
+    var f = this.files && this.files[0]; this.value = '';
+    if (!f) return;
+    var url = URL.createObjectURL(f);
+    var im = new Image();
+    im.onload = function () {
+      srcImg = im;
+      base = Math.max(OUT / im.width, OUT / im.height);
+      view = { s: 1, x: (OUT - im.width * base) / 2, y: (OUT - im.height * base) / 2 };
+      zoom.value = 1;
+      $('crop').classList.toggle('square', !!current.logo);
+      $('crop-status').textContent = '';
+      $('passcode').value = (function () { try { return sessionStorage.getItem('sig-key') || ''; } catch (e) { return ''; } })();
+      draw();
+      dialog.showModal();
+    };
+    im.onerror = function () { $('photo-status').textContent = 'That file could not be opened as a photo.'; $('photo-status').className = 'status err'; };
+    im.src = url;
+  });
+
+  function clamp() {
+    var w = srcImg.width * base * view.s, h = srcImg.height * base * view.s;
+    view.x = Math.min(0, Math.max(OUT - w, view.x));
+    view.y = Math.min(0, Math.max(OUT - h, view.y));
+  }
+  function draw() {
+    clamp();
+    ctx.fillStyle = '#fff'; ctx.fillRect(0, 0, OUT, OUT);
+    ctx.imageSmoothingQuality = 'high';
+    ctx.drawImage(srcImg, view.x, view.y, srcImg.width * base * view.s, srcImg.height * base * view.s);
+  }
+  zoom.addEventListener('input', function () {
+    var ns = parseFloat(zoom.value), c = OUT / 2;
+    view.x = c - (c - view.x) * ns / view.s;
+    view.y = c - (c - view.y) * ns / view.s;
+    view.s = ns; draw();
+  });
+  (function () {
+    var crop = $('crop'), drag = null;
+    crop.addEventListener('pointerdown', function (e) { drag = { x: e.clientX, y: e.clientY }; crop.setPointerCapture(e.pointerId); });
+    crop.addEventListener('pointermove', function (e) {
+      if (!drag) return;
+      var k = OUT / crop.clientWidth;
+      view.x += (e.clientX - drag.x) * k; view.y += (e.clientY - drag.y) * k;
+      drag = { x: e.clientX, y: e.clientY }; draw();
+    });
+    ['pointerup', 'pointercancel'].forEach(function (t) { crop.addEventListener(t, function () { drag = null; }); });
+  })();
+
+  $('cancel-photo').addEventListener('click', function () { dialog.close(); });
+
+  $('crop-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var key = $('passcode').value.trim();
+    var st = $('crop-status');
+    if (!key) { st.textContent = 'Enter the team passcode.'; st.className = 'status err'; return; }
+    var person = current;
+    var out = document.createElement('canvas'); out.width = out.height = 300;
+    out.getContext('2d').drawImage(canvas, 0, 0, 300, 300);
+    var data = out.toDataURL('image/jpeg', 0.88);
+    $('save-photo').disabled = true;
+    st.textContent = 'Saving...'; st.className = 'status';
+    fetch('/api/signature-photo', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ person: person.id, image: data, key: key })
+    }).then(function (r) {
+      return r.json().catch(function () { return {}; }).then(function (j) { return { ok: r.ok, j: j }; });
+    }).then(function (res) {
+      if (!res.ok) throw new Error(res.j.error || 'Could not save the photo.');
+      try { sessionStorage.setItem('sig-key', key); } catch (e) {}
+      photos[person.id] = res.j.path;
+      pending[person.id] = data;
+      dialog.close();
+      var ps = $('photo-status'); ps.textContent = 'Saved. Publishing to the site...'; ps.className = 'status';
+      renderTabs(); render();
+      waitUntilLive(person, res.j.path);
+    }).catch(function (err) {
+      st.textContent = err.message === 'Failed to fetch' ? 'Could not reach the site. Check your connection.' : err.message;
+      st.className = 'status err';
+    }).then(function () { $('save-photo').disabled = false; });
+  });
+
+  function waitUntilLive(person, path) {
+    var tries = 0;
+    (function check() {
+      var im = new Image();
+      im.onload = function () {
+        delete pending[person.id];
+        if (current === person) {
+          var ps = $('photo-status'); ps.textContent = 'New photo is live. Copy the signature again and paste it in.'; ps.className = 'status ok';
+        }
+        renderTabs(); render();
+      };
+      im.onerror = function () {
+        if (++tries < 40) return setTimeout(check, 6000);
+        if (current === person) {
+          var ps = $('photo-status'); ps.textContent = 'Still publishing. Reload this page in a few minutes.'; ps.className = 'status err';
+        }
+      };
+      im.src = SITE + '/signatures/' + path + '?t=' + Date.now();
+    })();
+  }
+
+  // ---- start ----
+  var q = new URLSearchParams(location.search).get('p');
+  select(q || 'kiel');
+  fetch('photos.json', { cache: 'no-store' }).then(function (r) { return r.ok ? r.json() : {}; }).then(function (j) {
+    Object.keys(j || {}).forEach(function (k) { if (photos[k] && typeof j[k] === 'string') photos[k] = j[k]; });
+    renderTabs(); render();
+  }).catch(function () {});
+})();
+</script>
+</body>
+</html>
