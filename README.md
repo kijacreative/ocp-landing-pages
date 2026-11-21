@@ -68,6 +68,7 @@ The root `/` redirects to oakcliffpilates.com. No build step: Vercel serves the 
 | `/emails/pilates-and-pours.html` | Pilates + Pours evening edition with Amanda at Sixty Vines Uptown, Sun Nov 15, 5/6/7 PM, with the Triple Seat ticket links |
 | `/emails/cliff-club-dj-mat-class.html` | Blast for the first Cliff Club pop-up: DJ mat class with Amber and DJ IAMYU, Fri Nov 20, 6 PM, OCP Lower Greenville, with the Arketa booking link |
 | `/emails/cliff-club-dj-unlimited-vip.html` | Unlimited members only: free spot at the Nov 20 DJ mat class as a thank-you, with code CLIFFCLUBVIP |
+| `/emails/shop-small.html` | Shop Small with OCP invite to local businesses: free spot in the Fri Nov 27 email and on Instagram, with a $0.00 receipt and a button to `/smallbusinesssaturday`. Form closes before Thu Nov 26 |
 | `/emails/img/` | Images the emails load, so they can use absolute URLs |
 
 The email HTML is generated. Edit `tools/build-trial-emails.py`, then run `python3 tools/build-trial-emails.py`.
