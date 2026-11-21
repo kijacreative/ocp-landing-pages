@@ -10,6 +10,18 @@ Static landing pages served at `lp.oakcliffpilates.com`. Each page lives in its 
 | `/blackfriday` | Black Friday Nov 17 to Dec 1, 2026: all five offers with Arketa checkout links, a countdown, and a "That's a wrap" state after the sale (preview with `?ended=1`) |
 | `/smallbusinesssaturday` | Shop Small with OCP: free Small Business Saturday (Nov 28, 2026) feature sign-up for Dallas businesses, with logo and photo upload. Closes 12:00 AM Central, Thu Nov 26 (preview the closed state with `?closed=1`). `/shop-small` redirects here |
 | `/cliffclub` | Cliff Club invite list sign-up plus every upcoming Cliff Club event, rendered from `cliffclub/events.json` |
+| `/signatures` | Team email signatures (Kiel, Isabel, Charley, Stephanie, Amanda, general OCP) to copy into Gmail, Apple Mail or Outlook. `?p=isabel` opens one person. Not indexed |
+
+### Email signatures
+
+`/signatures` builds each signature from the list at the top of the script in `signatures/index.html` (names, titles, phones, emails, default booking links). Anyone can type a booking link before copying; it is remembered in that browser only. Photos are 300x300 JPEGs in `signatures/img/`, and `signatures/photos.json` says which file each signature uses.
+
+"Change photo" crops the new photo in the browser and sends it to `api/signature-photo.js`, a Vercel function that commits it to `main` as `signatures/img/{person}-{timestamp}.jpg` and updates `photos.json` in the same commit. Vercel redeploys and the page unlocks Copy once the photo is live (about a minute). Old photos stay so emails already sent keep loading them. To turn it on (once), in Vercel > Project > Settings > Environment Variables (Production), add:
+
+1. `SIGNATURE_UPLOAD_KEY`: a team passcode. People type it on the page to save a photo.
+2. `GITHUB_TOKEN`: a fine-grained GitHub token limited to `kijacreative/ocp-landing-pages` with Contents: Read and write.
+
+Then redeploy. Until both are set, saving a photo says "Photo saving is not set up yet".
 
 ### Cliff Club events
 
