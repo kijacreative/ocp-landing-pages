@@ -86,7 +86,7 @@ footer{color:var(--muted);font-size:12px;padding:40px 0}
 <body>
 <div class="wrap">
   <header>
-    <img src="img/ocp.jpg" alt="" style="border-radius:50%">
+    <img src="/signatures/img/ocp.jpg" alt="" style="border-radius:50%">
     <div>
       <h1>Email signatures</h1>
       <p class="lede">Pick your name, add your booking link if you have one, then copy and paste it into Gmail, Apple Mail or Outlook.</p>
@@ -201,6 +201,8 @@ footer{color:var(--muted);font-size:12px;padding:40px 0}
   function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
   function fmtPhone(d) { return '(' + d.slice(0, 3) + ') ' + d.slice(3, 6) + '-' + d.slice(6); }
   function photoUrl(p) { return SITE + '/signatures/' + photos[p.id]; }
+  // On-page images: absolute path, because the page is served at /signatures (no trailing slash).
+  function localPhoto(id) { return pending[id] || '/signatures/' + photos[id]; }
   function linkFor(p) { var v = load('sig-link-' + p.id); return v == null ? p.link : v; }
   function cleanLink(v) {
     v = (v || '').trim();
@@ -257,7 +259,7 @@ footer{color:var(--muted);font-size:12px;padding:40px 0}
       var b = document.createElement('button');
       b.type = 'button'; b.className = 'tab'; b.setAttribute('role', 'tab');
       b.setAttribute('aria-selected', p === current ? 'true' : 'false');
-      b.innerHTML = '<img alt="" src="' + (pending[p.id] || photos[p.id]) + '">' + esc(p.id === 'ocp' ? 'General OCP' : p.name.split(' ')[0]);
+      b.innerHTML = '<img alt="" src="' + localPhoto(p.id) + '">' + esc(p.id === 'ocp' ? 'General OCP' : p.name.split(' ')[0]);
       b.addEventListener('click', function () { select(p.id); });
       tabs.appendChild(b);
     });
@@ -267,8 +269,8 @@ footer{color:var(--muted);font-size:12px;padding:40px 0}
     sig.innerHTML = sigHTML(current);
     // The preview loads the photo from this page (or the local copy while a new one deploys);
     // the copied HTML always uses the absolute lp.oakcliffpilates.com URL.
-    sig.querySelector('img').src = pending[current.id] || photos[current.id];
-    $('photo-thumb').src = pending[current.id] || photos[current.id];
+    sig.querySelector('img').src = localPhoto(current.id);
+    $('photo-thumb').src = localPhoto(current.id);
     $('copy').disabled = $('copy-html').disabled = !!pending[current.id];
     $('copy-status').textContent = pending[current.id] ? 'The new photo is publishing. Copy unlocks when it is live.' : '';
     $('copy-status').className = 'status';
@@ -432,7 +434,7 @@ footer{color:var(--muted);font-size:12px;padding:40px 0}
   // ---- start ----
   var q = new URLSearchParams(location.search).get('p');
   select(q || 'kiel');
-  fetch('photos.json', { cache: 'no-store' }).then(function (r) { return r.ok ? r.json() : {}; }).then(function (j) {
+  fetch('/signatures/photos.json', { cache: 'no-store' }).then(function (r) { return r.ok ? r.json() : {}; }).then(function (j) {
     Object.keys(j || {}).forEach(function (k) { if (photos[k] && typeof j[k] === 'string') photos[k] = j[k]; });
     renderTabs(); render();
   }).catch(function () {});
