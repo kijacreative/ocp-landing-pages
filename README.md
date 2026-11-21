@@ -8,6 +8,7 @@ Static landing pages served at `lp.oakcliffpilates.com`. Each page lives in its 
 | `/daylightunlimited` | Daylight Unlimited, $139/mo weekday 10 to 4, Arketa checkout embedded |
 | `/ratelock` | Members-only 2027 rate lock: choose a plan before Dec 31, 2026, links to Arketa checkout |
 | `/blackfriday` | Black Friday Nov 17 to Dec 1, 2026: all five offers with Arketa checkout links, a countdown, and a "That's a wrap" state after the sale (preview with `?ended=1`) |
+| `/smallbusinesssaturday` | Shop Small with OCP: free Small Business Saturday (Nov 28, 2026) feature sign-up for Dallas businesses, with logo and photo upload. Closes 12:00 AM Central, Thu Nov 26 (preview the closed state with `?closed=1`). `/shop-small` redirects here |
 | `/cliffclub` | Cliff Club invite list sign-up plus every upcoming Cliff Club event, rendered from `cliffclub/events.json` |
 
 ### Cliff Club events
@@ -24,6 +25,22 @@ Sign-ups land in the Google Sheet [Cliff Club List Sign-ups](https://docs.google
 4. Copy the web app URL (ends in `/exec`) into `CLIFF_CLUB_LIST_ENDPOINT` at the top of the script in `cliffclub/index.html`, then deploy the site.
 
 After editing the script, use Deploy > Manage deployments > Edit > New version so the same URL keeps working.
+
+### Shop Small sign-ups
+
+Each sign-up from `/smallbusinesssaturday` goes to a Google Apps Script web app (`tools/shop-small-apps-script.gs`) that adds a row to the "Sign-ups" tab of the Shop Small Sheet, saves the logo and photo to the Drive folder "Shop Small 2026 uploads" as `{business-slug}-logo.ext` and `{business-slug}-photo.ext`, emails isabel@oakcliffpilates.com every field with links to both files (subject `Shop Small sign-up: {Business name}`), and emails the business its confirmation. It turns away anything after 12:00 AM Central, Thu Nov 26. To connect it (once):
+
+1. Make a Google Sheet named "Shop Small 2026 Sign-ups", then Extensions > Apps Script.
+2. Replace the editor contents with `tools/shop-small-apps-script.gs` and save.
+3. Choose `setup` in the function menu and Run it. Approve the access prompt. It makes the tab and the Drive folder and shares both with Isabel.
+4. Deploy > New deployment > Web app. Execute as: Me. Who has access: Anyone. Deploy.
+5. Copy the web app URL (ends in `/exec`) into `SBS_FORM_ENDPOINT` at the top of the script in `smallbusinesssaturday/index.html`, then deploy the site.
+
+Until step 5 is done the live form shows "That didn't go through". Emails send from the Google account that deployed the script.
+
+Exporting on Wednesday night: in the Sheet, File > Download > Comma-separated values (.csv). In Drive, right-click the "Shop Small 2026 uploads" folder > Download, and Drive zips every file.
+
+The share image `smallbusinesssaturday/img/og.jpg` comes from `tools/shop-small-og.html`; re-render it with `./tools/render-shop-small-og.sh`.
 
 The root `/` redirects to oakcliffpilates.com. No build step: Vercel serves the folder as-is.
 
