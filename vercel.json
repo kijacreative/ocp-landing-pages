@@ -14,6 +14,11 @@
       "permanent": true
     },
     {
+      "source": "/shop-small",
+      "destination": "/smallbusinesssaturday",
+      "permanent": false
+    },
+    {
       "source": "/cliff-club",
       "destination": "/cliffclub",
       "permanent": true
