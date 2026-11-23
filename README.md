@@ -73,6 +73,7 @@ The root `/` redirects to oakcliffpilates.com. No build step: Vercel serves the 
 | `/emails/we-miss-you.html` | Win-back email for lapsed clients, with the $10 gift card offer |
 | `/emails/black-friday-early-access.html` | Black Friday early access, Tue Nov 17: all five offers with photos and their checkout links, plus a button to `/blackfriday`. Photos are `emails/img/bf-*.jpg` |
 | `/emails/black-friday-gifts.html` | Black Friday gifts send, Fri Nov 20: the $100 gift card bonus (with how it works) and the 20-class gift bundle, plus a link to all five offers. Hero is `emails/img/bf-gifts-hero.jpg` |
+| `/emails/black-friday-unlimited.html` | Black Friday unlimited send, Mon Nov 23, to non-members, lapsed clients and intro buyers: $199 All-Studio Unlimited for new members, then the $39 new-client week as the softer option. Hero is `emails/img/bf-unlimited-hero.jpg` |
 | `/emails/black-friday-all-offers.html` | Black Friday all-offers send, Sat Nov 21, to the full list: all five offers with checkout buttons. Hero is `emails/img/bf-all-offers-hero.jpg` |
 | `/emails/black-friday-start-here.html` | Black Friday "Start here" send, Sun Nov 29, to non-members: the $39 new-client week (code BLACKFRIDAY) and the 10-class pack, plus a link to all five offers. Hero is `emails/img/bf-start-here-hero.jpg` |
 | `/emails/black-friday-gift-card-bonus.html` | Black Friday: sends automatically after a $100 gift card purchase. Thanks the buyer and gives code GIFTCARD100 for a bonus gift card up to $100 for a friend, via the Arketa gifting page |
