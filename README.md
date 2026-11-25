@@ -56,6 +56,17 @@ The share image `smallbusinesssaturday/img/og.jpg` comes from `tools/shop-small-
 
 The Instagram feed post `smallbusinesssaturday/social/post.jpg` (1080x1350) and story `smallbusinesssaturday/social/story.jpg` (1080x1920) come from `tools/shop-small-social.html`; re-render both with `./tools/render-shop-small-social.sh`.
 
+### Shop Small business features
+
+The 25 featured businesses live in `tools/shop-small-features.json` (copy edited for length, crop focus per photo, feature order). `python3 tools/build-shop-small-features.py "<Shop Small 2026 uploads folder>"` builds everything from it and the uploads:
+
+- `emails/shop-small-features.html`, the Friday feature email, with its images in `emails/img/sbs/`
+- `smallbusinesssaturday/features/posts/`, one 1080x1350 post per business, numbered in feature order
+- `smallbusinesssaturday/features/carousel/`, the carousel covers (`part-1-cover`, `part-2-cover`, `00-cover-all`) and the closing slide
+- `smallbusinesssaturday/features/shop-small-slideshow.mp4`, cover, all 25 posts and the closing slide as one 4:5 video
+
+Carousel 1 is `part-1-cover` then posts 01 to 16. Carousel 2 is `part-2-cover` then posts 17 to 25, then `zz-closing`. Add `--no-render` to rebuild only the images and email.
+
 The root `/` redirects to oakcliffpilates.com. No build step: Vercel serves the folder as-is.
 
 `blackfriday/` also holds the source for the holiday 2026 Lock-In and Black Friday campaign assets. Only `index.html` and `media/` are served; `.vercelignore` keeps the generator, canvas and drafts off the site. See `blackfriday/README.md`.
@@ -87,6 +98,7 @@ The root `/` redirects to oakcliffpilates.com. No build step: Vercel serves the 
 | `/emails/cliff-club-dj-mat-class.html` | Blast for the first Cliff Club pop-up: DJ mat class with Amber and DJ IAMYU, Fri Nov 20, 6 PM, OCP Lower Greenville, with the Arketa booking link |
 | `/emails/cliff-club-dj-unlimited-vip.html` | Unlimited members only: free spot at the Nov 20 DJ mat class as a thank-you, with code CLIFFCLUBVIP |
 | `/emails/shop-small.html` | Shop Small with OCP invite to local businesses: free spot in the Fri Nov 27 email and on Instagram, with a $0.00 receipt and a button to `/smallbusinesssaturday`. Form closes before Thu Nov 26 |
+| `/emails/shop-small-features.html` | Shop Small feature send, Fri Nov 27, to the list: all 25 businesses with photo, logo, offer, code and dates, grouped by neighborhood. Generated, see "Shop Small business features" |
 | `/emails/img/` | Images the emails load, so they can use absolute URLs |
 
 The email HTML is generated. Edit `tools/build-trial-emails.py`, then run `python3 tools/build-trial-emails.py`.
