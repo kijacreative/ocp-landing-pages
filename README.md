@@ -84,6 +84,7 @@ The root `/` redirects to oakcliffpilates.com. No build step: Vercel serves the 
 | `/emails/we-miss-you.html` | Win-back email for lapsed clients, with the $10 gift card offer |
 | `/emails/black-friday-early-access.html` | Black Friday early access, Tue Nov 17: all five offers with photos and their checkout links, plus a button to `/blackfriday`. Photos are `emails/img/bf-*.jpg` |
 | `/emails/black-friday-gifts.html` | Black Friday gifts send, Fri Nov 20: the $100 gift card bonus (with how it works) and the 20-class gift bundle, plus a link to all five offers. Hero is `emails/img/bf-gifts-hero.jpg` |
+| `/emails/black-friday-its-black-friday.html` | Black Friday day send, Fri Nov 27, to the full list: type-only hero ("It's Black Friday."), then all five offers with photos and checkout buttons |
 | `/emails/black-friday-friday.html` | Black Friday "Black Friday is Friday" send, Wed Nov 25, to the full list: all five offers as a compact linked list with one Shop the deals button. Hero is `emails/img/bf-friday-hero.jpg` |
 | `/emails/amanda-expired-pack.html` | Personal note from Amanda to clients with expired class packs: the Black Friday 10-class pack, $150 through Dec 1. Plain letter style with her signature photo. Uses the `{{clientFirstName}}` merge tag |
 | `/emails/black-friday-unlimited.html` | Black Friday unlimited send, Mon Nov 23, to non-members, lapsed clients and intro buyers: $199 All-Studio Unlimited for new members, then the $39 new-client week as the softer option. Hero is `emails/img/bf-unlimited-hero.jpg` |
