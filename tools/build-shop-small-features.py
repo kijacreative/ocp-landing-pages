@@ -314,7 +314,10 @@ def email_card(b):
 </td></tr></table></td></tr>"""
 
 
-def build_email(data):
+def build_email(data, ghl=False):
+    """ghl=True writes the HighLevel version: {{contact.first_name}} greeting and {{unsubscribe_link}}."""
+    greet = (f'<p style="margin:20px 0 0;{F_BODY};font-size:17px;line-height:27px;color:#F4EFE6">Hi {{{{contact.first_name}}}},</p>' if ghl else "")
+    unsub = "{{unsubscribe_link}}" if ghl else "{{unsubscribe}}"
     total = sum(len(g["businesses"]) for g in data["groups"])
     sections = []
     for g in data["groups"]:
@@ -357,7 +360,7 @@ img{{border:0;display:block;outline:none;text-decoration:none}}
 <tr><td class="px" bgcolor="#0B0B0B" style="background:#0B0B0B;padding:32px 40px 44px">
 <p style="margin:0 0 16px;{F_BODY};font-size:12px;line-height:16px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:#C9A24A">Small Business Saturday · Nov 28</p>
 <h1 class="h1" style="margin:0;{F_DISP};font-size:72px;line-height:64px;letter-spacing:-0.5px;color:#F4EFE6">Shop small.<br><span style="color:#C9A24A">We brought the crowd.</span></h1>
-<p style="margin:20px 0 0;{F_BODY};font-size:17px;line-height:27px;color:#F4EFE6">Tomorrow is Small Business Saturday. These are our neighbors, partners and members, and every one of them has a deal for you this weekend. Show this email or use the code, and tell them OCP sent you.</p>
+{greet}<p style="margin:{"12px" if ghl else "20px"} 0 0;{F_BODY};font-size:17px;line-height:27px;color:#F4EFE6">Tomorrow is Small Business Saturday. These are our neighbors, partners and members, and every one of them has a deal for you this weekend. Show this email or use the code, and tell them OCP sent you.</p>
 </td></tr>
 
 <tr><td height="36" style="height:36px;font-size:0;line-height:0">&nbsp;</td></tr>
@@ -376,7 +379,7 @@ img{{border:0;display:block;outline:none;text-decoration:none}}
 <td class="stack loc" valign="top" width="33%" style="padding:0 16px 0 0"><a href="https://www.google.com/maps/search/?api=1&amp;query=Oak+Cliff+Pilates+2222+McKinney+Ave+%23160%2C+Dallas%2C+TX+75201" style="display:block;text-decoration:none"><div style="{F_DISP};font-size:19px;line-height:19px;color:#F4EFE6">Uptown</div><div style="{F_BODY};font-size:12px;line-height:18px;color:#BDB6AA;padding-top:6px">2222 McKinney Ave, #160<br>Dallas, TX 75201</div></a></td>
 <td class="stack loc" valign="top" width="34%" style="padding:0"><a href="https://www.google.com/maps/search/?api=1&amp;query=Oak+Cliff+Pilates+2000+Greenville+Ave%2C+Dallas%2C+TX+75206" style="display:block;text-decoration:none"><div style="{F_DISP};font-size:19px;line-height:19px;color:#F4EFE6">Lower Greenville</div><div style="{F_BODY};font-size:12px;line-height:18px;color:#BDB6AA;padding-top:6px">2000 Greenville Ave<br>Dallas, TX 75206</div></a></td>
 </tr></table></td></tr>
-<tr><td class="px" bgcolor="#0B0B0B" style="background:#0B0B0B;padding:26px 40px 36px;{F_BODY};font-size:12px;line-height:20px;color:#BDB6AA"><a href="https://instagram.com/oakcliffpilates" style="color:#C9A24A;font-weight:700">@oakcliffpilates</a><br>You're getting this because you're on the Oak Cliff Pilates list.<br><a href="{{{{unsubscribe}}}}" style="color:#BDB6AA">Unsubscribe</a> &middot; <a href="https://oakcliffpilates.com" style="color:#BDB6AA">oakcliffpilates.com</a></td></tr>
+<tr><td class="px" bgcolor="#0B0B0B" style="background:#0B0B0B;padding:26px 40px 36px;{F_BODY};font-size:12px;line-height:20px;color:#BDB6AA"><a href="https://instagram.com/oakcliffpilates" style="color:#C9A24A;font-weight:700">@oakcliffpilates</a><br>You're getting this because you're on the Oak Cliff Pilates list.<br><a href="{unsub}" style="color:#BDB6AA">Unsubscribe</a> &middot; <a href="https://oakcliffpilates.com" style="color:#BDB6AA">oakcliffpilates.com</a></td></tr>
 
 </table>
 <!--[if mso]></td></tr></table><![endif]-->
@@ -384,7 +387,7 @@ img{{border:0;display:block;outline:none;text-decoration:none}}
 </body>
 </html>
 """
-    path = os.path.join(ROOT, "emails", "shop-small-features.html")
+    path = os.path.join(ROOT, "emails", "shop-small-features-ghl.html" if ghl else "shop-small-features.html")
     with open(path, "w") as f:
         f.write(page)
     print(f"email: {path} ({len(page.encode()) // 1024} KB)")
@@ -398,6 +401,7 @@ def main():
     build_images(data, args[0])
     page, bs = build_posts_page(data)
     build_email(data)
+    build_email(data, ghl=True)
     if "--no-render" not in sys.argv:
         render(page, bs, data)
 
