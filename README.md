@@ -61,6 +61,7 @@ The Instagram feed post `smallbusinesssaturday/social/post.jpg` (1080x1350) and 
 The 25 featured businesses live in `tools/shop-small-features.json` (copy edited for length, crop focus per photo, feature order). `python3 tools/build-shop-small-features.py "<Shop Small 2026 uploads folder>"` builds everything from it and the uploads:
 
 - `emails/shop-small-features.html`, the Friday feature email, with its images in `emails/img/sbs/`
+- `emails/shop-small-features-ghl.html`, the same email for HighLevel: opens with `Hi {{contact.first_name}},` and uses `{{unsubscribe_link}}`
 - `smallbusinesssaturday/features/posts/`, one 1080x1350 post per business, numbered in feature order
 - `smallbusinesssaturday/features/carousel/`, the carousel covers (`part-1-cover`, `part-2-cover`, `00-cover-all`) and the closing slide
 - `smallbusinesssaturday/features/shop-small-slideshow.mp4`, cover, all 25 posts and the closing slide as one 4:5 video
